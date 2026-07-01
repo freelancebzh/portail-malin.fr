@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Banque & assurance | Simulateur ASC 2026 — CSE Central La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div id="banner"></div>
+
+  <div class="card">
+    <div class="eyebrow">Banque, Assurance & Prêt collaborateur</div>
+    <h1 class="page-title">🏦 Avantages La Banque Postale</h1>
+    <p class="page-lead">Ces avantages ne dépendent pas de votre tranche de quotient familial : ils sont identiques pour tous les postiers.</p>
+
+    <div class="grid-3" id="infoGrid"></div>
+  </div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+(function () {
+  const L = ASC.LINKS;
+  const cards = [
+    { icon: '💳', title: 'Compte bancaire', text: "Tarif collaborateur dès 3 mois de domiciliation. Carte remboursée sur bulletin, protections incluses. <strong>Moins de 2 €/mois.</strong>", link: L.lbpBanque, label: "🔗 Découvrir l'offre →" },
+    { icon: '🛡️', title: 'Assurances', text: "Sans être client LBP : remises ou <strong>1 mois offert</strong> sur presque chaque contrat.", link: L.lbpAssurance, label: "🔗 Voir les assurances →" },
+    { icon: '💰', title: 'Prêt conso', text: "Sans être client LBP : taux avantageux réservé agents. <strong>Mettre en concurrence dès votre projet.</strong>", link: L.lbpPret, label: "🔗 Contacter LBP →" },
+  ];
+
+  function render() {
+    ASC.renderHeader('banque');
+    ASC.renderFooter();
+    document.getElementById('infoGrid').innerHTML = cards.map(c => `
+      <div class="info-card">
+        <div class="ic">${c.icon}</div>
+        <div class="it">${c.title}</div>
+        <p>${c.text}</p>
+        <button class="link-out" data-link="${c.link}">${c.label}</button>
+      </div>`).join('');
+    document.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

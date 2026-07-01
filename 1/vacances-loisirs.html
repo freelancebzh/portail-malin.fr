@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Vacances & loisirs | Simulateur ASC 2026 — CSE Central La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div id="banner"></div>
+
+  <div class="layout-grid">
+    <div class="card">
+      <div class="eyebrow">Vacances & loisirs</div>
+      <h1 class="page-title">🌴 Chèques-Vacances & vacances timbrées</h1>
+      <p class="page-lead">Estimez l'abondement CSE sur votre épargne Chèques-Vacances et la prise en charge de votre séjour principal.</p>
+
+      <div class="grid-2">
+        <div>
+          <label class="field-label">Épargne Chèques-Vacances / an</label>
+          <div class="field-wrap"><input type="number" id="epargneCV" placeholder="ex. 500"><span class="suffix">€</span></div>
+          <p class="field-hint">Plafond pris en compte : 1 200 €/an.</p>
+        </div>
+        <div>
+          <label class="field-label">Facture vacances timbrées</label>
+          <div class="field-wrap"><input type="number" id="factureTimbree" placeholder="ex. 800"><span class="suffix">€</span></div>
+          <p class="field-hint">1 séjour / an · minimum 7 nuits.</p>
+        </div>
+      </div>
+
+      <div class="btn-row" data-noprint>
+        <a href="index.html" class="btn btn-secondary">← Mon profil</a>
+        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimer / Exporter en PDF</button>
+      </div>
+    </div>
+
+    <div id="sidebar"></div>
+  </div>
+
+  <div class="card" style="margin-top:22px;" id="resultsCard"></div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+(function () {
+  const B = ASC.BAREMES, L = ASC.LINKS;
+  const state = { epargneCV: '', factureTimbree: '' };
+
+  function explain(kind, t) {
+    const f = ASC.fmt;
+    if (kind === 'cheques') {
+      const taux = B.cvPct[t], exEp = 600, exAide = Math.round(exEp * taux / 100), total = exEp + exAide;
+      const remise = Math.round(exAide / total * 100);
+      return `💡 Exemple concret : vous épargnez ${f(exEp)}/an en Chèques-Vacances. La Poste abonde ${taux} %, soit ${f(exAide)} offerts. Vous disposez de ${f(total)} pour vos loisirs — une réduction effective de ${remise} % !`;
+    }
+    if (kind === 'timbrees') {
+      const taux = B.vtPct[t], max = B.vtMax[t], exFact = Math.round(max / taux * 100);
+      return `💡 Exemple concret : pour une facture de ${f(exFact)}, le CSE rembourse ${taux} %, soit le plafond maximum de ${f(max)} pour votre tranche. Votre reste à charge : ${f(exFact-max)} seulement.`;
+    }
+    return '';
+  }
+
+  function compute() {
+    const comp = ASC.computeQF();
+    const aids = [];
+    if (comp.hasQF) {
+      const t = comp.t;
+      const ep = ASC.num(state.epargneCV);
+      if (ep > 0) {
+        const gain = Math.min(ep, 1200) * (B.cvPct[t] / 100);
+        aids.push({ kind: 'cheques', label: 'Chèques-Vacances', amount: Math.min(gain, B.cvMax[t]), note: B.cvPct[t] + '% sur ' + ASC.fmt(Math.min(ep, 1200)) });
+      }
+      const vtSaisie = ASC.num(state.factureTimbree);
+      const vt = vtSaisie > 0 ? vtSaisie : B.vtMax[t] / (B.vtPct[t] / 100);
+      aids.push({ kind: 'timbrees', label: 'Vacances timbrées' + (vtSaisie === 0 ? ' (plafond max)' : ''), amount: Math.min(vt * B.vtPct[t] / 100, B.vtMax[t]), note: B.vtPct[t] + '% · plafond ' + ASC.fmt(B.vtMax[t]) + (vtSaisie === 0 ? ' — montant max possible' : '') });
+    }
+    return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0) };
+  }
+
+  function renderResults() {
+    const { comp, aids, total } = compute();
+    const el = document.getElementById('resultsCard');
+    if (!comp.hasQF) {
+      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="index.html">profil</a> pour voir vos aides estimées ici.</p>`;
+    } else {
+      el.innerHTML = `
+        <div class="eyebrow">Vos aides estimées — Tranche T${comp.t+1}</div>
+        <h2 class="page-title" style="font-size:22px;">${ASC.fmt(total)}</h2>
+        <div class="aid-cards">
+          ${aids.map(a => `
+            <div class="aid-card">
+              <span class="aid-label">${a.label}</span>
+              <span class="aid-amount">${ASC.fmt(a.amount)}</span>
+              <span class="aid-note">${a.note}</span>
+              <div class="aid-explain">${explain(a.kind, comp.t)}</div>
+              <button class="aid-link" data-link="${L[a.kind] || L.cse}">🔗 Faire la démarche →</button>
+            </div>`).join('')}
+        </div>`;
+      el.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
+    }
+    ASC.renderSidebar('sidebar', total, aids.length);
+  }
+
+  function render() {
+    ASC.renderHeader('vacances');
+    ASC.renderFooter();
+    ASC.profileBanner('banner');
+    renderResults();
+  }
+
+  document.getElementById('epargneCV').addEventListener('input', e => { state.epargneCV = e.target.value; render(); });
+  document.getElementById('factureTimbree').addEventListener('input', e => { state.factureTimbree = e.target.value; render(); });
+
+  render();
+})();
+</script>
+</body>
+</html>

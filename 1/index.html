@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Connexion — Simulateur ASC 2026 | CSE Central La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<style>
+  body {
+    margin: 0; padding: 0;
+    background: #f4f7f6;
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh;
+    font-family: 'Manrope', sans-serif;
+  }
+  .login-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    max-width: 400px; width: 90%;
+    text-align: center;
+  }
+  .login-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #004b6e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .login-btn:hover { background: #003853; }
+  #login-error { color: red; font-size: 14px; margin-top: 10px; display: none; }
+</style>
+</head>
+<body>
+
+<div class="login-card">
+  <h2 style="margin-top:0;color:#333;">🔒 Accès Réservé</h2>
+  <p style="color:#666;font-size:14px;margin-bottom:20px;">Merci de saisir votre code RH pour accéder au simulateur <br>(sans le p)</p>
+  
+  <input type="text" id="username" class="login-field" placeholder="Votre identifiant RH">
+  <button type="button" class="login-btn" onclick="checkLogin()">Se Connecter</button>
+  <div id="login-error">Le code RH n'est pas reconnu, ce site n'est accessible qu'aux postiers.</div>
+</div>
+
+<script>
+function checkLogin() {
+  const user = document.getElementById('username').value.trim();
+  const errorDiv = document.getElementById('login-error');
+  const regexRH = /^[a-zA-Z]{3}[0-9]{3}$/;
+
+  if (regexRH.test(user)) {
+    sessionStorage.setItem('is_logged_in', 'true');
+    window.location.href = 'accueil.html';
+  } else {
+    errorDiv.style.display = 'block';
+  }
+}
+
+// Si déjà connecté, rediriger directement vers l'accueil
+if (sessionStorage.getItem('is_logged_in') === 'true') {
+  window.location.href = 'accueil.html';
+}
+</script>
+
+</body>
+</html>
