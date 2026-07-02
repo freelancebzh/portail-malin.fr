@@ -2,26 +2,63 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>En cours de développement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Malin - Bienvenue</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
+        body { font-family: sans-serif; text-align: center; padding: 50px 20px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 30px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 250px; text-decoration: none; color: #000; }
+        .card:hover { border-color: #007bff; background-color: #f8f9fa; }
+        .page-photo {
+            width: 100%;
+            max-width: 700px;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 20px auto;
+            background: #f0f0f0;
         }
-        h1 {
-            font-size: 4rem;
-            color: #333;
-            text-align: center;
+        .page-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        @media (max-width: 640px) {
+            body { padding: 30px 14px; }
+            .page-photo { aspect-ratio: 4 / 3; }
         }
     </style>
 </head>
 <body>
-    <h1>EN COURS DE DÉVELOPPEMENT</h1>
+    <h1 style="text-align: center; color: #333; font-family: sans-serif; margin: 30px 10px;">
+    Bienvenue sur un Portail Malin pour vous y retrouver avec les aides de La Poste
+</h1>
 	
-	<img src="images/perdu.jpg" alt="perdu" style="max-width:100%; height:auto; display:block; margin:20px auto;">
+	
+    <p>Veuillez cliquez pour accéder au contenu :</p>
+	
+	<div class="page-photo"><img src="images/agent.jpg" alt="agent"></div>
+    
+    <div class="container">
+	
+	        <!-- Lien vers le nouveau site à venir -->
+        <a href="/1/index.html" class="card">
+            <h2>Site n°1</h2>
+            <p>Accéder à une version en cours de développement mais qui s'améliore chaque jour</p>
+        </a>
+        <!-- Lien vers le site existant fait avec Claude -->
+        <a href="/2/index.html" class="card">
+            <h2>Site en developpement</h2>
+            <p>Bientot une version avec les liens et tout le nécessaire</p>
+        </a>
+        
+
+    </div>
+	
+	<div style="margin-top: 50px; padding: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        <p><strong>Avertissement :</strong> Ce site internet est un portail indépendant et n'a aucun caractère officiel.</p>
+        <p>L'unique autorité officielle de référence pour l'ensemble de ces services est le <strong>CSE Central de La Poste</strong>.</p>
+    </div>
 </body>
 </html>
