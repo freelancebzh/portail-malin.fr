@@ -87,10 +87,31 @@
           </div>
         </div>
       </div>
+	  
+	  
+
+	
+
+
+      <div style="margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px;">
+        <h2 class="page-title" style="font-size: 20px; margin-top: 0;">📱 Avantages des CESUs pour les cours particuliers de vos enfants majeurs</h2>
+	
+		<div class="page-photo"><img src="assets/images/logo-personnes-lapostemobile.jpg" alt="la poste mobile"></div>
+        <p class="page-lead">Vous bénéficiez de <b>-50 chèques CESUs de 15€</b> chaque année que vous pouvez utiliser COMME VOUS LE SOUHAITEZ. Et si cela pouvait être utilisé pour vos enfants majeurs qui ont besoin de soutien?</p>
+        
+        <div class="page-photo"><img src="assets/images/soutien-etudiant.jpg" alt="étudiant étant aidé d'un jeune homme"></div>
+
+        <p style="font-size:13px; margin-bottom:10px;">Indiquez le Nombre de titres CESU souhaité (de 0 à 50) :</p>
+        <input type="number" id="socleCesu" min="0" max="50" value="50" style="width: 80px; padding: 8px;">
+      </div>
+
+
 
       <!-- Section : La Poste Mobile -->
       <div style="margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px;">
         <h2 class="page-title" style="font-size: 20px; margin-top: 0;">📱 Avantage La Poste Mobile</h2>
+	
+		<div class="page-photo"><img src="assets/images/logo-personnes-lapostemobile.jpg" alt="la poste mobile"></div>
         <p class="page-lead">Bénéficiez de <b>-15% de réduction</b> sur les forfaits (tarifs publics à partir de 4,99 €/mois) pour équiper vos enfants.</p>
         
         <div style="background: var(--bg-faint, #f9f9f9); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
@@ -129,7 +150,7 @@
 <script>
 (function () {
   const L = ASC.LINKS;
-  const state = { etudiant: 0, sportifs: 0 };
+  const state = { etudiant: 0, sportifs: 0, socleCesu: 50 };
 
   function compute() {
     const comp = ASC.computeQF();
@@ -163,6 +184,19 @@
         note: state.sportifs + ' × ' + ASC.fmt(60),
         explain: `💡 Exemple concret : ${state.sportifs} enfant(s) rattaché(s) au foyer bénéficiant de l'aide sport de 60 € pour leur licence ou inscription.`,
         link: '#'
+      });
+    }
+
+    // 3. Calcul CESU pour cours particuliers / soutien des enfants majeurs
+    if (comp.hasQF && state.socleCesu > 0) {
+      const rate = ASC.BAREMES.cesuTitre[comp.t];
+      aids.push({
+        kind: 'cesuMajeur',
+        label: 'Titres CESU (soutien enfants majeurs)',
+        amount: state.socleCesu * rate,
+        note: state.socleCesu + ' titres × ' + ASC.fmt2(rate) + '/titre',
+        explain: `💡 Exemple concret : ${state.socleCesu} titres CESU à ${ASC.fmt2(rate)} d'aide chacun (tranche T${comp.t+1}) = ${ASC.fmt(state.socleCesu * rate)} pour financer du soutien scolaire ou des cours particuliers à vos enfants majeurs.`,
+        link: L.cesuvq
       });
     }
 
@@ -240,6 +274,7 @@
     ASC.profileBanner('banner');
     document.getElementById('val').textContent = state.etudiant;
     document.getElementById('sport-val').textContent = state.sportifs;
+    document.getElementById('socleCesu').value = state.socleCesu;
     renderResults();
     calculerTarifMobile();
   }
@@ -255,6 +290,7 @@
 
   document.getElementById('sport-dec').onclick = () => { state.sportifs = Math.max(0, state.sportifs-1); render(); };
   document.getElementById('sport-inc').onclick = () => { state.sportifs += 1; render(); };
+  document.getElementById('socleCesu').addEventListener('input', e => { state.socleCesu = ASC.num(e.target.value); render(); });
 
   document.getElementById('forfaitBase').addEventListener('change', calculerTarifMobile);
 
