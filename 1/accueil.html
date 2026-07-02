@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Simulateur non-officiel des aides de La Poste — Mon profil</title>
+<title>Simulateur NON-OFFICIEL des aides de La Poste — Mon profil</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Simulateur des aides ASC 2026 du CSE Central La Poste — renseignez votre profil pour découvrir vos aides par thème.">
+<meta name="description" content="Simulateur non officiel des aides ASC 2026 du CSE Central La Poste — renseignez votre profil pour découvrir vos aides par thème.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
   <div style="max-width:760px;margin:0 auto;">
     <div class="card" style="margin-bottom:22px;">
       <div class="eyebrow">Étape 1 — Votre foyer fiscal</div>
-      <h1 class="page-title">Bienvenue dans le simulateur Non officiel des aides de La Poste</h1>
+      <h1 class="page-title" style="text-align: center;">Bienvenue dans le simulateur NON OFFICIEL<br> des aides de La Poste</h1>
       <p class="page-lead">💰 Renseignez votre revenu fiscal et vos parts pour déterminer votre tranche de quotient familial.<br>📊 Cette information sera utilisée sur toutes les pages d'aides<br>🔒 Vous ne la saisissez qu'une seule fois, elle reste sur votre appareil.</p>
 
       <div class="grid-2">
@@ -74,12 +74,12 @@
 <script>
 (function () {
   const THEME_CARDS = [
-    { page: 'parentalite.html', icon: '👶👦🏻​👧🏽', label: 'Parentalité et - de 18 ans', desc: "CESU garde, classe découverte, séjours, colonies…" },
-    { page: 'enfant-18-25.html', icon: '🎓⛹️​', label: 'Enfant\n18 – 25 ans', desc: 'Allocation scolarité étudiante' },
-    { page: 'vacances-loisirs.html', icon: '🌴🍽️​🎞️​🎳', label: 'Vacances\n& loisirs', desc: 'Chèques-Vacances, vacances timbrées' },
-    { page: 'banque-assurance.html', icon: '🏦', label: 'Banque\n& assurance', desc: 'Avantages La Banque Postale' },
-    { page: 'avantages-groupe.html', icon: '💼💶​🚗​📶​', label: 'Avantages\ngroupe', desc: 'PEG/PERCO, La Poste Mobile, ventes groupe' },
-    { page: 'aidant-familial.html', icon: '🤲​👴🏼🧹​​♿​​', label: 'autres aides quotidiennes', desc: 'CESU, aide à domicile, répit…' },
+    { page: 'parentalite.html', icon: '👨‍👩‍👧🏽', label: 'Parentalité et<br> - de 18 ans', desc: "CESU garde, classe découverte, séjours, colonies…" },
+    { page: 'enfant-18-25.html', icon: '🎓​', label: 'Enfant\n18 / 25 ans', desc: 'Allocation scolarité étudiante, allocation sport ou culture...' },
+    { page: 'vacances-loisirs.html', icon: '🎉', label: 'Vacances\n& loisirs', desc: 'Chèques-Vacances, vacances timbrées...' },
+    { page: 'banque-assurance.html', icon: '🏦', label: 'Banque\n& assurance', desc: 'Avantages La Banque Postale et La Banque Postale Consumer Finance' },
+    { page: 'avantages-groupe.html', icon: '🎁​', label: 'Avantages\ngroupe', desc: 'PEG/PERCO, La Poste Mobile, ventes groupe...' },
+    { page: 'aidant-familial.html', icon: '​​🫶', label: 'autres aides', desc: 'CESU, aidants, handicape, aide à domicile, répit…' },
   ];
 
   let profile = ASC.loadProfile() || ASC.defaultProfile();

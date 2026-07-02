@@ -8,6 +8,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .choice-box { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 10px; margin-bottom: 6px; }
+  .choice-box label { display: block; margin-bottom: 10px; font-size: 13.5px; cursor: pointer; }
+  .choice-box label:last-child { margin-bottom: 0; }
+  .hidden { display: none !important; }
+</style>
 </head>
 <body>
 
@@ -20,22 +26,60 @@
     <div class="card">
       <div class="eyebrow">Parentalité — enfants de moins de 18 ans</div>
       <h1 class="page-title">👶 Garde, scolarité & vacances de vos enfants</h1>
-      <p class="page-lead">Renseignez votre situation pour estimer les aides CSE mobilisables sur la garde, le périscolaire, les colonies, classes découverte et séjours linguistiques.</p>
+
+<div class="section-block" style="background:#e8f0fe;">
+  <div class="section-head">
+    <span class="ic">🎫</span>
+    <h3>Dotation en CESU : 50 pour tous DE BASE </h3>
+  </div>
+  <p style="font-size:13px; margin-bottom:10px;">Indiquez le Nombre de titres CESU souhaité (de 0 à 50) :</p>
+  <input type="number" id="socleCesu" min="0" max="50" value="50" style="width: 80px; padding: 8px;">
+</div>
+
+<div class="section-block" id="block-kids-cesu">
+  <div class="section-head"><span class="ic">👧</span><h3>Enfants concernés par le CESU (0-11 ans)</h3></div>
+  <div id="kidRows-cesu">
+    </div>
+</div>
+
+<div class="section-block">
+  <div class="section-head"><span class="ic">🎓</span><h3>Enfants scolarisés (Primaire, Collège, Lycée)</h3></div>
+  <div id="kidRows-scolarite">
+    </div>
+</div>
 
       <div class="section-block">
-        <div class="section-head"><span class="ic">👧</span><h3>Nombre d'enfants par catégorie</h3></div>
-        <div id="kidRows"></div>
+        <div class="section-head"><span class="ic">ℹ️</span><h3>Aide enfant(s) de 0 à 11 ans — comment choisir ?</h3></div>
+        <p style="font-size:13.5px;color:var(--muted);margin:0 0 10px;">Le choix a lieu une fois par an et est irrévocable :</p>
+        <ul style="margin:0 0 16px;padding-left:20px;font-size:13.5px;color:var(--muted);line-height:1.7;">
+          <li><strong>Option 1 :</strong> aide en pourcentage sur vos frais de périscolaire.</li>
+          <li><strong>Option 2 :</strong> dotation de titres CESU supplémentaires — 84 titres/enfant 0-4 ans, 55 titres/enfant 4-11 ans.</li>
+        </ul>
+        <div class="choice-box">
+          <label><input type="radio" name="modeAide" value="perisco" checked> Option 1 — Périscolaire</label>
+          <label><input type="radio" name="modeAide" value="cesu"> Option 2 — Titres CESU en plus</label>
+        </div>
       </div>
 
-      <div class="section-block">
-        <div class="section-head"><span class="ic">🏫</span><h3>Périscolaire & séjours accompagnés</h3></div>
+      <div class="section-block" id="block-perisco">
+        <div class="section-head"><span class="ic">🏫</span><h3>Périscolaire</h3></div>
         <div class="grid-2">
           <div>
-            <label class="field-label">Facture périscolaire / mois <span style="font-weight:500;font-size:12px;color:var(--faint);">(si hors CESU)</span></label>
+            <label class="field-label">Facture périscolaire / mois</label>
             <div class="field-wrap"><input type="number" id="perisco" placeholder="ex. 80"><span class="suffix">€</span></div>
+            <p class="field-hint">Aide = <span id="periscoPctLabel">—</span> % de la facture, versée sur 11 mois.</p>
           </div>
+        </div>
+      </div>
+
+
+
+      <div class="section-block">
+        <div class="section-head"><span class="ic">🎒</span><h3>Séjours enfants accompagnés</h3></div>
+		<p style="font-size:13px; margin-bottom:10px;">Pour chaque nuit facturée en dehors du domicile des parents avec le parent éligible percevez une aide/j/enfant</p>
+        <div class="grid-2">
           <div>
-            <label class="field-label">Jours de séjours enfants accompagnés</label>
+            <label class="field-label">Jours de séjours enfants</label>
             <input type="number" id="joursSejours" placeholder="ex. 14">
           </div>
         </div>
@@ -43,21 +87,13 @@
 
       <div class="section-block">
         <div class="section-head"><span class="ic">⛺</span><h3>Colonies de vacances agréées</h3></div>
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-          <div class="counter-controls">
-            <button type="button" class="ct-btn" id="coloDec">−</button>
-            <span class="ct-value" id="coloVal">0</span>
-            <button type="button" class="ct-btn" id="coloInc">+</button>
-            <span style="font-size:13px;color:var(--muted);">enfant(s)</span>
-          </div>
-          <div class="field-wrap" style="flex:1;min-width:160px;">
-            <input type="number" id="coloCout" placeholder="Coût total €"><span class="suffix">€</span>
-          </div>
-        </div>
+		<p style="font-size:13px; margin-bottom:10px;">Séjours subventionnés dans le monde entier (mais surtout en Europe et en France)</p>
+
       </div>
 
       <div class="section-block">
         <div class="section-head"><span class="ic">🏕️</span><h3>Classe découverte</h3></div>
+		<p style="font-size:13px; margin-bottom:10px;">Votre enfant part en classe de neige ou en classe verte?</p>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
           <div class="counter-controls">
             <button type="button" class="ct-btn" id="classeDec">−</button>
@@ -67,13 +103,14 @@
           </div>
           <div style="flex:1;min-width:160px;">
             <input type="number" id="joursClasse" placeholder="Nombre de jours">
-            <p class="field-hint" style="margin:4px 0 0;">Indemnité journalière selon votre tranche · minimum 3 jours</p>
+            <p class="field-hint" style="margin:4px 0 0;">Minimum 7 jours.</p>
           </div>
         </div>
       </div>
 
       <div class="section-block">
         <div class="section-head"><span class="ic">🌍</span><h3>Séjour linguistique</h3></div>
+		<p style="font-size:13px; margin-bottom:10px;">Votre enfant part en Italie ou au Royaume Uni?</p>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
           <div class="counter-controls">
             <button type="button" class="ct-btn" id="sejLingDec">−</button>
@@ -83,7 +120,7 @@
           </div>
           <div style="flex:1;min-width:160px;">
             <input type="number" id="joursSejLing" placeholder="Nombre de jours">
-            <p class="field-hint" style="margin:4px 0 0;">Indemnité journalière selon votre tranche · minimum 7 jours</p>
+            <p class="field-hint" style="margin:4px 0 0;">Minimum 3 jours.</p>
           </div>
         </div>
       </div>
@@ -107,7 +144,9 @@
 (function () {
   const B = ASC.BAREMES, L = ASC.LINKS;
 
-  const state = {
+const state = {
+    mode: 'perisco',
+    socleCesu: 50,
     kids: { n04: 0, n411: 0, primaire: 0, college: 0, lycee: 0 },
     perisco: '', joursSejours: '', coloEnfants: 0, coloCout: '',
     classeDecouverte: 0, joursClasse: '', sejourLinguistique: 0, joursSejLing: '',
@@ -116,22 +155,22 @@
   const KID_FIELDS = [
     { key: 'n04', label: 'Enfants 0-4 ans', sub: 'Crèche / assistante maternelle' },
     { key: 'n411', label: 'Enfants 4-11 ans', sub: 'Garde périscolaire' },
-    { key: 'primaire', label: 'En primaire', sub: 'Allocation scolarité (T1-T2)' },
-    { key: 'college', label: 'Au collège', sub: 'Allocation scolarité (T1-T2)' },
-    { key: 'lycee', label: 'Au lycée', sub: 'Allocation scolarité (T1-T2)' },
+    { key: 'primaire', label: 'En primaire', sub: 'Allocation rentrée (T1-T2)' },
+    { key: 'college', label: 'Au collège', sub: 'Allocation rentrée (T1-T2)' },
+    { key: 'lycee', label: 'Au lycée', sub: 'Allocation rentrée (T1-T2)' },
   ];
 
   function explain(kind, t) {
     const f = ASC.fmt, f2 = ASC.fmt2;
     switch (kind) {
-      case 'garde04': { const ex = B.garde04[t]; return `💡 Exemple concret : vous avez 1 enfant en crèche. La Poste vous verse ${f(ex)} directement cette année — soit ${f(Math.round(ex/12))}/mois en moins sur votre budget garde.`; }
-      case 'garde411': { const ex = B.garde411[t]; return `💡 Exemple concret : votre enfant est à l'école primaire avec garderie le matin et le soir. Le CSE vous rembourse ${f(ex)} sur l'année, soit ${f(Math.round(ex/11))}/mois (sur 11 mois scolaires).`; }
-      case 'scolarite': return `💡 Exemple concret : vous avez un enfant au collège (145 €) et un au lycée (175 €). Le CSE vous verse 320 € d'allocation scolarité — sans démarche complexe, juste sur justificatif.`;
-      case 'perisco': { const taux = B.periscoPct[t], exFact = 80, exAide = Math.round(exFact*taux/100); return `💡 Exemple concret : votre facture périscolaire est de ${f(exFact)}/mois. En tranche T${t+1}, le CSE prend en charge ${taux} %, soit ${f(exAide)}/mois — vous ne payez plus que ${f(exFact-exAide)}/mois.`; }
-      case 'sejours': { const taux = B.sejourDay[t], exJours = 14, exAide = Math.round(taux*exJours); return `💡 Exemple concret : vacances en famille 14 nuits à la mer. Le CSE verse ${f2(taux)}/jour × 14 jours = ${f(exAide)} d'aide — directement en plus dans votre budget vacances.`; }
-      case 'colo': { const taux = B.coloPct[t], exFact = 800, exAide = Math.min(Math.round(exFact*taux/100), 1300); return `💡 Exemple concret : séjour à ${f(exFact)} pour 1 enfant. Le CSE prend en charge ${taux} %, soit ${f(exAide)} remboursés. Votre reste à charge : seulement ${f(exFact-exAide)}.`; }
-      case 'classedec': { const taux = B.classeDecJour[t], exJours = 5, exAide = Math.round(taux*exJours); return `💡 Exemple concret : classe découverte de 5 jours. Le CSE verse ${f2(taux)}/jour par enfant, soit ${f(exAide)} par enfant remboursés.`; }
-      case 'sejourling': { const taux = B.sejourLingJour[t], exJours = 14, exAide = Math.round(taux*exJours); return `💡 Exemple concret : séjour linguistique 2 semaines. Le CSE verse ${f2(taux)}/jour × 14 jours = ${f(exAide)} par enfant.`; }
+      case 'socle': { const ex = 50 * B.cesuTitre[t]; return `💡 Cette dotation est automatique : 50 titres CESU × ${f2(B.cesuTitre[t])} d'aide CSE par titre = ${f(ex)} offerts, quelle que soit votre tranche.`; }
+      case 'perisco': { const pct = B.periscoPct[t], exFact = 80, exAide = Math.round(exFact * pct / 100); return `💡 Exemple concret : facture périscolaire de ${f(exFact)}/mois. En tranche T${t+1}, le CSE prend en charge ${pct} %, soit ${f(exAide)}/mois — reste à charge ${f(exFact-exAide)}/mois, sur 11 mois.`; }
+      case 'cesuOpt2': return `💡 Dotation calculée sur le nombre d'enfants 0-4 ans et 4-11 ans saisi ci-dessus : 84 titres/enfant (0-4 ans) et 55 titres/enfant (4-11 ans), valorisés à ${f2(B.cesuTitre[t])}/titre pour votre tranche.`;
+      case 'scolarite': return `💡 Exemple concret : un enfant au collège (145 €) et un au lycée (175 €) = 320 € d'allocation de rentrée versés sur simple certificat de scolarité.`;
+      case 'sejours': { const taux = B.sejourDay[t], exJours = 14, exAide = Math.round(taux * exJours); return `💡 Exemple concret : 14 jours de séjour en famille. Le CSE verse ${f2(taux)}/jour, soit ${f(exAide)} d'aide.`; }
+      case 'colo': { const taux = B.coloPct[t], exFact = 800, exAide = Math.min(Math.round(exFact * taux / 100), 1300); return `💡 Exemple concret : colonie à ${f(exFact)}. Le CSE prend en charge ${taux} %, soit ${f(exAide)} remboursés (plafond 1 300 €/enfant).`; }
+      case 'classedec': { const taux = B.classeDecJour[t], exJours = 5, exAide = Math.round(taux * exJours); return `💡 Exemple concret : classe découverte de 5 jours → ${f2(taux)}/jour × 5 = ${f(exAide)} par enfant.`; }
+      case 'sejourling': { const taux = B.sejourLingJour[t], exJours = 14, exAide = Math.round(taux * exJours); return `💡 Exemple concret : séjour linguistique de 2 semaines → ${f2(taux)}/jour × 14 = ${f(exAide)} par enfant.`; }
       default: return '';
     }
   }
@@ -140,49 +179,71 @@
     const comp = ASC.computeQF();
     const aids = [];
     const add = (kind, label, amount, note) => { if (amount > 0) aids.push({ kind, label, amount, note }); };
+    if (!comp.hasQF) return { comp, aids, total: 0 };
 
-    if (comp.hasQF) {
-      const t = comp.t, k = state.kids;
-      if (k.n04 > 0) add('garde04', 'Garde 0-4 ans', k.n04 * B.garde04[t], k.n04 + ' enfant(s) × ' + ASC.fmt(B.garde04[t]) + '/an');
-      if (k.n411 > 0) add('garde411', 'Garde 4-11 ans', k.n411 * B.garde411[t], k.n411 + ' enfant(s) × ' + ASC.fmt(B.garde411[t]) + '/an');
-      if (t <= 1) {
-        const sc = k.primaire * 70 + k.college * 145 + k.lycee * 175;
-        add('scolarite', 'Allocation scolarité (-18 ans)', sc, 'Primaire 70 € · Collège 145 € · Lycée 175 €');
-      }
+    const t = comp.t, k = state.kids;
+
+
+
+    // Socle commun : 50 titres CESU pour tous
+const socleCount = parseInt(state.socleCesu) || 0;
+    if (socleCount > 0) {
+        add('socle', 'Socle CESU vie quotidienne', socleCount * B.cesuTitre[t], socleCount + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + '/titre');
+    }   
+
+
+
+    // Option 1 vs Option 2 (0-11 ans)
+    if (state.mode === 'cesu') {
+      const titres = k.n04 * 84 + k.n411 * 55;
+      if (titres > 0) add('cesuOpt2', 'Dotation CESU (option 2)', titres * B.cesuTitre[t], titres + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + '/titre');
+    } else {
       const peri = ASC.num(state.perisco);
       if (peri > 0) {
-        const monthly = Math.min(peri * B.periscoPct[t] / 100, B.periscoPct[t]);
-        add('perisco', 'Aide périscolarité', monthly * 11, B.periscoPct[t] + '% · plafond ' + B.periscoPct[t] + ' €/mois × 11');
-      }
-      const js = ASC.num(state.joursSejours);
-      if (js > 0) {
-        const nbKids = Math.max(1, k.n04 + k.n411 + k.primaire + k.college + k.lycee);
-        const days = Math.min(js, 45 * nbKids);
-        add('sejours', 'Séjours enfants accompagnés', days * B.sejourDay[t], days + ' j × ' + ASC.fmt2(B.sejourDay[t]) + '/j');
-      }
-      const cc = ASC.num(state.coloCout);
-      if (state.coloEnfants > 0 && cc > 0) {
-        const per = Math.min(cc * B.coloPct[t] / 100, 1300);
-        add('colo', 'Colonies de vacances', per * state.coloEnfants, B.coloPct[t] + '% · ' + state.coloEnfants + ' enfant(s) · plafond 1 300 €/enfant');
-      }
-      const jcdSaisie = ASC.num(state.joursClasse);
-      const jcd = Math.max(jcdSaisie, jcdSaisie > 0 ? 3 : 0);
-      if (state.classeDecouverte > 0 && jcd >= 3) {
-        const taux = B.classeDecJour[t];
-        add('classedec', 'Classe découverte', taux * jcd * state.classeDecouverte, ASC.fmt2(taux) + '/j × ' + jcd + ' j × ' + state.classeDecouverte + ' enfant(s) (min. 3 jours)');
-      }
-      const jslSaisie = ASC.num(state.joursSejLing);
-      const jsl = Math.max(jslSaisie, jslSaisie > 0 ? 7 : 0);
-      if (state.sejourLinguistique > 0 && jsl >= 7) {
-        const tauxL = B.sejourLingJour[t];
-        add('sejourling', 'Séjour linguistique', tauxL * jsl * state.sejourLinguistique, ASC.fmt2(tauxL) + '/j × ' + jsl + ' j × ' + state.sejourLinguistique + ' enfant(s) (min. 7 jours)');
+        const monthly = peri * B.periscoPct[t] / 100;
+        add('perisco', 'Aide périscolaire (option 1)', monthly * 11, B.periscoPct[t] + '% de ' + ASC.fmt(peri) + '/mois × 11 mois');
       }
     }
+
+    // Allocation de rentrée T1-T2
+    if (t <= 1) {
+      const sc = k.primaire * 70 + k.college * 145 + k.lycee * 175;
+      add('scolarite', 'Allocation de rentrée', sc, 'Primaire 70 € · Collège 145 € · Lycée 175 €');
+    }
+
+    // Séjours enfants accompagnés
+    const js = ASC.num(state.joursSejours);
+    if (js > 0) add('sejours', 'Séjours enfants accompagnés', js * B.sejourDay[t], js + ' j × ' + ASC.fmt2(B.sejourDay[t]) + '/j');
+
+    // Colonies
+    const cc = ASC.num(state.coloCout);
+    if (state.coloEnfants > 0 && cc > 0) {
+      const per = Math.min(cc * B.coloPct[t] / 100, 1300);
+      add('colo', 'Colonies de vacances', per * state.coloEnfants, B.coloPct[t] + '% · ' + state.coloEnfants + ' enfant(s) · plafond 1 300 €/enfant');
+    }
+
+    // Classe découverte (min 3 jours)
+    const jcdSaisie = ASC.num(state.joursClasse);
+    const jcd = jcdSaisie > 0 ? Math.max(jcdSaisie, 3) : 0;
+    if (state.classeDecouverte > 0 && jcd >= 3) {
+      const taux = B.classeDecJour[t];
+      add('classedec', 'Classe découverte', taux * jcd * state.classeDecouverte, ASC.fmt2(taux) + '/j × ' + jcd + ' j × ' + state.classeDecouverte + ' enfant(s) (min. 3 j)');
+    }
+
+    // Séjour linguistique (min 7 jours)
+    const jslSaisie = ASC.num(state.joursSejLing);
+    const jsl = jslSaisie > 0 ? Math.max(jslSaisie, 7) : 0;
+    if (state.sejourLinguistique > 0 && jsl >= 7) {
+      const tauxL = B.sejourLingJour[t];
+      add('sejourling', 'Séjour linguistique', tauxL * jsl * state.sejourLinguistique, ASC.fmt2(tauxL) + '/j × ' + jsl + ' j × ' + state.sejourLinguistique + ' enfant(s) (min. 7 j)');
+    }
+
     return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0) };
   }
 
-  function renderKidRows() {
-    document.getElementById('kidRows').innerHTML = KID_FIELDS.map(f => `
+function renderKidRows() {
+    function getLine(f) {
+      return `
       <div class="counter-row">
         <div class="counter-info"><div class="ct-label">${f.label}</div><div class="ct-sub">${f.sub}</div></div>
         <div class="counter-controls">
@@ -190,7 +251,12 @@
           <span class="ct-value" id="kid-${f.key}">${state.kids[f.key]}</span>
           <button type="button" class="ct-btn" data-inc="${f.key}">+</button>
         </div>
-      </div>`).join('');
+      </div>`;
+    }
+
+    document.getElementById('kidRows-cesu').innerHTML = KID_FIELDS.filter(f => ['n04', 'n411'].includes(f.key)).map(getLine).join('');
+    document.getElementById('kidRows-scolarite').innerHTML = KID_FIELDS.filter(f => ['primaire', 'college', 'lycee'].includes(f.key)).map(getLine).join('');
+    
     document.querySelectorAll('[data-dec]').forEach(b => b.onclick = () => { const k = b.getAttribute('data-dec'); state.kids[k] = Math.max(0, state.kids[k]-1); render(); });
     document.querySelectorAll('[data-inc]').forEach(b => b.onclick = () => { const k = b.getAttribute('data-inc'); state.kids[k] += 1; render(); });
   }
@@ -220,19 +286,31 @@
     }
     ASC.renderSidebar('sidebar', total, aids.length);
   }
+  
+
 
   function render() {
     ASC.renderHeader('parentalite');
     ASC.renderFooter();
     ASC.profileBanner('banner');
+
+    const comp = ASC.computeQF();
+    const isCesu = state.mode === 'cesu';
+
+    document.getElementById('block-perisco').classList.toggle('hidden', isCesu);
+    document.getElementById('block-scolarite').classList.toggle('hidden', !(comp.hasQF && comp.t <= 1));
+    document.getElementById('periscoPctLabel').textContent = comp.hasQF ? B.periscoPct[comp.t] : '—';
+
     renderKidRows();
     document.getElementById('coloVal').textContent = state.coloEnfants;
     document.getElementById('classeVal').textContent = state.classeDecouverte;
     document.getElementById('sejLingVal').textContent = state.sejourLinguistique;
+
+
     renderResults();
   }
 
-  // bindings champs texte
+  document.querySelectorAll('input[name="modeAide"]').forEach(r => r.addEventListener('change', e => { state.mode = e.target.value; render(); }));
   document.getElementById('perisco').addEventListener('input', e => { state.perisco = e.target.value; render(); });
   document.getElementById('joursSejours').addEventListener('input', e => { state.joursSejours = e.target.value; render(); });
   document.getElementById('coloCout').addEventListener('input', e => { state.coloCout = e.target.value; render(); });
@@ -245,7 +323,8 @@
   document.getElementById('classeInc').onclick = () => { state.classeDecouverte += 1; render(); };
   document.getElementById('sejLingDec').onclick = () => { state.sejourLinguistique = Math.max(0, state.sejourLinguistique-1); render(); };
   document.getElementById('sejLingInc').onclick = () => { state.sejourLinguistique += 1; render(); };
-
+document.getElementById('socleCesu').addEventListener('input', e => { state.socleCesu = e.target.value; render(); });
+document.getElementById('block-kids-cesu').classList.toggle('hidden', state.mode !== 'cesu');
   render();
 })();
 </script>
