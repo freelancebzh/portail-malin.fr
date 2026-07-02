@@ -1,5 +1,5 @@
 /* ============================================================
-   Simulateur ASC 2026 — CSE Central La Poste
+   Simulateur NON OFFICIEL des aides de La Poste
    Moteur partagé : profil, tranches QF, barèmes, utilitaires.
    Outil bénévole non officiel — estimations indicatives.
    ============================================================ */
@@ -64,13 +64,13 @@ const ASC = (() => {
   };
 
   const PAGES = [
-    { id: 'index', file: 'index.html', icon: '🏠', label: 'Mon profil' },
-    { id: 'parentalite', file: 'parentalite.html', icon: '👶', label: 'Parentalité -18 ans' },
-    { id: 'enfant1825', file: 'enfant-18-25.html', icon: '🎓', label: 'Enfant 18-25 ans' },
-    { id: 'vacances', file: 'vacances-loisirs.html', icon: '🌴', label: 'Vacances & loisirs' },
-    { id: 'banque', file: 'banque-assurance.html', icon: '🏦', label: 'Banque & assurance' },
-    { id: 'pegperco', file: 'avantages-groupe.html', icon: '💼', label: 'Avantages groupe' },
-    { id: 'aidant', file: 'aidant-familial.html', icon: '🤲', label: 'Aidant familial' },
+    { id: 'index', file: 'index.html', icon: '👤', label: 'Mon profil' },
+    { id: 'parentalite', file: 'parentalite.html', icon: '👨‍👩‍👧', label: 'Enfant(s) - de 18 ans' },
+    { id: 'enfant1825', file: 'enfant-18-25.html', icon: '🧑‍🎓', label: 'Enfant(s) 18-25 ans' },
+    { id: 'vacances', file: 'vacances-loisirs.html', icon: '', label: '🌴 & 🎉' },
+    { id: 'banque', file: 'banque-assurance.html', icon: '🏦', label: 'Banque & assurances' },
+    { id: 'pegperco', file: 'avantages-groupe.html', icon: '🎁', label: 'Avantages groupe' },
+    { id: 'aidant', file: 'aidant-familial.html', icon: '🫶', label: 'Aidant familial et handicap' },
   ];
 
   /* ── Formatage ─────────────────────────────────────────────── */
@@ -133,10 +133,14 @@ const ASC = (() => {
     headerEl.innerHTML = `
       <header class="site-header" data-noprint>
         <div class="site-header-inner">
-          <div class="logo-badge">CSE</div>
+		
+<div class="logo-badge">
+  <img src="assets/images/cadeau.jpg" alt="Logo">
+</div>
+
           <div>
-            <div class="brand-title">Simulateur ASC <span>2026</span></div>
-            <div class="brand-sub">CSE Central La Poste · estimation personnalisée</div>
+            <div class="brand-title">Simulateur d'aides NON OFFICIEL <span>2026</span></div>
+            <div class="brand-sub">Aides du Groupe · estimation personnalisée NON OFFICIELLE</div>
           </div>
           <a href="index.html" class="${pillClass}"><span class="dot"></span>${pillText}</a>
         </div>
@@ -148,7 +152,7 @@ const ASC = (() => {
     const el = document.getElementById('asc-footer');
     if (!el) return;
     el.innerHTML = `<footer class="site-footer" data-noprint>
-      Outil bénévole non officiel, réalisé par des élus CSE — estimations indicatives basées sur la brochure ASC 2026, sans valeur contractuelle.
+      <strong>OUTIL BENEVOLE NON OFFICIEL</strong> réalisé par jeu par un postier lambda — estimations indicatives basées sur la brochure officielle mais sans valeur contractuelle.
       Vos données restent sur votre appareil (aucun envoi à un serveur).
     </footer>`;
   }
@@ -160,7 +164,7 @@ const ASC = (() => {
     const comp = computeQF();
     if (comp.hasQF) { el.innerHTML = ''; return; }
     el.innerHTML = `<div class="banner" data-noprint>
-      ⚠️ Renseignez votre revenu fiscal et vos parts sur la page <a href="index.html">Mon profil</a> pour calculer vos montants d'aide.
+      ⚠️ Renseignez votre revenu fiscal et vos parts sur la page <a href="index.html">👤 Mon profil</a> pour calculer vos montants d'aide(s) théoriques.
     </div>`;
   }
 
