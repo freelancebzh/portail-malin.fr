@@ -44,8 +44,9 @@
     </div>
 </div>
 
-<div class="section-block">
+<div class="section-block" id="block-scolarite">
   <div class="section-head"><span class="ic">🎓</span><h3>Enfants scolarisés (Primaire, Collège, Lycée)</h3></div>
+  <p style="font-size:12.5px;color:var(--muted);margin:0 0 10px;">⚠️ L'allocation de rentrée n'est versée qu'en tranches T1 et T2.</p>
   <div id="kidRows-scolarite">
     </div>
 </div>
@@ -110,7 +111,17 @@
         <div class="section-head"><span class="ic">⛺</span><h3>Colonies de vacances agréées</h3></div>
 		<img src="assets/images/colo.jpg" alt="colo" style="max-width:100%; height:auto; display:block; margin:20px auto;">
 		<p style="font-size:13px; margin-bottom:10px;">Séjours subventionnés dans le monde entier (mais surtout en Europe et en France)</p>
-
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div class="counter-controls">
+            <button type="button" class="ct-btn" id="coloDec">−</button>
+            <span class="ct-value" id="coloVal">0</span>
+            <button type="button" class="ct-btn" id="coloInc">+</button>
+            <span style="font-size:13px;color:var(--muted);">enfant(s)</span>
+          </div>
+          <div class="field-wrap" style="flex:1;min-width:160px;">
+            <input type="number" id="coloCout" placeholder="Coût total €"><span class="suffix">€</span>
+          </div>
+        </div>
       </div>
 
       <div class="section-block">
@@ -126,7 +137,7 @@
           </div>
           <div style="flex:1;min-width:160px;">
             <input type="number" id="joursClasse" placeholder="Nombre de jours">
-            <p class="field-hint" style="margin:4px 0 0;">Minimum 7 jours.</p>
+            <p class="field-hint" style="margin:4px 0 0;">Minimum 3 jours.</p>
           </div>
         </div>
       </div>
@@ -145,7 +156,7 @@
           </div>
           <div style="flex:1;min-width:160px;">
             <input type="number" id="joursSejLing" placeholder="Nombre de jours">
-            <p class="field-hint" style="margin:4px 0 0;">Minimum 3 jours.</p>
+            <p class="field-hint" style="margin:4px 0 0;">Minimum 7 jours.</p>
           </div>
         </div>
       </div>
@@ -175,6 +186,7 @@ const state = {
     kids: { n04: 0, n411: 0, primaire: 0, college: 0, lycee: 0 },
     perisco: '', joursSejours: '', coloEnfants: 0, coloCout: '',
     classeDecouverte: 0, joursClasse: '', sejourLinguistique: 0, joursSejLing: '',
+    sportEnfants: 0,
   };
 
   const KID_FIELDS = [
@@ -196,6 +208,7 @@ const state = {
       case 'colo': { const taux = B.coloPct[t], exFact = 800, exAide = Math.min(Math.round(exFact * taux / 100), 1300); return `💡 Exemple concret : colonie à ${f(exFact)}. Le CSE prend en charge ${taux} %, soit ${f(exAide)} remboursés (plafond 1 300 €/enfant).`; }
       case 'classedec': { const taux = B.classeDecJour[t], exJours = 5, exAide = Math.round(taux * exJours); return `💡 Exemple concret : classe découverte de 5 jours → ${f2(taux)}/jour × 5 = ${f(exAide)} par enfant.`; }
       case 'sejourling': { const taux = B.sejourLingJour[t], exJours = 14, exAide = Math.round(taux * exJours); return `💡 Exemple concret : séjour linguistique de 2 semaines → ${f2(taux)}/jour × 14 = ${f(exAide)} par enfant.`; }
+      case 'sport': return `💡 Aide forfaitaire de 60 € par enfant pratiquant une activité sportive ou culturelle, jusqu'à 25 ans s'il est encore rattaché à votre foyer fiscal — sur simple justificatif (licence, inscription).`;
       default: return '';
     }
   }
@@ -235,6 +248,9 @@ const socleCount = parseInt(state.socleCesu) || 0;
       const sc = k.primaire * 70 + k.college * 145 + k.lycee * 175;
       add('scolarite', 'Allocation de rentrée', sc, 'Primaire 70 € · Collège 145 € · Lycée 175 €');
     }
+
+    // Activités sportives & culturelles (60 €/enfant, indépendant de la tranche)
+    if (state.sportEnfants > 0) add('sport', 'Activités sportives & culturelles', state.sportEnfants * 60, state.sportEnfants + ' enfant(s) × 60 €');
 
     // Séjours enfants accompagnés
     const js = ASC.num(state.joursSejours);
@@ -330,6 +346,8 @@ function renderKidRows() {
     document.getElementById('coloVal').textContent = state.coloEnfants;
     document.getElementById('classeVal').textContent = state.classeDecouverte;
     document.getElementById('sejLingVal').textContent = state.sejourLinguistique;
+    document.getElementById('sport-val').textContent = state.sportEnfants;
+    document.getElementById('block-kids-cesu').classList.toggle('hidden', !isCesu);
 
 
     renderResults();
@@ -348,8 +366,9 @@ function renderKidRows() {
   document.getElementById('classeInc').onclick = () => { state.classeDecouverte += 1; render(); };
   document.getElementById('sejLingDec').onclick = () => { state.sejourLinguistique = Math.max(0, state.sejourLinguistique-1); render(); };
   document.getElementById('sejLingInc').onclick = () => { state.sejourLinguistique += 1; render(); };
-document.getElementById('socleCesu').addEventListener('input', e => { state.socleCesu = e.target.value; render(); });
-document.getElementById('block-kids-cesu').classList.toggle('hidden', state.mode !== 'cesu');
+  document.getElementById('sport-dec').onclick = () => { state.sportEnfants = Math.max(0, state.sportEnfants-1); render(); };
+  document.getElementById('sport-inc').onclick = () => { state.sportEnfants += 1; render(); };
+  document.getElementById('socleCesu').addEventListener('input', e => { state.socleCesu = e.target.value; render(); });
   render();
 })();
 </script>
