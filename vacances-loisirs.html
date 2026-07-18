@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Vacances & loisirs | Simulateur NON OFFICIEL et bénévole des aides ASC 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Estimation non officielle et bénévole de l'abondement Chèques-Vacances et de la prise en charge des vacances timbrées.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.portail-malin.fr/vacances-loisirs.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style id="asc-disclaimer-style">
+.asc-disclaimer-banner{position:sticky;top:0;z-index:9998;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffe69c;font-size:12.5px;line-height:1.5;padding:8px 14px;text-align:center;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-banner strong{font-weight:800;}
+.asc-disclaimer-banner a{color:#664d03;text-decoration:underline;}
+.asc-disclaimer-modal{position:fixed;inset:0;z-index:9999;background:rgba(20,20,20,.55);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-modal .box{background:#fff;max-width:460px;width:100%;border-radius:14px;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.asc-disclaimer-modal .box h2{margin:0 0 10px;font-size:18px;color:#664d03;}
+.asc-disclaimer-modal .box p{margin:0 0 12px;font-size:13.5px;line-height:1.7;color:#333;}
+.asc-disclaimer-modal .box .tag{display:inline-block;background:#fff3cd;color:#664d03;font-weight:700;font-size:11px;padding:4px 9px;border-radius:20px;margin-bottom:12px;}
+.asc-disclaimer-modal .box button{width:100%;padding:12px;border:none;border-radius:8px;background:#004b6e;color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;margin-top:6px;}
+.asc-disclaimer-modal .box button:hover{background:#003853;}
+@media print{.asc-disclaimer-banner,.asc-disclaimer-modal{display:none !important;}}
+</style>
+</head>
+<body>
+
+<div id="asc-disclaimer-banner" class="asc-disclaimer-banner" data-noprint>
+  ⚠️ Simulateur <strong>non officiel</strong>, créé et géré bénévolement par un postier — non affilié à La Poste ni au CSE Central. <a href="index.html">En savoir plus</a>
+</div>
+<div id="asc-disclaimer-modal" class="asc-disclaimer-modal" style="display:none;" data-noprint>
+  <div class="box">
+    <span class="tag">⚠️ À lire avant de commencer</span>
+    <h2>Site non officiel et bénévole</h2>
+    <p>Ce simulateur est un outil <strong>indépendant</strong>, créé sur son temps libre par un postier. Il n'est ni édité, ni validé, ni relu par La Poste, le CSE Central ou tout autre organisme officiel.</p>
+    <p>Les montants affichés sont des <strong>estimations indicatives</strong>, sans valeur contractuelle. Seuls votre relevé de droits et les services officiels du CSE font foi.</p>
+    <button type="button" id="asc-disclaimer-ack-btn">J'ai compris, accéder au simulateur</button>
+  </div>
+</div>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div id="banner"></div>
+
+  <div class="layout-grid">
+    <div class="card">
+      <div class="eyebrow">Vacances & loisirs</div>
+      <h1 class="page-title">🌴 Chèques-Vacances & vacances timbrées</h1>
+	  
+	  <div class="page-photo"><img src="assets/images/famille.jpg" alt="classe de neige"></div>
+      <p class="page-lead">Estimez l'abondement CSE sur votre épargne Chèques-Vacances et la prise en charge de votre séjour principal.</p>
+
+      <div class="grid-2">
+        <div>
+          <label class="field-label">Épargne Chèques-Vacances / an</label>
+          <div class="field-wrap"><input type="number" id="epargneCV" placeholder="ex. 500"><span class="suffix">€</span></div>
+          <p class="field-hint">Plafond pris en compte : 1 200 €/an.</p>
+        </div>
+        <div>
+          <label class="field-label">Facture vacances timbrées</label>
+          <div class="field-wrap"><input type="number" id="factureTimbree" placeholder="ex. 800"><span class="suffix">€</span></div>
+          <p class="field-hint">1 séjour / an · minimum 7 nuits. Ce montant sert aussi de base au Supercombo séjour ci-dessous.</p>
+        </div>
+      </div>
+
+      <div class="btn-row" data-noprint>
+        <a href="accueil.html" class="btn btn-secondary">← Mon profil</a>
+        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimer / Exporter en PDF</button>
+      </div>
+    </div>
+
+    <div id="sidebar"></div>
+  </div>
+
+  <div class="card" style="margin-top:22px;" id="resultsCard"></div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+(function () {
+  const B = ASC.BAREMES, L = ASC.LINKS;
+  const state = { epargneCV: '', factureTimbree: '' };
+
+  function loadSejourCombo() {
+    try {
+      const raw = localStorage.getItem('asc_sejour_combo_v1');
+      if (!raw) return { joursSejours: '', sejoursEnfants: 0 };
+      const parsed = JSON.parse(raw);
+      return { joursSejours: parsed.joursSejours || '', sejoursEnfants: ASC.num(parsed.sejoursEnfants) || 0 };
+    } catch (e) { return { joursSejours: '', sejoursEnfants: 0 }; }
+  }
+
+  function explain(kind, t) {
+    const f = ASC.fmt;
+    if (kind === 'cheques') {
+      const taux = B.cvPct[t];
+      const saisie = ASC.num(state.epargneCV);
+      const ep = saisie > 0 ? Math.min(saisie, 1200) : 600;
+      const aide = Math.round(ep * taux / 100);
+      const total = ep + aide;
+      const remise = Math.round(aide / total * 100);
+      const intro = saisie > 0 ? '💡 Avec votre épargne de ' : '💡 Exemple concret : vous épargnez ';
+      return `${intro}${f(ep)}/an en Chèques-Vacances. La Poste abonde à ${taux}% (prise en charge), soit ${f(aide)} offerts. Vous disposez de ${f(total)} pour vos loisirs — un vrai coup de pouce de ${remise}% sur votre pouvoir d'achat vacances !`;
+    }
+    if (kind === 'timbrees') {
+      const taux = B.vtPct[t], max = B.vtMax[t];
+      const saisie = ASC.num(state.factureTimbree);
+      const fact = saisie > 0 ? saisie : Math.round(max / taux * 100);
+      const aide = Math.min(Math.round(fact * taux / 100), max);
+      const reste = fact - aide;
+      const intro = saisie > 0 ? '💡 Avec votre facture de ' : '💡 Exemple concret : pour une facture de ';
+      return `${intro}${f(fact)}, La Poste prend en charge ${taux}%, soit ${f(aide)}${aide === max ? ' (plafond atteint pour votre tranche)' : ''}. Votre reste à charge : ${f(reste)}.`;
+    }
+    return '';
+  }
+
+  function compute() {
+    const comp = ASC.computeQF();
+    const aids = [];
+    let cvAmount = 0, vtAmount = 0;
+    if (comp.hasQF) {
+      const t = comp.t;
+      const ep = ASC.num(state.epargneCV);
+      if (ep > 0) {
+        const gain = Math.min(ep, 1200) * (B.cvPct[t] / 100);
+        cvAmount = Math.min(gain, B.cvMax[t]);
+        aids.push({ kind: 'cheques', label: 'Chèques-Vacances', amount: cvAmount, note: B.cvPct[t] + '% sur ' + ASC.fmt(Math.min(ep, 1200)) });
+      }
+      const vtSaisie = ASC.num(state.factureTimbree);
+      const vt = vtSaisie > 0 ? vtSaisie : B.vtMax[t] / (B.vtPct[t] / 100);
+      vtAmount = Math.min(vt * B.vtPct[t] / 100, B.vtMax[t]);
+      aids.push({ kind: 'timbrees', label: 'Vacances timbrées' + (vtSaisie === 0 ? ' (plafond max)' : ''), amount: vtAmount, note: B.vtPct[t] + '% · plafond ' + ASC.fmt(B.vtMax[t]) + (vtSaisie === 0 ? ' — montant max possible' : '') });
+    }
+
+    // Supercombo : tous les montants sont calculés sur la MÊME facture de séjour (le champ "Facture vacances timbrées")
+    let combo = null;
+    if (comp.hasQF) {
+      const t = comp.t;
+      const sc = loadSejourCombo();
+      const comboJours = ASC.num(sc.joursSejours);
+      const comboEnfants = sc.sejoursEnfants;
+      const montantSejour = ASC.num(state.factureTimbree);
+      const cvSiPaye = montantSejour > 0 ? Math.min(Math.min(montantSejour, 1200) * B.cvPct[t] / 100, B.cvMax[t]) : 0;
+      const vtPourSejour = montantSejour > 0 ? Math.min(montantSejour * B.vtPct[t] / 100, B.vtMax[t]) : 0;
+      const sejourAmount = (comboJours > 0 && comboEnfants > 0) ? comboJours * B.sejourDay[t] * comboEnfants : 0;
+      combo = {
+        montantSejour, cvSiPaye, vtPourSejour, sejourAmount, comboJours, comboEnfants,
+        cvPct: B.cvPct[t], cvMax: B.cvMax[t], vtPct: B.vtPct[t], vtMax: B.vtMax[t], sejourTaux: B.sejourDay[t],
+        superTotal: cvSiPaye + vtPourSejour + sejourAmount,
+      };
+    }
+
+    return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0), combo };
+  }
+
+  function renderResults() {
+    const { comp, aids, total, combo } = compute();
+    const el = document.getElementById('resultsCard');
+    if (!comp.hasQF) {
+      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="accueil.html">profil</a> pour voir vos aides estimées ici.</p>`;
+    } else {
+      let html = `
+        <div class="eyebrow">Vos aides estimées — Tranche T${comp.t+1}</div>
+        <h2 class="page-title" style="font-size:22px;">${ASC.fmt(total)}</h2>
+        <div class="aid-cards">
+          ${aids.map(a => `
+            <div class="aid-card">
+              <span class="aid-label">${a.label}</span>
+              <span class="aid-amount">${ASC.fmt(a.amount)}</span>
+              <span class="aid-note">${a.note}</span>
+              <div class="aid-explain">${explain(a.kind, comp.t)}</div>
+              <button class="aid-link" data-link="${L[a.kind] || L.cse}">🔗 Faire la démarche →</button>
+            </div>`).join('')}
+        </div>`;
+
+      if (combo && combo.montantSejour > 0) {
+        const c = combo;
+        html += `
+        <div style="margin-top:20px;background:#eef8f0;border-left:4px solid #28a745;color:#1c4e28;padding:14px 16px;border-radius:8px;font-size:13.5px;line-height:1.9;">
+          🧳 <strong>Supercombo séjour — pour votre séjour à ${ASC.fmt(c.montantSejour)}</strong><br>
+          • Si vous le payez en Chèques-Vacances : La Poste abonde à ${c.cvPct}% (plafond ${ASC.fmt(c.cvMax)}), soit <strong>${ASC.fmt(c.cvSiPaye)}</strong> d'économie sur ${ASC.fmt(Math.min(c.montantSejour, 1200))} payés via Chèques-Vacances.<br>
+          • Vacances timbrées sur cette même facture : ${c.vtPct}% crédités, dans la limite de ${ASC.fmt(c.vtMax)} pour votre tranche = <strong>${ASC.fmt(c.vtPourSejour)}</strong>.<br>
+          ${c.comboJours && c.comboEnfants
+            ? `• Aide séjour enfants accompagnés : ${c.comboJours} j × ${c.comboEnfants} enfant(s) × ${ASC.fmt2(c.sejourTaux)}/j = <strong>${ASC.fmt(c.sejourAmount)}</strong> (saisi sur la page Parentalité).<br>`
+            : `• Aide séjour enfants accompagnés : pas encore renseignée — à saisir sur la page <a href="parentalite.html" style="color:#1c4e28;text-decoration:underline;">Parentalité</a>.<br>`}
+          Total combiné : <strong>${ASC.fmt(c.superTotal)}</strong> pour ce séjour à ${ASC.fmt(c.montantSejour)}.
+        </div>`;
+      } else {
+        html += `
+        <div style="margin-top:20px;background:#fff3cd;border-left:4px solid #ffc107;color:#664d03;padding:14px 16px;border-radius:8px;font-size:13.5px;line-height:1.75;">
+          🧳 <strong>Supercombo séjour</strong> — indiquez le montant de votre facture dans le champ « Facture vacances timbrées » ci-dessus pour voir tout ce que vous pouvez cumuler sur ce même séjour : abondement Chèques-Vacances, remboursement vacances timbrées, et aide séjour enfants accompagnés (à saisir sur la page <a href="parentalite.html" style="color:#664d03;text-decoration:underline;">Parentalité</a>).
+        </div>`;
+      }
+
+      el.innerHTML = html;
+      el.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
+    }
+    ASC.renderSidebar('sidebar', total, aids.length);
+  }
+
+  function render() {
+    ASC.renderHeader('vacances');
+    ASC.renderFooter();
+    ASC.profileBanner('banner');
+    renderResults();
+  }
+
+  document.getElementById('epargneCV').addEventListener('input', e => { state.epargneCV = e.target.value; render(); });
+  document.getElementById('factureTimbree').addEventListener('input', e => { state.factureTimbree = e.target.value; render(); });
+
+  render();
+})();
+</script>
+<script>
+(function(){
+  var KEY='asc_sim_disclaimer_ack_v1';
+  var modal=document.getElementById('asc-disclaimer-modal');
+  if(modal && !localStorage.getItem(KEY)){ modal.style.display='flex'; }
+  var btn=document.getElementById('asc-disclaimer-ack-btn');
+  if(btn) btn.onclick=function(){ localStorage.setItem(KEY,'1'); modal.style.display='none'; };
+})();
+</script>
+</body>
+</html>

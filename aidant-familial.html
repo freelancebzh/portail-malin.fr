@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Aidant familial & aide à domicile | Simulateur NON OFFICIEL et bénévole ASC 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Estimation non officielle et bénévole des aides CESU, aide à domicile et journées de répit pour les postiers aidants familiaux.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.portail-malin.fr/aidant-familial.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style id="asc-disclaimer-style">
+.asc-disclaimer-banner{position:sticky;top:0;z-index:9998;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffe69c;font-size:12.5px;line-height:1.5;padding:8px 14px;text-align:center;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-banner strong{font-weight:800;}
+.asc-disclaimer-banner a{color:#664d03;text-decoration:underline;}
+.asc-disclaimer-modal{position:fixed;inset:0;z-index:9999;background:rgba(20,20,20,.55);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-modal .box{background:#fff;max-width:460px;width:100%;border-radius:14px;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.asc-disclaimer-modal .box h2{margin:0 0 10px;font-size:18px;color:#664d03;}
+.asc-disclaimer-modal .box p{margin:0 0 12px;font-size:13.5px;line-height:1.7;color:#333;}
+.asc-disclaimer-modal .box .tag{display:inline-block;background:#fff3cd;color:#664d03;font-weight:700;font-size:11px;padding:4px 9px;border-radius:20px;margin-bottom:12px;}
+.asc-disclaimer-modal .box button{width:100%;padding:12px;border:none;border-radius:8px;background:#004b6e;color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;margin-top:6px;}
+.asc-disclaimer-modal .box button:hover{background:#003853;}
+@media print{.asc-disclaimer-banner,.asc-disclaimer-modal{display:none !important;}}
+</style>
+</head>
+<body>
+
+<div id="asc-disclaimer-banner" class="asc-disclaimer-banner" data-noprint>
+  ⚠️ Simulateur <strong>non officiel</strong>, créé et géré bénévolement par un postier — non affilié à La Poste ni au CSE Central. <a href="index.html">En savoir plus</a>
+</div>
+<div id="asc-disclaimer-modal" class="asc-disclaimer-modal" style="display:none;" data-noprint>
+  <div class="box">
+    <span class="tag">⚠️ À lire avant de commencer</span>
+    <h2>Site non officiel et bénévole</h2>
+    <p>Ce simulateur est un outil <strong>indépendant</strong>, créé sur son temps libre par un postier. Il n'est ni édité, ni validé, ni relu par La Poste, le CSE Central ou tout autre organisme officiel.</p>
+    <p>Les montants affichés sont des <strong>estimations indicatives</strong>, sans valeur contractuelle. Seuls votre relevé de droits et les services officiels du CSE font foi.</p>
+    <button type="button" id="asc-disclaimer-ack-btn">J'ai compris, accéder au simulateur</button>
+  </div>
+</div>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div id="banner"></div>
+
+  <div class="layout-grid">
+    <div class="card">
+      <div class="eyebrow">Aidant familial, handicap et vie quotidienne</div>
+	  
+	  <h1 class="page-title">🧹 CESU pour les employés</h1>
+	  <div class="page-photo"><img src="assets/images/menage.jpg" alt="menage"></div>
+      <p class="page-lead">Soutien aux postiers avec des titres CESUs pour le financement d'heures d'aide à domicile, le soutien scolaire, le jardin et tout ce qui peut être financé par les CESU.</p>
+	  
+	        <div class="section-block" style="margin-top:0;">
+        <div class="section-head"><span class="ic">🎫</span><h3>CESU Vie quotidienne</h3></div>
+        <p style="font-size:13px; margin-bottom:10px;">Jusqu'à 50 titres de 15 € cofinancés par le Groupe.</p>
+        <label class="field-label">Nombre de titres souhaités</label>
+        <input type="number" id="cesuVQTitres" min="0" max="50" placeholder="ex. 30" style="width: 100px; padding: 8px;">
+      </div>
+	  
+      <h1 class="page-title">🤲 CESU, aide à domicile & répit pour les aidants</h1>
+	  
+	  <div class="page-photo"><img src="assets/images/aidants.jpg" alt="classe de neige"></div>
+      <p class="page-lead">Soutien aux postiers aidants : titres CESU, financement d'heures d'aide à domicile et journées de répit.</p>
+
+
+
+      <div class="row-tile" id="aidantTile">
+        <span class="row-check" id="aidantCheck">✓</span>
+        <div><div class="row-tile-title">Je suis aidant familial</div><div class="row-tile-sub">Accès aux aides CESU aidants, domicile & répit</div></div>
+      </div>
+
+      <div id="aidantDetail" style="display:none;">
+        <div class="grid-2" style="margin-top:6px;">
+          <div>
+            <label class="field-label">Titres CESU aidants</label>
+            <input type="number" id="cesuAidantTitres" placeholder="ex. 50">
+          </div>
+          <div>
+            <label class="field-label">Heures d'aide à domicile / mois</label>
+            <input type="number" id="heuresDomicile" placeholder="ex. 10">
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <label class="field-label">Type d'aide à domicile</label>
+          <div class="seg" id="domicileSeg"></div>
+        </div>
+
+        <div class="grid-2" style="margin-top:14px;">
+          <div>
+            <label class="field-label">Jours de répit</label>
+            <input type="number" id="joursRepit" placeholder="ex. 10">
+          </div>
+          <div>
+            <label class="field-label">Type de répit</label>
+            <div style="display:flex;flex-direction:column;gap:8px;" id="repitSeg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row" data-noprint>
+        <a href="accueil.html" class="btn btn-secondary">← Mon profil</a>
+        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimer / Exporter en PDF</button>
+      </div>
+    </div>
+
+    <div id="sidebar"></div>
+  </div>
+
+  <div class="card" style="margin-top:22px;" id="resultsCard"></div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+(function () {
+  const B = ASC.BAREMES, L = ASC.LINKS;
+  const state = {
+    cesuVieQuoTitres: '', aidant: false,
+    cesuAidantTitres: '', heuresDomicile: '', typeDomicile: 'ada',
+    joursRepit: '', typeRepit: 'horsStructure',
+  };
+
+  function explain(kind, t) {
+    const f = ASC.fmt, f2 = ASC.fmt2;
+    if (kind === 'cesuvq') {
+      const tauxTitre = B.cesuTitre[t], hPrix = 25;
+      const pct = Math.round(tauxTitre / hPrix * 100);
+      const hApresCESU = Math.round((hPrix - tauxTitre) * 100) / 100;
+      const hApresCI = Math.round(hApresCESU * 0.5 * 100) / 100;
+      const n = Math.max(0, Math.min(ASC.num(state.cesuVieQuoTitres), 50));
+      const aideCSE = Math.round(n * tauxTitre);
+      return `💡 Prise en charge à ${pct}% : vous payez votre aide ménagère ${f(hPrix)}/h, le CSE finance ${f2(tauxTitre)} par titre CESU. Reste à charge : ${f2(hApresCESU)}/h — ramené à ${f2(hApresCI)}/h grâce au crédit d'impôt de 50 % (services à la personne). Sur vos ${n} titres (~${n} h), c'est ${f(aideCSE)} offerts par le CSE.`;
+    }
+    if (kind === 'cesuaid') {
+      const tauxTitre = B.cesuTitre[t], hPrix = 25;
+      const pct = Math.round(tauxTitre / hPrix * 100);
+      const hApresCESU = Math.round((hPrix - tauxTitre) * 100) / 100;
+      const hApresCI = Math.round(hApresCESU * 0.5 * 100) / 100;
+      const ct = ASC.num(state.cesuAidantTitres);
+      const base = `💡 Prise en charge à ${pct}% : aide à domicile pour votre proche à ${f(hPrix)}/h, le CSE finance ${f2(tauxTitre)}/h via les titres CESU aidants. Reste à charge : ${f2(hApresCESU)}/h, ramené à ${f2(hApresCI)}/h grâce au crédit d'impôt de 50 % (services à la personne).`;
+      return ct > 0 ? base + ` Avec vos ${ct} titres demandés, le CSE vous offre ${f(Math.min(ct * tauxTitre, 1830))} et votre coût réel tombe à environ ${f(Math.round(ct * hApresCI))}.` : base;
+    }
+    if (kind === 'domicile') {
+      const rate = (state.typeDomicile === 'apf' ? B.apf : B.ada)[t];
+      const saisieH = ASC.num(state.heuresDomicile);
+      const exH = saisieH > 0 ? Math.min(saisieH, 15) : 10;
+      const exPrixH = 25, pct = Math.round(rate / exPrixH * 100);
+      const exTotal = exPrixH * exH, exAide = Math.round(rate * exH), exCharge = exTotal - exAide, exCI = Math.round(exCharge * 0.5);
+      const intro = saisieH > 0 ? `💡 Prise en charge à ${pct}% : avec vos ` : `💡 Prise en charge à ${pct}% : exemple avec `;
+      return `${intro}${exH} h/mois d'aide à domicile (à ${f(exPrixH)}/h estimé) = ${f(exTotal)}/mois. Le CSE prend en charge ${f2(rate)}/h, soit ${f(exAide)}/mois. Reste à charge : ${f(exCharge)}/mois — ramené à ${f(exCI)}/mois grâce au crédit d'impôt de 50 % (services à la personne) !`;
+    }
+    if (kind === 'repit') {
+      const rate = B.repit[state.typeRepit][t];
+      const saisieJ = ASC.num(state.joursRepit);
+      const exJours = saisieJ > 0 ? saisieJ : 5;
+      const exAide = Math.round(rate * exJours);
+      return saisieJ > 0
+        ? `💡 Avec vos ${exJours} jour(s) de répit : le CSE verse ${f2(rate)}/jour, soit ${f(exAide)}.`
+        : `💡 Exemple concret : 5 jours de répit pour souffler. Le CSE verse ${f2(rate)}/jour, soit ${f(exAide)} sur ces 5 jours.`;
+    }
+    return '';
+  }
+
+  function compute() {
+    const comp = ASC.computeQF();
+    const aids = [];
+    const add = (kind, label, amount, note) => { if (amount > 0) aids.push({ kind, label, amount, note }); };
+    if (comp.hasQF) {
+      const t = comp.t;
+      const cesuVQ = Math.max(0, Math.min(ASC.num(state.cesuVieQuoTitres), 50));
+      if (cesuVQ > 0) add('cesuvq', 'CESU vie quotidienne', cesuVQ * B.cesuTitre[t], cesuVQ + " titres × " + ASC.fmt2(B.cesuTitre[t]) + " d'aide");
+      if (state.aidant) {
+        const ct = ASC.num(state.cesuAidantTitres);
+        if (ct > 0) add('cesuaid', 'CESU aidants', Math.min(ct * B.cesuTitre[t], 1830), ct + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + ' · plafond 1 830 €');
+        const hd = ASC.num(state.heuresDomicile);
+        if (hd > 0) {
+          const rate = (state.typeDomicile === 'apf' ? B.apf : B.ada)[t];
+          const h = Math.min(hd, 15);
+          add('domicile', 'Aide à domicile (' + (state.typeDomicile === 'apf' ? 'APF' : 'ADA') + ')', h * rate * 12, h + ' h/mois × ' + ASC.fmt2(rate) + '/h × 12');
+        }
+        const jr = ASC.num(state.joursRepit);
+        if (jr > 0) {
+          const rr = B.repit[state.typeRepit][t];
+          add('repit', 'Aide au répit', jr * rr, jr + ' j × ' + ASC.fmt2(rr) + '/j');
+        }
+      }
+    }
+    return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0) };
+  }
+
+  function renderToggles() {
+    document.getElementById('aidantTile').className = 'row-tile' + (state.aidant ? ' on' : '');
+    document.getElementById('aidantCheck').className = 'row-check' + (state.aidant ? ' on' : '');
+    document.getElementById('aidantDetail').style.display = state.aidant ? 'block' : 'none';
+  }
+
+  function renderSeg(containerId, key, options) {
+    document.getElementById(containerId).innerHTML = options.map(o => `
+      <button type="button" class="seg-btn ${state[key] === o.value ? 'active' : ''}" data-key="${key}" data-val="${o.value}">${o.label}</button>
+    `).join('');
+    document.querySelectorAll(`#${containerId} .seg-btn`).forEach(b => b.onclick = () => { state[b.getAttribute('data-key')] = b.getAttribute('data-val'); render(); });
+  }
+
+  function renderResults() {
+    const { comp, aids, total } = compute();
+    const el = document.getElementById('resultsCard');
+    if (!comp.hasQF) {
+      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="accueil.html">profil</a> pour voir vos aides estimées ici.</p>`;
+    } else if (!aids.length) {
+      el.innerHTML = `<div class="eyebrow">Estimation — Tranche T${comp.t+1}</div><p class="page-lead" style="margin:0;">Cochez les options ci-dessus pour voir apparaître vos aides.</p>`;
+    } else {
+      el.innerHTML = `
+        <div class="eyebrow">Vos aides estimées — Tranche T${comp.t+1}</div>
+        <h2 class="page-title" style="font-size:22px;">${ASC.fmt(total)}</h2>
+        <div class="aid-cards">
+          ${aids.map(a => `
+            <div class="aid-card">
+              <span class="aid-label">${a.label}</span>
+              <span class="aid-amount">${ASC.fmt(a.amount)}</span>
+              <span class="aid-note">${a.note}</span>
+              <div class="aid-explain">${explain(a.kind, comp.t)}</div>
+              <button class="aid-link" data-link="${L[a.kind] || L.cse}">🔗 Faire la démarche →</button>
+            </div>`).join('')}
+        </div>`;
+      el.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
+    }
+    ASC.renderSidebar('sidebar', total, aids.length);
+  }
+
+  function render() {
+    ASC.renderHeader('aidant');
+    ASC.renderFooter();
+    ASC.profileBanner('banner');
+    renderToggles();
+    renderSeg('domicileSeg', 'typeDomicile', [{ label: 'ADA', value: 'ada' }, { label: 'APF', value: 'apf' }]);
+    renderSeg('repitSeg', 'typeRepit', [
+      { label: 'Avec hébergement', value: 'avecHeberg' },
+      { label: 'Accueil de jour', value: 'accueilJour' },
+      { label: 'Hors structure', value: 'horsStructure' },
+    ]);
+    renderResults();
+  }
+
+  document.getElementById('cesuVQTitres').addEventListener('input', e => {
+    let v = ASC.num(e.target.value);
+    v = Math.max(0, Math.min(50, v));
+    e.target.value = v;
+    state.cesuVieQuoTitres = v;
+    render();
+  });
+  document.getElementById('aidantTile').onclick = () => { state.aidant = !state.aidant; render(); };
+  document.getElementById('cesuAidantTitres').addEventListener('input', e => { state.cesuAidantTitres = e.target.value; render(); });
+  document.getElementById('heuresDomicile').addEventListener('input', e => { state.heuresDomicile = e.target.value; render(); });
+  document.getElementById('joursRepit').addEventListener('input', e => { state.joursRepit = e.target.value; render(); });
+
+  render();
+})();
+</script>
+<script>
+(function(){
+  var KEY='asc_sim_disclaimer_ack_v1';
+  var modal=document.getElementById('asc-disclaimer-modal');
+  if(modal && !localStorage.getItem(KEY)){ modal.style.display='flex'; }
+  var btn=document.getElementById('asc-disclaimer-ack-btn');
+  if(btn) btn.onclick=function(){ localStorage.setItem(KEY,'1'); modal.style.display='none'; };
+})();
+</script>
+</body>
+</html>

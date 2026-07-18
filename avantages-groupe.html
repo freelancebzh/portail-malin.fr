@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Avantages groupe | Simulateur NON OFFICIEL et bénévole ASC 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Estimation non officielle et bénévole de l'abondement PEG/PERCO et présentation des avantages groupe (La Poste Mobile, véhicules Vehiposte).">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.portail-malin.fr/avantages-groupe.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style id="asc-disclaimer-style">
+.asc-disclaimer-banner{position:sticky;top:0;z-index:9998;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffe69c;font-size:12.5px;line-height:1.5;padding:8px 14px;text-align:center;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-banner strong{font-weight:800;}
+.asc-disclaimer-banner a{color:#664d03;text-decoration:underline;}
+.asc-disclaimer-modal{position:fixed;inset:0;z-index:9999;background:rgba(20,20,20,.55);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-modal .box{background:#fff;max-width:460px;width:100%;border-radius:14px;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.asc-disclaimer-modal .box h2{margin:0 0 10px;font-size:18px;color:#664d03;}
+.asc-disclaimer-modal .box p{margin:0 0 12px;font-size:13.5px;line-height:1.7;color:#333;}
+.asc-disclaimer-modal .box .tag{display:inline-block;background:#fff3cd;color:#664d03;font-weight:700;font-size:11px;padding:4px 9px;border-radius:20px;margin-bottom:12px;}
+.asc-disclaimer-modal .box button{width:100%;padding:12px;border:none;border-radius:8px;background:#004b6e;color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;margin-top:6px;}
+.asc-disclaimer-modal .box button:hover{background:#003853;}
+@media print{.asc-disclaimer-banner,.asc-disclaimer-modal{display:none !important;}}
+</style>
+</head>
+<body>
+
+<div id="asc-disclaimer-banner" class="asc-disclaimer-banner" data-noprint>
+  ⚠️ Simulateur <strong>non officiel</strong>, créé et géré bénévolement par un postier — non affilié à La Poste ni au CSE Central. <a href="index.html">En savoir plus</a>
+</div>
+<div id="asc-disclaimer-modal" class="asc-disclaimer-modal" style="display:none;" data-noprint>
+  <div class="box">
+    <span class="tag">⚠️ À lire avant de commencer</span>
+    <h2>Site non officiel et bénévole</h2>
+    <p>Ce simulateur est un outil <strong>indépendant</strong>, créé sur son temps libre par un postier. Il n'est ni édité, ni validé, ni relu par La Poste, le CSE Central ou tout autre organisme officiel.</p>
+    <p>Les montants affichés sont des <strong>estimations indicatives</strong>, sans valeur contractuelle. Seuls votre relevé de droits et les services officiels du CSE font foi.</p>
+    <button type="button" id="asc-disclaimer-ack-btn">J'ai compris, accéder au simulateur</button>
+  </div>
+</div>
+
+<div id="asc-header"></div>
+
+<main class="page">
+
+  <div class="card">
+    <div class="eyebrow">Avantages groupe — Épargne salariale</div>
+    <h1 class="page-title">💼 Abondement PEG / PERCO</h1>
+	
+	<div class="page-photo"><img src="assets/images/epargne-salariale.jpg" alt="doigt sur un clavier d'ordinateur tapant sur le clavier épargne salariale"></div>
+    <p class="page-lead">Indiquez votre épargne mensuelle pour estimer l'abondement. Règles identiques quelle que soit votre tranche de QF.</p>
+
+    <div class="grid-2">
+      <div>
+        <label class="field-label">Épargne PEG / mois <span style="font-weight:500;font-size:12px;color:var(--faint);">(max 9 200 €/an)</span></label>
+        <div class="field-wrap"><input type="number" id="epargePEG" placeholder="ex. 200"><span class="suffix">€</span></div>
+      </div>
+      <div>
+        <label class="field-label">Épargne PERCO / mois <span style="font-weight:500;font-size:12px;color:var(--faint);">(max 10 533 €/an)</span></label>
+        <div class="field-wrap"><input type="number" id="epargePERCO" placeholder="ex. 200"><span class="suffix">€</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;background:var(--bg-soft);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--muted);line-height:1.7;">
+      <strong style="color:var(--ink);">Barème abondement :</strong> PEG : 0–400 € → 35 % · 400–800 € → 25 % · au-delà → 15 % | PERCO : 35 % sur toute l'épargne
+    </div>
+
+    <div id="abondResult" style="margin-top:18px;"></div>
+  </div>
+
+  <!-- Bloc : La Poste Mobile -->
+  <div class="card" style="margin-top:22px;">
+    <div class="eyebrow">📱 Téléphonie</div>
+    <h2 class="page-title" style="font-size: 20px; margin-top: 5px;">Offre La Poste Mobile</h2>
+    <p class="page-lead">Bénéficiez de <b>-15% de réduction</b> sur les forfaits grand public (tarifs de base à partir de 4,99 €/mois).</p>
+    
+	<div class="page-photo"><img src="assets/images/logo-personnes-lapostemobile.jpg" alt="la poste mobile"></div>
+	
+    <div style="background: var(--bg-soft, #f4f7f6); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+      <label for="forfaitBase" style="display:block; font-weight:600; font-size:14px; margin-bottom:8px;">
+        Sélectionnez un tarif de forfait mensuel :
+      </label>
+      <select id="forfaitBase" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border, #ccc); font-size:15px; background: #fff;">
+        <option value="4.99">Forfait Standard — 4,99 € / mois</option>
+        <option value="10.99">Forfait Intermédiaire — 10,99 € / mois</option>
+        <option value="19.99">Forfait Data Max — 19,99 € / mois</option>
+      </select>
+    </div>
+
+    <div class="info-card" style="background: #e8f0fe; border: 1px solid #1a73e8; padding: 15px; border-radius: 8px; box-shadow: none;">
+      <div style="font-size:13px; color: #1a73e8; font-weight: 700;">📉 Votre tarif réduit estimé :</div>
+      <div id="mobileResult" style="font-size:24px; font-weight:800; color: #1a73e8; margin-top:5px;">4,24 € / mois</div>
+      <div id="mobileRemise" style="font-size:12px; color: #5f6368; margin-top:2px;">Économie : 0,75 € / mois</div>
+      <p style="font-size:11.5px; color:var(--faint); margin:10px 0 0 0;"><button class="link-out" id="mobileLinkBtn">🔗 Accéder à l'offre →</button></p>
+    </div>
+  </div>
+
+  <!-- Nouveau bloc : Véhicules d'occasions Vehiposte -->
+  <div class="card" style="margin-top:22px;">
+    <div class="eyebrow">🚗 Mobilité</div>
+    <h2 class="page-title" style="font-size: 20px; margin-top: 5px;">Ventes de véhicules du groupe</h2>
+	
+	<div class="page-photo"><img src="assets/images/la-poste-vehicules.jpg" alt="véhicules de la poste"></div>
+    <p class="page-lead">Accédez aux ventes exclusives de véhicules d'occasion réformés du groupe La Poste (Vehiposte) à des tarifs préférentiels réservés aux collaborateurs.</p>
+    
+    <div class="info-card" style="background: #f8f9fa; border: 1px solid var(--border, #ccc); padding: 15px; border-radius: 8px; box-shadow: none;">
+      <div style="font-size:13px; color: #333; font-weight: 700;">🔑 Espace de connexion sécurisé :</div>
+      <p style="font-size:13px; color:#5f6368; margin:5px 0 12px 0;">Identifiez-vous sur la plateforme dédiée Véhiposte pour consulter le catalogue actuel des véhicules disponibles.</p>
+      <p style="font-size:11.5px; margin:0;"><button class="link-out" id="vehiposteLinkBtn" style="background: #343a40; color: white;">🔐 Se connecter à l'espace Véhiposte →</button></p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:22px;">
+  
+    <div class="section-head"><h3>D'autres avantages groupe</h3>
+	
+	
+	</div>
+    <div class="grid-3" id="infoGrid"></div>
+	<div class="page-photo"><img src="assets/images/attractions.jpg" alt="famille sur un manège dans un parc d'attraction"></div>
+  </div>
+
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+(function () {
+  const L = ASC.LINKS;
+  const state = { epargePEG: '', epargePERCO: '' };
+
+  function calcAbond(mensuel, maxAn, taux35) {
+    const an = Math.min(ASC.num(mensuel) * 12, maxAn);
+    let a = 0; const detail = [];
+    if (taux35) {
+      a = an * 0.35;
+      if (an > 0) detail.push(ASC.fmt(an) + '×35%=' + ASC.fmt(a));
+    } else {
+      const t1 = Math.min(an, 400), t2 = Math.min(Math.max(an - 400, 0), 400), t3 = Math.max(an - 800, 0);
+      if (t1 > 0) { a += t1 * 0.35; detail.push(ASC.fmt(t1) + '×35%=' + ASC.fmt(t1*0.35)); }
+      if (t2 > 0) { a += t2 * 0.25; detail.push(ASC.fmt(t2) + '×25%=' + ASC.fmt(t2*0.25)); }
+      if (t3 > 0) { a += t3 * 0.15; detail.push(ASC.fmt(t3) + '×15%=' + ASC.fmt(t3*0.15)); }
+    }
+    return { abond: a, detail: detail.join(' + ') || '—', epargne: an };
+  }
+
+  function renderAbond() {
+    const peg = calcAbond(state.epargePEG, 9200, false);
+    const perco = calcAbond(state.epargePERCO, 10533, true);
+    const tot = peg.abond + perco.abond;
+    document.getElementById('abondResult').innerHTML = `
+      <div class="info-card" style="background:#fff;border:1px solid var(--border);">
+        <div class="it">📈 Abondement PEG &amp; PERCO estimé</div>
+        <div style="font-size:13.5px;color:var(--ink);line-height:1.9;">
+          PEG : <strong>${ASC.fmt(peg.abond)}/an</strong> <span style="color:var(--muted);font-size:12px;">${peg.epargne > 0 ? '(' + peg.detail + ')' : ''}</span><br>
+          PERCO : <strong>${ASC.fmt(perco.abond)}/an</strong> <span style="color:var(--muted);font-size:12px;">${perco.epargne > 0 ? '(' + perco.detail + ')' : ''}</span>
+        </div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-weight:800;color:var(--green);font-size:14px;">Total annuel : ${ASC.fmt(tot)}</div>
+        <p style="font-size:11.5px;color:var(--faint);margin:8px 0 0;">Déblocage anticipé possible selon motifs. <button class="link-out" data-link="${L.pegPerco}">Consulter le CSE →</button></p>
+      </div>`;
+    document.querySelectorAll('#abondResult [data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
+  }
+
+  function calculerTarifMobile() {
+    const forfaitSelect = document.getElementById('forfaitBase');
+    if (!forfaitSelect) return;
+    
+    const tarifBase = parseFloat(forfaitSelect.value);
+    const tauxReduction = 0.15;
+    
+    const montantRemise = tarifBase * tauxReduction;
+    const tarifReduit = tarifBase - montantRemise;
+    
+    document.getElementById('mobileResult').textContent = tarifReduit.toFixed(2).replace('.', ',') + " € / mois";
+    document.getElementById('mobileRemise').textContent = "Économie : " + montantRemise.toFixed(2).replace('.', ',') + " € / mois";
+  }
+
+  function renderInfo() {
+    const cards = [
+      { icon: '🎡', title: 'CSE — Loisirs', text: 'Parcs, campings, billetterie…', link: L.cse, label: 'cse-laposte.fr →' },
+    ];
+    document.getElementById('infoGrid').innerHTML = cards.map(c => `
+      <div class="info-card">
+        <div class="ic">${c.icon}</div>
+        <div class="it">${c.title}</div>
+        <p>${c.text}</p>
+        <button class="link-out" data-link="${c.link}">${c.label}</button>
+      </div>`).join('');
+    document.querySelectorAll('#infoGrid [data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
+  }
+
+  function render() {
+    ASC.renderHeader('pegperco');
+    ASC.renderFooter();
+    renderAbond();
+    renderInfo();
+    calculerTarifMobile();
+  }
+
+  document.getElementById('epargePEG').addEventListener('input', e => { state.epargePEG = e.target.value; render(); });
+  document.getElementById('epargePERCO').addEventListener('input', e => { state.epargePERCO = e.target.value; render(); });
+  document.getElementById('forfaitBase').addEventListener('change', calculerTarifMobile);
+  document.getElementById('mobileLinkBtn').onclick = () => window.open(L.mobile, '_blank');
+  
+  // Événement pour le lien Véhiposte fourni
+  document.getElementById('vehiposteLinkBtn').onclick = () => window.open('https://www.lesoccasionsvehiposte.fr/Secure/Login.aspx?ReturnUrl=%2fDefault.aspx', '_blank');
+
+  render();
+})();
+</script>
+<script>
+(function(){
+  var KEY='asc_sim_disclaimer_ack_v1';
+  var modal=document.getElementById('asc-disclaimer-modal');
+  if(modal && !localStorage.getItem(KEY)){ modal.style.display='flex'; }
+  var btn=document.getElementById('asc-disclaimer-ack-btn');
+  if(btn) btn.onclick=function(){ localStorage.setItem(KEY,'1'); modal.style.display='none'; };
+})();
+</script>
+</body>
+</html>
