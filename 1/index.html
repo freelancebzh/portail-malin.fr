@@ -2,83 +2,201 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Connexion — Simulateur NON OFFICIEL des aides</title>
+<title>Simulateur des aides ASC La Poste 2026 (non officiel et bénévole) — Estimez vos aides CSE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Simulateur indépendant et bénévole des aides ASC 2026 du CSE Central La Poste : CESU, parentalité, vacances, banque, avantages groupe. Outil non officiel, non affilié à La Poste, créé par un postier sur son temps libre.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.portail-malin.fr/index.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Simulateur des aides ASC La Poste 2026 (non officiel et bénévole)">
+<meta property="og:description" content="Estimez vos aides CSE 2026 (CESU, vacances, parentalité, banque…) grâce à un outil indépendant créé par un postier. Non officiel, non affilié à La Poste.">
+<meta property="og:url" content="https://www.portail-malin.fr/index.html">
+<meta property="og:image" content="https://www.portail-malin.fr/assets/images/agent.jpg">
+<meta property="og:locale" content="fr_FR">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ce simulateur est-il un site officiel de La Poste ou du CSE Central ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Non. Ce simulateur est un outil indépendant, créé et géré bénévolement par un postier en dehors de toute mission professionnelle. Il n'est ni édité, ni développé, ni validé par La Poste, le CSE Central La Poste ou tout autre organisme officiel." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qui a créé ce site et pourquoi ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ce site a été conçu sur son temps libre par un postier, pour aider ses collègues à s'y retrouver plus facilement parmi les nombreuses aides ASC proposées chaque année. C'est un projet bénévole, sans but commercial." }
+    },
+    {
+      "@type": "Question",
+      "name": "Les montants affichés par le simulateur sont-ils garantis ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Non. Les montants sont des estimations indicatives basées sur les barèmes connus, sans valeur contractuelle. Seuls votre relevé de droits personnel et les services officiels du CSE font foi." }
+    },
+    {
+      "@type": "Question",
+      "name": "Mes données personnelles sont-elles envoyées à La Poste ou stockées sur un serveur ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Non. Les informations saisies (revenu fiscal, parts, situation familiale) restent uniquement sur votre appareil, dans votre navigateur, et ne sont transmises à personne." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qui peut utiliser ce simulateur ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L'outil est pensé en priorité pour les postiers de la DEX Bretagne. Pour les autres directions ou établissements, les barèmes affichés ne sont pas garantis et peuvent différer." }
+    },
+    {
+      "@type": "Question",
+      "name": "Où trouver les informations officielles sur les aides ASC ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les informations qui font foi se trouvent sur cse-laposte.fr et sur votre relevé de droits personnel, disponibles auprès de votre CSE." }
+    }
+  ]
+}
+</script>
 
 <style>
-  body {
-    margin: 0; padding: 0;
-    background: #f4f7f6;
-    display: flex; align-items: center; justify-content: center;
-    height: 100vh;
-    font-family: 'Manrope', sans-serif;
+  .alert-highlight {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    color: #856404;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 18px 0;
+    font-size: 14px;
+    line-height: 1.6;
   }
-  .login-card {
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    max-width: 400px; width: 90%;
-    text-align: center;
-  }
-  .login-field {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-  .login-btn {
-    width: 100%;
-    padding: 12px;
-    background: #004b6e;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  .login-btn:hover { background: #003853; }
-  #login-error { color: red; font-size: 14px; margin-top: 10px; display: none; }
+  .faq-item { border-bottom: 1px solid var(--border, #eee); padding: 16px 0; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item h3 { font-size: 15px; margin: 0 0 6px; color: var(--ink); }
+  .faq-item p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.7; }
 </style>
 </head>
 <body>
 
-<div class="login-card">
-  <h2 style="margin-top:0;color:#333;">🔒 Accès Réservé</h2>
-  <p style="color:#666;font-size:14px;margin-bottom:20px;">Merci de saisir votre code RH pour accéder au simulateur <br>(sans le p)</p>
-  
-  <input type="text" id="username" class="login-field" placeholder="Votre identifiant RH">
-  <button type="button" class="login-btn" onclick="checkLogin()">Se Connecter</button>
-  <div id="login-error">Ce code RH n'est pas reconnu,<br>⚠️ Ce site n'est accessible qu'à ceux qui le méritent ! ⚠️</div>
-</div>
+<main class="page">
 
-<script>
-function checkLogin() {
-  const user = document.getElementById('username').value.trim();
-  const errorDiv = document.getElementById('login-error');
-  const regexRH = /^[a-zA-Z]{3}[0-9]{3}$/;
+  <div style="max-width:820px;margin:0 auto;">
 
-  if (regexRH.test(user)) {
-    sessionStorage.setItem('is_logged_in', 'true');
-    window.location.href = 'accueil.html';
-  } else {
-    errorDiv.style.display = 'block';
-  }
-}
+    <div class="card">
+      <div class="eyebrow">Outil indépendant · fait par un postier</div>
+      <h1 class="page-title">Comprendre — enfin — vos aides ASC 2026, sans y passer des heures</h1>
 
-// Si déjà connecté, rediriger directement vers l'accueil
-if (sessionStorage.getItem('is_logged_in') === 'true') {
-  window.location.href = 'accueil.html';
-}
-</script>
+      <div class="page-photo"><img src="assets/images/agent.jpg" alt="postier utilisant le simulateur"></div>
+
+      <p class="page-lead">Un simulateur simple pour estimer, thème par thème, les aides du CSE Central La Poste : CESU, parentalité, vacances, banque, avantages groupe, aide aux aidants… selon votre quotient familial.</p>
+
+      <div class="alert-highlight">
+        ⚠️ Ce site n'est PAS un site officiel de La Poste ni du CSE Central. Il est conçu et maintenu bénévolement par un postier, sur son temps libre. Les montants affichés sont des estimations indicatives, sans valeur contractuelle — seuls votre relevé de droits et les services officiels du CSE font foi.
+      </div>
+
+      <div class="btn-row" data-noprint>
+        <a href="login.html" class="btn btn-primary">Accéder au simulateur →</a>
+      </div>
+      <p class="field-hint" style="margin-top:10px;">Réservé aux postiers · code RH demandé à l'étape suivante.</p>
+    </div>
+
+    <div class="card" style="margin-top:22px;">
+      <div class="eyebrow">Ce que vous pouvez estimer</div>
+      <h2 class="page-title" style="font-size:21px;">Six thèmes, une seule saisie de profil</h2>
+      <p class="page-lead">Renseignez une fois votre revenu fiscal de référence et vos parts : le simulateur calcule votre tranche, et chaque page applique son propre barème.</p>
+
+      <div class="theme-grid">
+        <a class="theme-card" href="login.html">
+          <span class="t-icon">👨‍👩‍👧🏽</span>
+          <span class="t-label" style="white-space:pre-line;">Parentalité et<br> - de 18 ans</span>
+          <span class="t-desc">CESU garde, classe découverte, séjours, colonies…</span>
+        </a>
+        <a class="theme-card" href="login.html">
+          <span class="t-icon">🎓​</span>
+          <span class="t-label" style="white-space:pre-line;">Enfant
+18 / 25 ans</span>
+          <span class="t-desc">Allocation scolarité étudiante, allocation sport ou culture...</span>
+        </a>
+        <a class="theme-card" href="login.html">
+          <span class="t-icon">🎉</span>
+          <span class="t-label" style="white-space:pre-line;">Vacances
+& loisirs</span>
+          <span class="t-desc">Chèques-Vacances, vacances timbrées...</span>
+        </a>
+        <a class="theme-card" href="login.html">
+          <span class="t-icon">🏦</span>
+          <span class="t-label" style="white-space:pre-line;">Banque
+& assurance</span>
+          <span class="t-desc">Avantages La Banque Postale et La Banque Postale Consumer Finance</span>
+        </a>
+        <a class="theme-card" href="login.html">
+          <span class="t-icon">🎁​</span>
+          <span class="t-label" style="white-space:pre-line;">Avantages
+groupe</span>
+          <span class="t-desc">PEG/PERCO, La Poste Mobile, ventes groupe...</span>
+        </a>
+        <a class="theme-card" href="login.html">
+          <span class="t-icon">​​🫶</span>
+          <span class="t-label" style="white-space:pre-line;">autres aides</span>
+          <span class="t-desc">CESU, aidants, handicape, aide à domicile, répit…</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;">
+      <div class="eyebrow">Pourquoi ce site existe</div>
+      <h2 class="page-title" style="font-size:21px;">Un outil de postier, pour les postiers</h2>
+
+      <div class="page-photo"><img src="assets/images/famille.jpg" alt="famille postier"></div>
+
+      <p class="page-lead">Chaque année, les aides ASC changent, se recoupent, et il n'est pas toujours simple de savoir à quoi on a droit selon sa situation. Ce simulateur est né d'une idée simple : rassembler ces informations au même endroit et laisser chacun estimer ses aides en quelques clics.</p>
+      <p class="page-lead">Ce n'est pas un site de La Poste ni du CSE Central. C'est un projet personnel et bénévole, construit et maintenu en dehors de toute mission professionnelle, sans lien hiérarchique ni validation de leur part.</p>
+
+      <div class="summary-card" style="margin-top:18px;">
+        <div class="summary-label">Zone couverte</div>
+        <p style="font-size:13.5px;color:var(--muted);margin:6px 0 0;line-height:1.7;">Le simulateur est pensé en priorité pour les postiers de la <strong>DEX Bretagne</strong>. Pour les autres directions ou établissements, les barèmes ne sont pas garantis et peuvent différer — à vérifier auprès de votre CSE local.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;">
+      <div class="eyebrow">Questions fréquentes</div>
+      <h2 class="page-title" style="font-size:21px;">Ce qu'il faut savoir avant d'utiliser l'outil</h2>
+
+      <div class="faq-item">
+        <h3>Ce simulateur est-il un site officiel de La Poste ou du CSE Central ?</h3>
+        <p>Non. C'est un outil indépendant, créé et géré bénévolement par un postier, en dehors de toute mission professionnelle. Il n'est ni édité, ni développé, ni validé par La Poste, le CSE Central ou tout autre organisme officiel.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Les montants affichés sont-ils garantis ?</h3>
+        <p>Non. Ce sont des estimations indicatives basées sur les barèmes connus, sans valeur contractuelle. Seuls votre relevé de droits personnel et les services officiels du CSE font foi.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Mes données personnelles sont-elles transmises à La Poste ou stockées sur un serveur ?</h3>
+        <p>Non. Les informations que vous saisissez restent uniquement sur votre appareil, dans votre navigateur, et ne sont envoyées à personne.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Qui peut utiliser ce simulateur ?</h3>
+        <p>En priorité les postiers de la DEX Bretagne. Pour les autres directions, les barèmes affichés ne sont pas garantis.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Où trouver les informations officielles sur les aides ASC ?</h3>
+        <p>Sur cse-laposte.fr et sur votre relevé de droits personnel, disponible auprès de votre CSE.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;">
+      <div class="alert-highlight" style="margin:0;">
+        ⚠️ <strong>Rappel important :</strong> ce site est un outil non officiel, indépendant et bénévole, créé par un postier sur son temps libre. Il n'est ni édité, ni développé, ni hébergé, ni validé par La Poste, le CSE Central La Poste, ou tout organisme officiel, et n'a aucun lien contractuel avec eux. Les estimations fournies sont indicatives et n'engagent que leur auteur. Pour toute démarche officielle, référez-vous à cse-laposte.fr et à votre relevé de droits.
+      </div>
+      <div class="btn-row" data-noprint style="margin-top:14px;">
+        <a href="login.html" class="btn btn-primary">Accéder au simulateur →</a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
 
 </body>
 </html>

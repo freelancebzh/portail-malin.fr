@@ -2,14 +2,43 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Banque & assurance | Simulateur ASC 2026 — CSE Central La Poste</title>
+<title>Banque & assurance | Simulateur NON OFFICIEL et bénévole ASC 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Présentation non officielle et bénévole des avantages La Banque Postale (compte, assurances, prêt conso) ouverts aux postiers.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.portail-malin.fr/banque-assurance.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<style id="asc-disclaimer-style">
+.asc-disclaimer-banner{position:sticky;top:0;z-index:9998;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffe69c;font-size:12.5px;line-height:1.5;padding:8px 14px;text-align:center;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-banner strong{font-weight:800;}
+.asc-disclaimer-banner a{color:#664d03;text-decoration:underline;}
+.asc-disclaimer-modal{position:fixed;inset:0;z-index:9999;background:rgba(20,20,20,.55);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Manrope',sans-serif;}
+.asc-disclaimer-modal .box{background:#fff;max-width:460px;width:100%;border-radius:14px;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.asc-disclaimer-modal .box h2{margin:0 0 10px;font-size:18px;color:#664d03;}
+.asc-disclaimer-modal .box p{margin:0 0 12px;font-size:13.5px;line-height:1.7;color:#333;}
+.asc-disclaimer-modal .box .tag{display:inline-block;background:#fff3cd;color:#664d03;font-weight:700;font-size:11px;padding:4px 9px;border-radius:20px;margin-bottom:12px;}
+.asc-disclaimer-modal .box button{width:100%;padding:12px;border:none;border-radius:8px;background:#004b6e;color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;margin-top:6px;}
+.asc-disclaimer-modal .box button:hover{background:#003853;}
+@media print{.asc-disclaimer-banner,.asc-disclaimer-modal{display:none !important;}}
+</style>
 </head>
 <body>
+
+<div id="asc-disclaimer-banner" class="asc-disclaimer-banner" data-noprint>
+  ⚠️ Simulateur <strong>non officiel</strong>, créé et géré bénévolement par un postier — non affilié à La Poste ni au CSE Central. <a href="index.html">En savoir plus</a>
+</div>
+<div id="asc-disclaimer-modal" class="asc-disclaimer-modal" style="display:none;" data-noprint>
+  <div class="box">
+    <span class="tag">⚠️ À lire avant de commencer</span>
+    <h2>Site non officiel et bénévole</h2>
+    <p>Ce simulateur est un outil <strong>indépendant</strong>, créé sur son temps libre par un postier. Il n'est ni édité, ni validé, ni relu par La Poste, le CSE Central ou tout autre organisme officiel.</p>
+    <p>Les montants affichés sont des <strong>estimations indicatives</strong>, sans valeur contractuelle. Seuls votre relevé de droits et les services officiels du CSE font foi.</p>
+    <button type="button" id="asc-disclaimer-ack-btn">J'ai compris, accéder au simulateur</button>
+  </div>
+</div>
 
 <div id="asc-header"></div>
 
@@ -53,6 +82,15 @@
   }
 
   render();
+})();
+</script>
+<script>
+(function(){
+  var KEY='asc_sim_disclaimer_ack_v1';
+  var modal=document.getElementById('asc-disclaimer-modal');
+  if(modal && !localStorage.getItem(KEY)){ modal.style.display='flex'; }
+  var btn=document.getElementById('asc-disclaimer-ack-btn');
+  if(btn) btn.onclick=function(){ localStorage.setItem(KEY,'1'); modal.style.display='none'; };
 })();
 </script>
 </body>
