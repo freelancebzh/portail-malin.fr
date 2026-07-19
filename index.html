@@ -76,6 +76,15 @@
   .faq-item h3 { font-size: 15px; margin: 0 0 6px; color: var(--ink); }
   .faq-item p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.7; }
 </style>
+<!-- ============================================================
+     PUBLICITÉ — Google AdSense
+     ID éditeur (ca-pub-5300474397479230) : en place, site en cours de
+     validation par Google.
+     Reste à faire : remplacer chaque data-ad-slot="XXXXXXXXXX" par l'ID
+     du bloc d'annonce correspondant, créé dans votre tableau de bord
+     AdSense, une fois le compte approuvé.
+     ============================================================ -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5300474397479230" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -183,6 +192,10 @@ groupe</span>
         <h3>Où trouver les informations officielles sur les aides ASC ?</h3>
         <p>Sur cse-laposte.fr et sur votre relevé de droits personnel, disponible auprès de votre CSE.</p>
       </div>
+      <div class="faq-item">
+        <h3>Ce site affiche-t-il de la publicité ?</h3>
+        <p>Oui, via Google AdSense, uniquement pour couvrir les frais d'hébergement et de maintenance du site. Ces publicités sont indépendantes du contenu et n'influencent pas les estimations affichées. Voir notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
+      </div>
     </div>
 
     <div class="card" style="margin-top:22px;">
@@ -192,11 +205,52 @@ groupe</span>
       <div class="btn-row" data-noprint style="margin-top:14px;">
         <a href="login.html" class="btn btn-primary">Accéder au simulateur →</a>
       </div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:14px;">
+        <a href="mentions-legales.html" style="color:var(--muted);text-decoration:underline;">Mentions légales</a>
+        &nbsp;·&nbsp;
+        <a href="politique-confidentialite.html" style="color:var(--muted);text-decoration:underline;">Politique de confidentialité & cookies</a>
+      </p>
     </div>
 
   </div>
 
+<div class="asc-ad-slot" data-noprint style="margin:22px 0;text-align:center;">
+  <div style="font-size:10px;color:#999;margin-bottom:4px;letter-spacing:.05em;text-transform:uppercase;">Publicité</div>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5300474397479230"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+</div>
 </main>
 
+<div id="asc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9997;background:#1E2A3A;color:#fff;padding:14px 18px;font-size:12.5px;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;font-family:'Manrope',sans-serif;" data-noprint>
+  <span style="max-width:520px;">🍪 Ce site utilise des cookies publicitaires (Google AdSense) pour financer ses frais d'hébergement. Site non officiel et bénévole — les publicités n'influencent pas les estimations. <a href="politique-confidentialite.html" style="color:#FBD79A;text-decoration:underline;">En savoir plus</a></span>
+  <button id="asc-cookie-decline" style="background:transparent;border:1px solid #fff;color:#fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:inherit;">Refuser</button>
+  <button id="asc-cookie-accept" style="background:#FBD79A;border:none;color:#1E2A3A;font-weight:700;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:inherit;">Accepter</button>
+</div>
+<script>
+(function(){
+  var CONSENT_KEY = 'asc_ads_consent_v1';
+  function loadAdsense(){
+    // Le script AdSense est déjà chargé statiquement dans <head> (requis pour la validation Google).
+    document.querySelectorAll('.adsbygoogle').forEach(function(){
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+    });
+  }
+  var consent = localStorage.getItem(CONSENT_KEY);
+  var banner = document.getElementById('asc-cookie-banner');
+  if (consent === 'accepted') {
+    loadAdsense();
+  } else if (consent !== 'declined' && banner) {
+    banner.style.display = 'flex';
+  }
+  var okBtn = document.getElementById('asc-cookie-accept');
+  var noBtn = document.getElementById('asc-cookie-decline');
+  if (okBtn) okBtn.onclick = function(){ localStorage.setItem(CONSENT_KEY,'accepted'); banner.style.display='none'; loadAdsense(); };
+  if (noBtn) noBtn.onclick = function(){ localStorage.setItem(CONSENT_KEY,'declined'); banner.style.display='none'; };
+})();
+</script>
 </body>
 </html>

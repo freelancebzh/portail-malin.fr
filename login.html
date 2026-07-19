@@ -14,8 +14,8 @@
   body {
     margin: 0; padding: 0;
     background: #f4f7f6;
-    display: flex; align-items: center; justify-content: center;
-    height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh;
     font-family: 'Manrope', sans-serif;
   }
   .login-card {
@@ -53,6 +53,15 @@
   .login-back { display:block; margin-bottom:14px; font-size:12.5px; color:#666; text-decoration:none; }
   .login-back:hover { text-decoration:underline; }
 </style>
+<!-- ============================================================
+     PUBLICITÉ — Google AdSense
+     ID éditeur (ca-pub-5300474397479230) : en place, site en cours de
+     validation par Google.
+     Reste à faire : remplacer chaque data-ad-slot="XXXXXXXXXX" par l'ID
+     du bloc d'annonce correspondant, créé dans votre tableau de bord
+     AdSense, une fois le compte approuvé.
+     ============================================================ -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5300474397479230" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -66,6 +75,16 @@
   <div id="login-error">Ce code RH n'est pas reconnu,<br>⚠️ Ce site n'est accessible qu'à ceux qui le méritent ! ⚠️</div>
 
   <div class="login-disclaimer">⚠️ <strong>Site non officiel et bénévole</strong>, créé et géré par un postier sur son temps libre. Non affilié à La Poste ni au CSE Central. Les estimations n'ont aucune valeur contractuelle.</div>
+</div>
+
+<div class="asc-ad-slot" data-noprint style="margin:18px 0 0;text-align:center;max-width:400px;width:90%;">
+  <div style="font-size:10px;color:#999;margin-bottom:4px;letter-spacing:.05em;text-transform:uppercase;">Publicité</div>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5300474397479230"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
 </div>
 
 <script>
@@ -86,6 +105,34 @@ function checkLogin() {
 if (sessionStorage.getItem('is_logged_in') === 'true') {
   window.location.href = 'accueil.html';
 }
+</script>
+
+<div id="asc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9997;background:#1E2A3A;color:#fff;padding:14px 18px;font-size:12.5px;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;font-family:'Manrope',sans-serif;" data-noprint>
+  <span style="max-width:520px;">🍪 Ce site utilise des cookies publicitaires (Google AdSense) pour financer ses frais d'hébergement. Site non officiel et bénévole — les publicités n'influencent pas les estimations. <a href="politique-confidentialite.html" style="color:#FBD79A;text-decoration:underline;">En savoir plus</a></span>
+  <button id="asc-cookie-decline" style="background:transparent;border:1px solid #fff;color:#fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:inherit;">Refuser</button>
+  <button id="asc-cookie-accept" style="background:#FBD79A;border:none;color:#1E2A3A;font-weight:700;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:inherit;">Accepter</button>
+</div>
+<script>
+(function(){
+  var CONSENT_KEY = 'asc_ads_consent_v1';
+  function loadAdsense(){
+    // Le script AdSense est déjà chargé statiquement dans <head> (requis pour la validation Google).
+    document.querySelectorAll('.adsbygoogle').forEach(function(){
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+    });
+  }
+  var consent = localStorage.getItem(CONSENT_KEY);
+  var banner = document.getElementById('asc-cookie-banner');
+  if (consent === 'accepted') {
+    loadAdsense();
+  } else if (consent !== 'declined' && banner) {
+    banner.style.display = 'flex';
+  }
+  var okBtn = document.getElementById('asc-cookie-accept');
+  var noBtn = document.getElementById('asc-cookie-decline');
+  if (okBtn) okBtn.onclick = function(){ localStorage.setItem(CONSENT_KEY,'accepted'); banner.style.display='none'; loadAdsense(); };
+  if (noBtn) noBtn.onclick = function(){ localStorage.setItem(CONSENT_KEY,'declined'); banner.style.display='none'; };
+})();
 </script>
 
 </body>

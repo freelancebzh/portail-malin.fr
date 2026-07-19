@@ -2,11 +2,11 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Banque & assurance | Simulateur NON OFFICIEL et bénévole ASC 2026</title>
+<title>Bilan complet | Simulateur NON OFFICIEL et bénévole des aides ASC 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Présentation non officielle et bénévole des avantages La Banque Postale (compte, assurances, prêt conso) ouverts aux postiers.">
+<meta name="description" content="Récapitulatif non officiel et bénévole de toutes vos aides ASC 2026 estimées, tous thèmes confondus.">
 <meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://www.portail-malin.fr/banque-assurance.html">
+<link rel="canonical" href="https://www.portail-malin.fr/bilan.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -23,6 +23,18 @@
 .asc-disclaimer-modal .box button{width:100%;padding:12px;border:none;border-radius:8px;background:#004b6e;color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;margin-top:6px;}
 .asc-disclaimer-modal .box button:hover{background:#003853;}
 @media print{.asc-disclaimer-banner,.asc-disclaimer-modal{display:none !important;}}
+.bilan-section{border:1px solid var(--border,#e2e2e2);border-radius:12px;padding:16px 18px;margin-top:14px;}
+.bilan-section h3{margin:0 0 4px;font-size:15.5px;}
+.bilan-section .subtotal{font-weight:800;color:var(--green,#1e8e5a);font-size:16px;}
+.bilan-empty{color:var(--muted,#5f6368);font-size:13px;margin-top:6px;}
+.bilan-empty a{color:var(--muted,#5f6368);text-decoration:underline;}
+.bilan-line{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:8px 0;border-top:1px solid var(--border,#f0f0f0);}
+.bilan-line .l-label{color:var(--ink,#1a1a1a);}
+.bilan-line .l-note{display:block;color:var(--muted,#5f6368);font-size:11.5px;margin-top:2px;}
+.bilan-line .l-amount{font-weight:700;white-space:nowrap;}
+@media print{
+  .bilan-section{break-inside:avoid;}
+}
 </style>
 <!-- ============================================================
      PUBLICITÉ — Google AdSense
@@ -55,14 +67,19 @@
   <div id="banner"></div>
 
   <div class="card">
-    <div class="eyebrow">Banque, Assurance & Prêt collaborateur</div>
-    <h1 class="page-title">🏦 Avantages La Banque Postale</h1>
-	<div class="page-photo"><img src="assets/images/la-banque-postale.jpg" alt="labanquepostale"></div>
-	
-    <p class="page-lead">Ces avantages ne dépendent pas de votre tranche de quotient familial : ils sont identiques pour tous les postiers.</p>
+    <div class="eyebrow">Récapitulatif global</div>
+    <h1 class="page-title">📋 Votre bilan complet des aides ASC 2026</h1>
+    <p class="page-lead">Ce bilan rassemble tout ce que vous avez saisi sur les différentes pages du simulateur, en un seul document à imprimer ou exporter.</p>
 
-    <div class="grid-3" id="infoGrid"></div>
+    <div class="summary-card" style="margin-top:18px;" id="grandTotalCard"></div>
+
+    <div class="btn-row" data-noprint style="margin-top:18px;">
+      <a href="accueil.html" class="btn btn-secondary">← Mon profil</a>
+      <button type="button" class="btn btn-primary" onclick="window.print()">🖨️ Imprimer / Exporter tout mon bilan en PDF</button>
+    </div>
   </div>
+
+  <div class="card" style="margin-top:22px;" id="bilanSections"></div>
 <div class="asc-ad-slot" data-noprint style="margin:22px 0;text-align:center;">
   <div style="font-size:10px;color:#999;margin-bottom:4px;letter-spacing:.05em;text-transform:uppercase;">Publicité</div>
   <ins class="adsbygoogle"
@@ -79,27 +96,71 @@
 <script src="assets/js/common.js"></script>
 <script>
 (function () {
-  const L = ASC.LINKS;
-  const cards = [
-    { icon: '💳', title: 'Compte bancaire', text: "Tarif collaborateur dès 3 mois de domiciliation. Carte remboursée sur bulletin, protections incluses. <strong>Moins de 2 €/mois.</strong>", link: L.lbpBanque, label: "🔗 Découvrir l'offre →" },
-    { icon: '🛡️', title: 'Assurances', text: "Sans être client LBP : remises ou <strong>1 mois offert</strong> sur presque chaque contrat.", link: L.lbpAssurance, label: "🔗 Voir les assurances →" },
-    { icon: '💰', title: 'Prêt conso', text: "Sans être client LBP : taux avantageux réservé agents. <strong>Mettre en concurrence dès votre projet.</strong>", link: L.lbpPret, label: "🔗 Contacter LBP →" },
+  const SECTIONS = [
+    { key: 'parentalite', icon: '👨‍👩‍👧', label: 'Parentalité (-18 ans)', page: 'parentalite.html' },
+    { key: 'enfant1825', icon: '🎓', label: 'Enfant 18-25 ans', page: 'enfant-18-25.html' },
+    { key: 'vacances', icon: '🎉', label: 'Vacances & loisirs', page: 'vacances-loisirs.html' },
+    { key: 'avantagesGroupe', icon: '🎁', label: 'Avantages groupe', page: 'avantages-groupe.html' },
+    { key: 'aidant', icon: '🫶', label: 'Aidant familial & répit', page: 'aidant-familial.html' },
   ];
 
+  function loadBilan() {
+    try {
+      const raw = localStorage.getItem('asc_bilan_v1');
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+
   function render() {
-    ASC.renderHeader('banque');
+    ASC.renderHeader('bilan');
     ASC.renderFooter();
-    document.getElementById('infoGrid').innerHTML = cards.map(c => `
-      <div class="info-card">
-        <div class="ic">${c.icon}</div>
-        <div class="it">${c.title}</div>
-        <p>${c.text}</p>
-        <button class="link-out" data-link="${c.link}">${c.label}</button>
-      </div>`).join('');
-    document.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
+    ASC.profileBanner('banner');
+
+    const comp = ASC.computeQF();
+    const data = loadBilan();
+
+    const grandTotalEl = document.getElementById('grandTotalCard');
+    if (!comp.hasQF) {
+      grandTotalEl.innerHTML = `<div class="summary-label">Total estimé</div><div class="summary-empty">Complétez votre <a href="accueil.html">profil</a>, puis parcourez les pages d'aides pour construire votre bilan.</div>`;
+    } else {
+      const grandTotal = SECTIONS.reduce((sum, s) => sum + ((data[s.key] && data[s.key].total) || 0), 0);
+      const nbSections = SECTIONS.filter(s => data[s.key] && data[s.key].total > 0).length;
+      grandTotalEl.innerHTML = `
+        <div class="summary-label">Total estimé — Tranche T${comp.t+1}</div>
+        <div class="summary-qf">${ASC.fmt(grandTotal)}</div>
+        <div class="tranche-pill"><b>${nbSections} thème(s)</b><span>renseigné(s) sur ${SECTIONS.length}</span></div>`;
+    }
+
+    const sectionsEl = document.getElementById('bilanSections');
+    sectionsEl.innerHTML = `
+      <div class="eyebrow">Détail par thème</div>
+      <h2 class="page-title" style="font-size:21px;">Ce que vous avez renseigné</h2>
+      ${SECTIONS.map(s => {
+        const d = data[s.key];
+        if (!d || !d.total || d.total <= 0) {
+          return `
+          <div class="bilan-section">
+            <h3>${s.icon} ${s.label}</h3>
+            <p class="bilan-empty">Rien renseigné pour l'instant — <a href="${s.page}">aller sur la page ${s.label}</a>.</p>
+          </div>`;
+        }
+        return `
+        <div class="bilan-section">
+          <h3>${s.icon} ${s.label}</h3>
+          <div class="subtotal">${ASC.fmt(d.total)}</div>
+          ${(d.aids || []).map(a => `
+            <div class="bilan-line">
+              <div class="l-label">${a.label}<span class="l-note">${a.note || ''}</span></div>
+              <div class="l-amount">${ASC.fmt(a.amount)}</div>
+            </div>`).join('')}
+        </div>`;
+      }).join('')}
+      <p class="field-hint" style="margin-top:16px;">💬 La page « Banque & assurance » propose des avantages non chiffrés (tarifs, réductions) et n'apparaît pas dans ce total.</p>
+    `;
   }
 
   render();
+  window.addEventListener('storage', render);
 })();
 </script>
 <script>
