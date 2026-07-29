@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2449CKTRX4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2449CKTRX4');
+</script>
+
+
 <meta charset="utf-8">
-<title>Parentalité -18 ans | Simulateur NON OFFICIEL et bénévole des aides ASC 2026</title>
+<title>Parentalité -18 ans | Simulateur ASC 2026 — CSE Central La Poste</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Estimation non officielle et bénévole des aides CSE pour vos enfants de moins de 18 ans : CESU, périscolaire, colonies, classes découverte, séjours linguistiques.">
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://www.portail-malin.fr/parentalite.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -17,43 +26,8 @@
   .choice-box label:last-child { margin-bottom: 0; }
   .hidden { display: none !important; }
 </style>
-<style id="asc-disclaimer-style">
-.asc-disclaimer-banner{position:sticky;top:0;z-index:9998;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffe69c;font-size:12.5px;line-height:1.5;padding:8px 14px;text-align:center;font-family:'Manrope',sans-serif;}
-.asc-disclaimer-banner strong{font-weight:800;}
-.asc-disclaimer-banner a{color:#664d03;text-decoration:underline;}
-.asc-disclaimer-modal{position:fixed;inset:0;z-index:9999;background:rgba(20,20,20,.55);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Manrope',sans-serif;}
-.asc-disclaimer-modal .box{background:#fff;max-width:460px;width:100%;border-radius:14px;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
-.asc-disclaimer-modal .box h2{margin:0 0 10px;font-size:18px;color:#664d03;}
-.asc-disclaimer-modal .box p{margin:0 0 12px;font-size:13.5px;line-height:1.7;color:#333;}
-.asc-disclaimer-modal .box .tag{display:inline-block;background:#fff3cd;color:#664d03;font-weight:700;font-size:11px;padding:4px 9px;border-radius:20px;margin-bottom:12px;}
-.asc-disclaimer-modal .box button{width:100%;padding:12px;border:none;border-radius:8px;background:#004b6e;color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;margin-top:6px;}
-.asc-disclaimer-modal .box button:hover{background:#003853;}
-@media print{.asc-disclaimer-banner,.asc-disclaimer-modal{display:none !important;}}
-</style>
-<!-- ============================================================
-     PUBLICITÉ — Google AdSense
-     ID éditeur (ca-pub-5300474397479230) : en place, site en cours de
-     validation par Google.
-     Reste à faire : remplacer chaque data-ad-slot="XXXXXXXXXX" par l'ID
-     du bloc d'annonce correspondant, créé dans votre tableau de bord
-     AdSense, une fois le compte approuvé.
-     ============================================================ -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5300474397479230" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<div id="asc-disclaimer-banner" class="asc-disclaimer-banner" data-noprint>
-  ⚠️ Simulateur <strong>non officiel</strong>, créé et géré bénévolement par un postier — non affilié à La Poste ni au CSE Central. <a href="index.html">En savoir plus</a>
-</div>
-<div id="asc-disclaimer-modal" class="asc-disclaimer-modal" style="display:none;" data-noprint>
-  <div class="box">
-    <span class="tag">⚠️ À lire avant de commencer</span>
-    <h2>Site non officiel et bénévole</h2>
-    <p>Ce simulateur est un outil <strong>indépendant</strong>, créé sur son temps libre par un postier. Il n'est ni édité, ni validé, ni relu par La Poste, le CSE Central ou tout autre organisme officiel.</p>
-    <p>Les montants affichés sont des <strong>estimations indicatives</strong>, sans valeur contractuelle. Seuls votre relevé de droits et les services officiels du CSE font foi.</p>
-    <button type="button" id="asc-disclaimer-ack-btn">J'ai compris, accéder au simulateur</button>
-  </div>
-</div>
 
 <div id="asc-header"></div>
 
@@ -77,7 +51,7 @@
 	<div class="page-photo"><img src="assets/images/soutien-scolaire.jpg" alt="enfant étant aidé d'un adulte pour ses devoirs"></div>
   </div>
   <p style="font-size:13px; margin-bottom:10px;">Indiquez le Nombre de titres CESU souhaité (de 0 à 50) :</p>
-  <input type="number" id="socleCesu" min="0" max="50" value="0" style="width: 80px; padding: 8px;">
+  <input type="number" id="socleCesu" min="0" max="50" value="50" style="width: 80px; padding: 8px;">
 </div>
 
 
@@ -106,11 +80,6 @@
   <div class="section-head"><span class="ic">👧</span><h3>Enfants concernés par le CESU (0-11 ans)</h3></div>
   <div id="kidRows-cesu">
     </div>
-  <div style="margin-top:14px;">
-    <label class="field-label">Nombre de titres CESU souhaités</label>
-    <input type="number" id="cesuOpt2Titres" placeholder="ex. 30" style="width: 100px; padding: 8px;">
-    <p class="field-hint" id="cesuOpt2Max" style="margin:6px 0 0;">Maximum possible avec vos enfants : — titres</p>
-  </div>
 </div>
 
       <div class="section-block" id="block-perisco">
@@ -150,15 +119,10 @@
         <div class="section-head"><span class="ic">🎒</span><h3>Séjours enfants accompagnés</h3></div>
 		
 		<p style="font-size:13px; margin-bottom:10px;">Pour chaque nuit facturée en dehors du domicile des parents avec le parent éligible percevez une aide/j/enfant</p>
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-          <div class="counter-controls">
-            <button type="button" class="ct-btn" id="sejoursDec">−</button>
-            <span class="ct-value" id="sejoursVal">0</span>
-            <button type="button" class="ct-btn" id="sejoursInc">+</button>
-            <span style="font-size:13px;color:var(--muted);">enfant(s) de -18 ans accompagnant</span>
-          </div>
-          <div style="flex:1;min-width:160px;">
-            <input type="number" id="joursSejours" placeholder="Nombre de jours">
+        <div class="grid-2">
+          <div>
+            <label class="field-label">Jours de séjours enfants</label>
+            <input type="number" id="joursSejours" placeholder="ex. 14">
           </div>
         </div>
 		<div class="page-photo"><img src="assets/images/famille.jpg" alt="classe de neige"></div>
@@ -225,8 +189,7 @@
       </div>
 
       <div class="btn-row" data-noprint>
-        <a href="accueil.html" class="btn btn-secondary">← Mon profil</a>
-        <a href="bilan.html" class="btn btn-secondary">📋 Mon bilan complet</a>
+        <a href="index.html" class="btn btn-secondary">← Mon profil</a>
         <button type="button" class="btn btn-primary" onclick="window.print()">Imprimer / Exporter en PDF</button>
       </div>
     </div>
@@ -235,15 +198,6 @@
   </div>
 
   <div class="card" style="margin-top:22px;" id="resultsCard"></div>
-<div class="asc-ad-slot" data-noprint style="margin:22px 0;text-align:center;">
-  <div style="font-size:10px;color:#999;margin-bottom:4px;letter-spacing:.05em;text-transform:uppercase;">Publicité</div>
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5300474397479230"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-</div>
 </main>
 
 <div id="asc-footer"></div>
@@ -255,11 +209,11 @@
 
 const state = {
     mode: 'perisco',
-    socleCesu: 0,
+    socleCesu: 50,
     kids: { n04: 0, n411: 0, primaire: 0, college: 0, lycee: 0 },
-    perisco: '', joursSejours: '', sejoursEnfants: 0, coloEnfants: 0, coloCout: '',
+    perisco: '', joursSejours: '', coloEnfants: 0, coloCout: '',
     classeDecouverte: 0, joursClasse: '', sejourLinguistique: 0, joursSejLing: '',
-    sportEnfants: 0, cesuOpt2Titres: '',
+    sportEnfants: 0,
   };
 
   const KID_FIELDS = [
@@ -270,102 +224,18 @@ const state = {
     { key: 'lycee', label: 'Au lycée', sub: 'Allocation rentrée (T1-T2)' },
   ];
 
-  // Aide CESU (service à la personne à domicile, éligible au crédit d'impôt de 50%)
-  function serviceExample(n, t) {
-    const f = ASC.fmt, f2 = ASC.fmt2;
-    const hPrix = 25;
-    const tauxTitre = B.cesuTitre[t];
-    const pct = Math.round(tauxTitre / hPrix * 100);
-    const resteH = Math.round((hPrix - tauxTitre) * 100) / 100;
-    const resteApresCI = Math.round(resteH * 0.5 * 100) / 100;
-    const montantOffert = n * tauxTitre;
-    const factureTotale = n * hPrix;
-    const coutReelTotal = Math.round(n * resteApresCI);
-    return `💡 Prise en charge à ${pct}% : sur une heure de service à ${f(hPrix)}, La Poste finance ${f2(tauxTitre)}. Avec vos ${n} titres (~${n} h de service), c'est ${f(montantOffert)} offerts par La Poste. Reste à charge ${f2(resteH)}/h, ramené à ${f2(resteApresCI)}/h grâce au crédit d'impôt de 50 % (services à la personne) — soit environ ${f(coutReelTotal)} de dépense réelle pour ${f(factureTotale)} de services.`;
-  }
-
   function explain(kind, t) {
     const f = ASC.fmt, f2 = ASC.fmt2;
     switch (kind) {
-      case 'socle': {
-        const n = parseInt(state.socleCesu) || 0;
-        return serviceExample(n, t);
-      }
-      case 'perisco': {
-        const pct = B.periscoPct[t];
-        const saisie = ASC.num(state.perisco);
-        const fact = saisie > 0 ? saisie : 80;
-        const aide = Math.round(fact * pct / 100);
-        const reste = fact - aide;
-        const aideAn = aide * 11;
-        const intro = saisie > 0 ? '💡 Avec votre facture de ' : '💡 Exemple concret : facture périscolaire de ';
-        return `${intro}${f(fact)}/mois : La Poste prend en charge ${pct}% (${f(aide)}/mois), il vous reste ${f(reste)}/mois à charge — soit ${f(aideAn)}/an de coup de pouce sur 11 mois.`;
-      }
-      case 'cesuOpt2': {
-        const k = state.kids;
-        const maxTitres = k.n04 * 84 + k.n411 * 55;
-        const saisie = state.cesuOpt2Titres !== '' ? ASC.num(state.cesuOpt2Titres) : maxTitres;
-        const n = Math.max(0, Math.min(saisie, maxTitres));
-        return serviceExample(n, t) + ` (calculé sur ${k.n04} enfant(s) 0-4 ans et ${k.n411} enfant(s) 4-11 ans — maximum ${maxTitres} titres).`;
-      }
-      case 'scolarite': {
-        const k = state.kids;
-        const sc = k.primaire * 70 + k.college * 145 + k.lycee * 175;
-        const has = (k.primaire + k.college + k.lycee) > 0;
-        return has
-          ? `💡 Avec ${k.primaire} en primaire, ${k.college} au collège et ${k.lycee} au lycée : ${f(sc)} d'allocation de rentrée versés sur simple certificat de scolarité.`
-          : `💡 Exemple concret : un enfant au collège (145 €) et un au lycée (175 €) = 320 € d'allocation de rentrée versés sur simple certificat de scolarité.`;
-      }
-      case 'sejours': {
-        const taux = B.sejourDay[t];
-        const saisieJ = ASC.num(state.joursSejours);
-        const jours = saisieJ > 0 ? saisieJ : 14;
-        const enfants = state.sejoursEnfants > 0 ? state.sejoursEnfants : 1;
-        const aide = Math.round(taux * jours * enfants);
-        const coutEstime = 55;
-        const factureEstimee = coutEstime * jours * enfants;
-        const pct = Math.min(100, Math.round(taux / coutEstime * 100));
-        const reste = Math.max(0, factureEstimee - aide);
-        const intro = saisieJ > 0 ? '💡 Avec vos ' : '💡 Exemple concret : ';
-        return `${intro}${jours} jour(s) de séjour pour ${enfants} enfant(s) : La Poste verse ${f2(taux)}/jour/enfant, soit ${f(aide)} au total. En estimant un coût moyen de ${f(coutEstime)}/jour/enfant, cela couvre environ ${pct}% du séjour, pour un reste à charge estimé de ${f(reste)}.`;
-      }
-      case 'colo': {
-        const taux = B.coloPct[t];
-        const saisieCout = ASC.num(state.coloCout);
-        const fact = saisieCout > 0 ? saisieCout : 800;
-        const aide = Math.min(Math.round(fact * taux / 100), 1300);
-        const reste = fact - aide;
-        const n = state.coloEnfants > 0 ? state.coloEnfants : 1;
-        const intro = saisieCout > 0 ? '💡 Avec votre colonie à ' : '💡 Exemple concret : colonie à ';
-        return `${intro}${f(fact)}${state.coloEnfants > 0 ? ' pour ' + n + ' enfant(s)' : ''} : La Poste prend en charge ${taux}% (plafond 1 300 €/enfant), soit ${f(aide)} par enfant${n > 1 ? ' — ' + f(aide * n) + ' au total' : ''}. Il vous reste ${f(reste)} à charge par enfant.`;
-      }
-      case 'classedec': {
-        const taux = B.classeDecJour[t];
-        const saisieJ = ASC.num(state.joursClasse);
-        const jours = saisieJ > 0 ? Math.max(saisieJ, 3) : 5;
-        const n = state.classeDecouverte > 0 ? state.classeDecouverte : 1;
-        const aide = Math.round(taux * jours);
-        const coutEstime = 45;
-        const factureEstimee = coutEstime * jours;
-        const pct = Math.min(100, Math.round(taux / coutEstime * 100));
-        const reste = Math.max(0, factureEstimee - aide);
-        const intro = saisieJ > 0 ? '💡 Avec vos ' : '💡 Exemple concret : ';
-        return `${intro}${jours} jour(s) de classe découverte pour ${n} enfant(s) : La Poste verse ${f2(taux)}/jour, soit ${f(aide)} par enfant. En estimant un coût moyen de ${f(coutEstime)}/jour, cela couvre environ ${pct}% du séjour, pour un reste à charge estimé de ${f(reste)} par enfant.`;
-      }
-      case 'sejourling': {
-        const taux = B.sejourLingJour[t];
-        const saisieJ = ASC.num(state.joursSejLing);
-        const jours = saisieJ > 0 ? Math.max(saisieJ, 7) : 14;
-        const n = state.sejourLinguistique > 0 ? state.sejourLinguistique : 1;
-        const aide = Math.round(taux * jours);
-        const coutEstime = 90;
-        const factureEstimee = coutEstime * jours;
-        const pct = Math.min(100, Math.round(taux / coutEstime * 100));
-        const reste = Math.max(0, factureEstimee - aide);
-        const intro = saisieJ > 0 ? '💡 Avec vos ' : '💡 Exemple concret : ';
-        return `${intro}${jours} jour(s) de séjour linguistique pour ${n} enfant(s) : La Poste verse ${f2(taux)}/jour, soit ${f(aide)} par enfant. En estimant un coût moyen de ${f(coutEstime)}/jour, cela couvre environ ${pct}% du séjour, pour un reste à charge estimé de ${f(reste)} par enfant.`;
-      }
-      case 'sport': return `💡 Aide forfaitaire de 60 € par enfant pratiquant une activité sportive ou culturelle (vous avez indiqué ${state.sportEnfants} enfant(s)), jusqu'à 25 ans s'il est encore rattaché à votre foyer fiscal — sur simple justificatif (licence, inscription).`;
+      case 'socle': { const ex = 50 * B.cesuTitre[t]; return `💡 Cette dotation est automatique : 50 titres CESU × ${f2(B.cesuTitre[t])} d'aide CSE par titre = ${f(ex)} offerts, quelle que soit votre tranche.`; }
+      case 'perisco': { const pct = B.periscoPct[t], exFact = 80, exAide = Math.round(exFact * pct / 100); return `💡 Exemple concret : facture périscolaire de ${f(exFact)}/mois. En tranche T${t+1}, le CSE prend en charge ${pct} %, soit ${f(exAide)}/mois — reste à charge ${f(exFact-exAide)}/mois, sur 11 mois.`; }
+      case 'cesuOpt2': return `💡 Dotation calculée sur le nombre d'enfants 0-4 ans et 4-11 ans saisi ci-dessus : 84 titres/enfant (0-4 ans) et 55 titres/enfant (4-11 ans), valorisés à ${f2(B.cesuTitre[t])}/titre pour votre tranche.`;
+      case 'scolarite': return `💡 Exemple concret : un enfant au collège (145 €) et un au lycée (175 €) = 320 € d'allocation de rentrée versés sur simple certificat de scolarité.`;
+      case 'sejours': { const taux = B.sejourDay[t], exJours = 14, exAide = Math.round(taux * exJours); return `💡 Exemple concret : 14 jours de séjour en famille. Le CSE verse ${f2(taux)}/jour, soit ${f(exAide)} d'aide.`; }
+      case 'colo': { const taux = B.coloPct[t], exFact = 800, exAide = Math.min(Math.round(exFact * taux / 100), 1300); return `💡 Exemple concret : colonie à ${f(exFact)}. Le CSE prend en charge ${taux} %, soit ${f(exAide)} remboursés (plafond 1 300 €/enfant).`; }
+      case 'classedec': { const taux = B.classeDecJour[t], exJours = 5, exAide = Math.round(taux * exJours); return `💡 Exemple concret : classe découverte de 5 jours → ${f2(taux)}/jour × 5 = ${f(exAide)} par enfant.`; }
+      case 'sejourling': { const taux = B.sejourLingJour[t], exJours = 14, exAide = Math.round(taux * exJours); return `💡 Exemple concret : séjour linguistique de 2 semaines → ${f2(taux)}/jour × 14 = ${f(exAide)} par enfant.`; }
+      case 'sport': return `💡 Aide forfaitaire de 60 € par enfant pratiquant une activité sportive ou culturelle, jusqu'à 25 ans s'il est encore rattaché à votre foyer fiscal — sur simple justificatif (licence, inscription).`;
       default: return '';
     }
   }
@@ -390,10 +260,8 @@ const socleCount = parseInt(state.socleCesu) || 0;
 
     // Option 1 vs Option 2 (0-11 ans)
     if (state.mode === 'cesu') {
-      const maxTitres = k.n04 * 84 + k.n411 * 55;
-      const saisie = state.cesuOpt2Titres !== '' ? ASC.num(state.cesuOpt2Titres) : maxTitres;
-      const titres = Math.max(0, Math.min(saisie, maxTitres));
-      if (titres > 0) add('cesuOpt2', 'Dotation CESU (option 2)', titres * B.cesuTitre[t], titres + ' / ' + maxTitres + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + '/titre');
+      const titres = k.n04 * 84 + k.n411 * 55;
+      if (titres > 0) add('cesuOpt2', 'Dotation CESU (option 2)', titres * B.cesuTitre[t], titres + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + '/titre');
     } else {
       const peri = ASC.num(state.perisco);
       if (peri > 0) {
@@ -413,9 +281,7 @@ const socleCount = parseInt(state.socleCesu) || 0;
 
     // Séjours enfants accompagnés
     const js = ASC.num(state.joursSejours);
-    if (js > 0 && state.sejoursEnfants > 0) {
-      add('sejours', 'Séjours enfants accompagnés', js * B.sejourDay[t] * state.sejoursEnfants, js + ' j × ' + ASC.fmt2(B.sejourDay[t]) + '/j × ' + state.sejoursEnfants + ' enfant(s)');
-    }
+    if (js > 0) add('sejours', 'Séjours enfants accompagnés', js * B.sejourDay[t], js + ' j × ' + ASC.fmt2(B.sejourDay[t]) + '/j');
 
     // Colonies
     const cc = ASC.num(state.coloCout);
@@ -443,15 +309,6 @@ const socleCount = parseInt(state.socleCesu) || 0;
     return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0) };
   }
 
-  function persistSejourCombo() {
-    try {
-      localStorage.setItem('asc_sejour_combo_v1', JSON.stringify({
-        joursSejours: state.joursSejours,
-        sejoursEnfants: state.sejoursEnfants,
-      }));
-    } catch (e) {}
-  }
-
 function renderKidRows() {
     function getLine(f) {
       return `
@@ -472,27 +329,11 @@ function renderKidRows() {
     document.querySelectorAll('[data-inc]').forEach(b => b.onclick = () => { const k = b.getAttribute('data-inc'); state.kids[k] += 1; render(); });
   }
 
-  function persistBilan(sectionKey, sectionLabel, total, aids) {
-    try {
-      const raw = localStorage.getItem('asc_bilan_v1');
-      const all = raw ? JSON.parse(raw) : {};
-      all[sectionKey] = {
-        label: sectionLabel,
-        page: location.pathname.split('/').pop() || 'accueil.html',
-        total: total,
-        aids: aids.map(a => ({ label: a.label, amount: a.amount, note: a.note })),
-        updatedAt: Date.now(),
-      };
-      localStorage.setItem('asc_bilan_v1', JSON.stringify(all));
-    } catch (e) {}
-  }
-
   function renderResults() {
     const { comp, aids, total } = compute();
-    persistBilan('parentalite', 'Parentalité (-18 ans)', total, aids);
     const el = document.getElementById('resultsCard');
     if (!comp.hasQF) {
-      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="accueil.html">profil</a> pour voir vos aides estimées ici.</p>`;
+      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="index.html">profil</a> pour voir vos aides estimées ici.</p>`;
     } else if (!aids.length) {
       el.innerHTML = `<div class="eyebrow">Estimation — Tranche T${comp.t+1}</div><p class="page-lead" style="margin:0;">Renseignez votre situation ci-dessus pour voir apparaître vos aides.</p>`;
     } else {
@@ -529,23 +370,11 @@ function renderKidRows() {
     document.getElementById('periscoPctLabel').textContent = comp.hasQF ? B.periscoPct[comp.t] : '—';
 
     renderKidRows();
-    document.getElementById('sejoursVal').textContent = state.sejoursEnfants;
-    persistSejourCombo();
     document.getElementById('coloVal').textContent = state.coloEnfants;
     document.getElementById('classeVal').textContent = state.classeDecouverte;
     document.getElementById('sejLingVal').textContent = state.sejourLinguistique;
     document.getElementById('sport-val').textContent = state.sportEnfants;
     document.getElementById('block-kids-cesu').classList.toggle('hidden', !isCesu);
-
-    const n04 = state.kids.n04, n411 = state.kids.n411;
-    const maxTitresCesu = n04 * 84 + n411 * 55;
-    document.getElementById('cesuOpt2Max').textContent =
-      n04 + ' enfant(s) 0-4 ans × 84 + ' + n411 + ' enfant(s) 4-11 ans × 55 = maximum ' + maxTitresCesu + ' titres possibles';
-    document.getElementById('cesuOpt2Titres').max = maxTitresCesu;
-    if (state.cesuOpt2Titres !== '' && ASC.num(state.cesuOpt2Titres) > maxTitresCesu) {
-      state.cesuOpt2Titres = maxTitresCesu;
-      document.getElementById('cesuOpt2Titres').value = maxTitresCesu;
-    }
 
 
     renderResults();
@@ -558,8 +387,6 @@ function renderKidRows() {
   document.getElementById('joursClasse').addEventListener('input', e => { state.joursClasse = e.target.value; render(); });
   document.getElementById('joursSejLing').addEventListener('input', e => { state.joursSejLing = e.target.value; render(); });
 
-  document.getElementById('sejoursDec').onclick = () => { state.sejoursEnfants = Math.max(0, state.sejoursEnfants-1); render(); };
-  document.getElementById('sejoursInc').onclick = () => { state.sejoursEnfants += 1; render(); };
   document.getElementById('coloDec').onclick = () => { state.coloEnfants = Math.max(0, state.coloEnfants-1); render(); };
   document.getElementById('coloInc').onclick = () => { state.coloEnfants += 1; render(); };
   document.getElementById('classeDec').onclick = () => { state.classeDecouverte = Math.max(0, state.classeDecouverte-1); render(); };
@@ -568,51 +395,8 @@ function renderKidRows() {
   document.getElementById('sejLingInc').onclick = () => { state.sejourLinguistique += 1; render(); };
   document.getElementById('sport-dec').onclick = () => { state.sportEnfants = Math.max(0, state.sportEnfants-1); render(); };
   document.getElementById('sport-inc').onclick = () => { state.sportEnfants += 1; render(); };
-  document.getElementById('socleCesu').addEventListener('input', e => {
-    let v = ASC.num(e.target.value);
-    v = Math.max(0, Math.min(50, v));
-    e.target.value = v;
-    state.socleCesu = v;
-    render();
-  });
-  document.getElementById('cesuOpt2Titres').addEventListener('input', e => { state.cesuOpt2Titres = e.target.value; render(); });
+  document.getElementById('socleCesu').addEventListener('input', e => { state.socleCesu = e.target.value; render(); });
   render();
-})();
-</script>
-<script>
-(function(){
-  var KEY='asc_sim_disclaimer_ack_v1';
-  var modal=document.getElementById('asc-disclaimer-modal');
-  if(modal && !localStorage.getItem(KEY)){ modal.style.display='flex'; }
-  var btn=document.getElementById('asc-disclaimer-ack-btn');
-  if(btn) btn.onclick=function(){ localStorage.setItem(KEY,'1'); modal.style.display='none'; };
-})();
-</script>
-<div id="asc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9997;background:#1E2A3A;color:#fff;padding:14px 18px;font-size:12.5px;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;font-family:'Manrope',sans-serif;" data-noprint>
-  <span style="max-width:520px;">🍪 Ce site utilise des cookies publicitaires (Google AdSense) pour financer ses frais d'hébergement. Site non officiel et bénévole — les publicités n'influencent pas les estimations. <a href="politique-confidentialite.html" style="color:#FBD79A;text-decoration:underline;">En savoir plus</a></span>
-  <button id="asc-cookie-decline" style="background:transparent;border:1px solid #fff;color:#fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:inherit;">Refuser</button>
-  <button id="asc-cookie-accept" style="background:#FBD79A;border:none;color:#1E2A3A;font-weight:700;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:inherit;">Accepter</button>
-</div>
-<script>
-(function(){
-  var CONSENT_KEY = 'asc_ads_consent_v1';
-  function loadAdsense(){
-    // Le script AdSense est déjà chargé statiquement dans <head> (requis pour la validation Google).
-    document.querySelectorAll('.adsbygoogle').forEach(function(){
-      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
-    });
-  }
-  var consent = localStorage.getItem(CONSENT_KEY);
-  var banner = document.getElementById('asc-cookie-banner');
-  if (consent === 'accepted') {
-    loadAdsense();
-  } else if (consent !== 'declined' && banner) {
-    banner.style.display = 'flex';
-  }
-  var okBtn = document.getElementById('asc-cookie-accept');
-  var noBtn = document.getElementById('asc-cookie-decline');
-  if (okBtn) okBtn.onclick = function(){ localStorage.setItem(CONSENT_KEY,'accepted'); banner.style.display='none'; loadAdsense(); };
-  if (noBtn) noBtn.onclick = function(){ localStorage.setItem(CONSENT_KEY,'declined'); banner.style.display='none'; };
 })();
 </script>
 </body>
