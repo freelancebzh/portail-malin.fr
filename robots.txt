@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.portail-malin.fr/sitemap.xml
+Sitemap: https://portail-malin.fr/sitemap.xml
