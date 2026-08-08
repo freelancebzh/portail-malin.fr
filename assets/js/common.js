@@ -155,7 +155,7 @@ const ASC = (() => {
       <strong>OUTIL BENEVOLE NON OFFICIEL</strong> réalisé par jeu par un postier lambda — estimations indicatives basées sur la brochure officielle mais sans valeur contractuelle.
       Vos données restent sur votre appareil (aucun envoi à un serveur).
       <br>
-      <a href="https://ko-fi.com/portailmalin" target="_blank" rel="noopener" class="kofi-btn">☕ Soutenir ce site</a>
+      <a href="https://ko-fi.com/portailmalin?lang=fr" target="_blank" rel="noopener" class="kofi-btn">☕ Soutenir ce site</a>
     </footer>`;
   }
 
