@@ -241,29 +241,64 @@ const ASC = (() => {
   }
 
   /* ── Sidebar récapitulatif (QF + total des aides de la page) ─ */
-  function renderSidebar(containerId, total, aidCount) {
+  /* Panneau latéral : carte tranche (jauge T1-T10) + carte total.
+     opts (facultatif) : { comp, totalLabel, sub, items: [[libellé, montant], ...] } */
+  function renderSidebar(containerId, total, aidCount, opts = {}) {
     const el = document.getElementById(containerId);
     if (!el) return;
-    const comp = computeQF();
-    const qfText = comp.hasQF ? Math.round(comp.qf).toLocaleString('fr-FR') + ' €' : '—';
+    const comp = opts.comp || computeQF();
     const trancheBlock = comp.hasQF
-      ? `<div class="tranche-pill"><b>Tranche T${comp.t + 1}</b><span>${RANGES[comp.t]}</span></div>`
-      : `<div class="summary-empty">Renseignez votre revenu fiscal et vos parts pour révéler votre tranche.</div>`;
-    const aidCountText = aidCount > 1 ? aidCount + ' aides mobilisables' : (aidCount === 1 ? '1 aide mobilisable' : 'Aucune aide saisie pour le moment');
+      ? `<div class="tranche-main"><span class="t">T${comp.t + 1}</span><span class="qf">QF ${fmt(comp.qf)}</span></div>
+         <div class="range">Tranche : ${RANGES[comp.t]}</div>`
+      : `<div class="tranche-main"><span class="t">T–</span></div>
+         <div class="range-empty">Renseignez votre revenu fiscal et vos parts pour révéler votre tranche.</div>`;
+    const gauge = Array.from({ length: 10 }, (_, i) => `<i class="${comp.hasQF && i <= comp.t ? 'on' : ''}"></i>`).join('');
+    const sub = opts.sub || (aidCount > 1 ? aidCount + ' aides mobilisables' : (aidCount === 1 ? '1 aide mobilisable' : 'Aucune aide saisie pour le moment'));
+    const items = (opts.items || []).map(([libelle, montant]) => `<li><span>${libelle}</span><b>${fmt(montant)}</b></li>`).join('');
 
     el.innerHTML = `
       <aside class="aside-sticky" data-noprint>
-        <div class="summary-card">
-          <div class="summary-label">Votre quotient familial</div>
-          <div class="summary-qf">${qfText}</div>
+        <div class="tranche-card">
+          <div class="label">Votre quotient familial</div>
           ${trancheBlock}
-          <div class="summary-divider"></div>
-          <div class="summary-label">Estimation de cette page</div>
-          <div class="summary-total">${fmt(total)}</div>
-          <div class="summary-sub">${aidCountText}</div>
+          <div class="gauge">${gauge}</div>
+          <div class="gauge-labels"><span>T1</span><span>T5</span><span>T10</span></div>
         </div>
-        <div class="live-note"><span class="dot"></span>Mise à jour en temps réel</div>
+        <div class="total-card">
+          <div class="label">${opts.totalLabel || 'Estimation de cette page'}</div>
+          <div class="amount">${fmt(total)}</div>
+          <div class="amount-sub">${sub}</div>
+          ${items ? `<ul class="mini">${items}</ul>` : ''}
+          <p class="disclaimer">Estimation indicative, sans valeur contractuelle. Outil non officiel et bénévole.</p>
+          <div class="live"><i></i>Mise à jour en temps réel</div>
+        </div>
       </aside>`;
+    renderMobileBar(comp, total);
+  }
+
+  /* Barre fixe en bas d'écran sur mobile : tranche + total */
+  function renderMobileBar(comp, total) {
+    let bar = document.getElementById('asc-mbar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'asc-mbar';
+      bar.className = 'mbar';
+      bar.setAttribute('data-noprint', '');
+      document.body.appendChild(bar);
+    }
+    bar.innerHTML = `<span>Tranche <b>${comp.hasQF ? 'T' + (comp.t + 1) : '—'}</b></span><span><b>${comp.hasQF ? fmt(total) : '—'}</b></span>`;
+  }
+
+  /* Potentiel annuel indicatif d'une tranche (accueil / profil) : [[libellé, montant], ...] */
+  function potentielIndicatif(t) {
+    const B = BAREMES, C = CONSTANTES;
+    const list = [
+      ['CESU — ' + C.cesuDotation + ' titres', C.cesuDotation * B.cesuTitre[t]],
+      ['Chèques-Vacances (plafond)', B.cvMax[t]],
+      ['Vacances timbrées (plafond)', B.vtMax[t]],
+    ];
+    if (t <= 1) list.push(['Allocation scolarité étudiante', C.allocEtudiant[t]]);
+    return list;
   }
 
   /* ── Liens "Faire la démarche" ─────────────────────────────── */
@@ -317,7 +352,7 @@ const ASC = (() => {
             <span class="aid-label">${a.label}</span>
             <span class="aid-amount">${fmt(a.amount)}</span>
             <span class="aid-note">${a.note}</span>
-            <div class="aid-explain">${a.explain || (explainFn ? explainFn(a.kind, comp.t) : '')}</div>
+            ${(a.explain || explainFn) ? `<details><summary>Voir l'exemple</summary><div class="aid-explain">${a.explain || explainFn(a.kind, comp.t)}</div></details>` : ''}
             <button class="aid-link" data-link="${a.link || LINKS[a.kind] || LINKS.cse}">🔗 Faire la démarche →</button>
             ${(LIENS_COMPLEMENTAIRES[a.kind] || []).map(([libelle, cle]) =>
               `<button class="aid-link aid-link-more" data-link="${LINKS[cle]}">${libelle} →</button>`).join('')}
@@ -471,7 +506,7 @@ const ASC = (() => {
     num, fmt, fmt2, escapeHtml,
     trancheIndex, defaultProfile, loadProfile, saveProfile, clearProfile, computeQF,
     newAids, sumAids, loadBilan, saveBilan, showResults,
-    PUBLIC_PAGES, renderPublicHeader, renderPublicCards, renderDisclaimer,
+    potentielIndicatif, PUBLIC_PAGES, renderPublicHeader, renderPublicCards, renderDisclaimer,
     renderHeader, renderFooter, profileBanner, renderSidebar,
     bindLinks, linkCheques, renderAidCards, renderNoProfile, renderMobileCalc, fillConstants,
   };

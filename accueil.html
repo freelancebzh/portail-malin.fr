@@ -16,15 +16,35 @@
 
 <div id="asc-header"></div>
 
-<main class="page">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Aides ASC 2026 · CSE Central La Poste</span>
+      <h1>Combien le CSE peut-il <em>vous aider</em> cette année ?</h1>
+      <p>Renseignez votre foyer fiscal une seule fois : le simulateur estime vos aides sur toutes les thématiques, en quelques secondes.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#profil">Calculer mes aides →</a>
+        <a class="btn btn-ghost" href="#themes">Voir les thèmes</a>
+      </div>
+      <div class="trust"><span>Gratuit</span><span>Aucune donnée envoyée</span><span>Résultat immédiat</span></div>
+    </div>
+    <div class="hero-photo"><img src="assets/images/agent.jpg" alt="Une conseillère accueille des visiteurs au guichet"></div>
+  </div>
+</section>
 
-  <div style="max-width:760px;margin:0 auto;">
-    <div class="card" style="margin-bottom:22px;">
+<main class="page">
+  <div class="steps" aria-label="Étapes">
+    <div class="step on"><span class="n">1</span><div><b>Votre foyer</b><span class="s">Revenu et parts fiscales</span></div></div>
+    <div class="step"><span class="n">2</span><div><b>Vos thèmes</b><span class="s">Choisissez vos aides</span></div></div>
+    <div class="step"><span class="n">3</span><div><b>Votre bilan</b><span class="s">Total estimé à imprimer</span></div></div>
+  </div>
+
+  <div class="layout-grid">
+   <div>
+    <div class="card mb-22" id="profil">
       <div class="eyebrow">Étape 1 — Votre foyer fiscal</div>
-      <h1 class="page-title" style="text-align: center;">Bienvenue dans le simulateur NON OFFICIEL<br> des aides de La Poste</h1>
-	  
-	  <div class="page-photo"><img src="assets/images/agent.jpg" alt="bienvenues"></div>
-      <p class="page-lead" style="text-align:center;">📊 Cette information sera utilisée sur toutes les pages d'aides<br>🔒 Vous ne la saisissez qu'une seule fois, elle reste sur votre appareil.</p>
+      <h2 class="page-title title-21">Votre foyer fiscal</h2>
+      <p class="page-lead">📊 Cette information sera utilisée sur toutes les pages d'aides · 🔒 vous ne la saisissez qu'une seule fois, elle reste sur votre appareil.</p>
 
       <div class="grid-2" style="margin-top:22px;align-items:start;">
         <div>
@@ -65,15 +85,16 @@
         </div>
       </div>
 
-      <div class="summary-card" style="margin-top:26px;" id="qfPreview"></div>
     </div>
 
-    <div class="card">
+    <div class="card" id="themes">
       <div class="eyebrow">Étape 2 — Vos thèmes</div>
       <h2 class="page-title title-21">Vers quelle aide souhaitez-vous aller ?</h2>
       <p class="page-lead">Chaque page calcule vos aides en fonction de la tranche déterminée ci-dessus.</p>
       <div class="theme-grid" id="themeMenu"></div>
     </div>
+   </div>
+   <div id="sidebar"></div>
   </div>
 
 </main>
@@ -127,14 +148,9 @@
 
   function renderQFPreview() {
     const comp = ASC.computeQF(profile);
-    const qfText = comp.hasQF ? Math.round(comp.qf).toLocaleString('fr-FR') + ' €' : '—';
-    const trancheBlock = comp.hasQF
-      ? `<div class="tranche-pill"><b>Tranche T${comp.t + 1}</b><span>${ASC.RANGES[comp.t]}</span></div>`
-      : `<div class="summary-empty">Saisissez votre revenu fiscal et vos parts pour calculer votre tranche.</div>`;
-    document.getElementById('qfPreview').innerHTML = `
-      <div class="summary-label">Votre quotient familial</div>
-      <div class="summary-qf">${qfText}</div>
-      ${trancheBlock}`;
+    if (!comp.hasQF) { ASC.renderSidebar('sidebar', 0, 0, { comp, totalLabel: 'Potentiel annuel indicatif', sub: 'Complétez votre profil pour le calculer' }); return; }
+    const items = ASC.potentielIndicatif(comp.t);
+    ASC.renderSidebar('sidebar', ASC.sumAids(items.map(([, amount]) => ({ amount }))), 0, { comp, totalLabel: 'Potentiel annuel indicatif', sub: 'Montants maximums indicatifs, par an', items });
   }
 
   function renderThemeMenu() {
