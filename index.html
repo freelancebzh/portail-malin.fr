@@ -11,11 +11,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
-<link rel="stylesheet" href="assets/css/style.css?v=20261018d">
+<link rel="stylesheet" href="assets/css/style.css?v=20261018e">
 </head>
 <body>
 
 <div id="asc-header"></div>
+<!-- Script chargé ici : l'en-tête est dessiné avant l'affichage de la page (évite un décalage de mise en page) -->
+<script src="assets/js/common.js?v=20261018e"></script>
+<script>ASC.renderPublicHeader('accueil');</script>
 
 <section class="hero">
   <div class="wrap">
@@ -83,7 +86,6 @@
 
 <div id="asc-footer"></div>
 
-<script src="assets/js/common.js?v=20261018d"></script>
 <script>
 // Contrôle de format du code RH : purement cosmétique, ce n'est pas une sécurité.
 function checkLogin() {
@@ -101,7 +103,6 @@ if (sessionStorage.getItem('is_logged_in') === 'true') {
   window.location.href = 'accueil.html';
 }
 
-ASC.renderPublicHeader('accueil');
 ASC.renderFooter();
 ASC.renderPublicCards('publicCards');
 document.getElementById('loginBtn').onclick = checkLogin;
