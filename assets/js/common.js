@@ -201,7 +201,7 @@ const ASC = (() => {
         <div class="site-header-inner">
 		
 <div class="logo-badge">
-  <img src="assets/images/cadeau.jpg" alt="Logo" title="Image générée par IA (Gemini)">
+  <img src="assets/images/cadeau-96.jpg" alt="Logo" title="Image générée par IA (Gemini)" width="44" height="44">
 </div>
 
           <div>
@@ -409,7 +409,7 @@ const ASC = (() => {
     el.innerHTML = `
       <header class="site-header" data-noprint>
         <div class="site-header-inner">
-          <div class="logo-badge"><img src="assets/images/cadeau.jpg" alt="Logo" title="Image générée par IA (Gemini)" width="44" height="44"></div>
+          <div class="logo-badge"><img src="assets/images/cadeau-96.jpg" alt="Logo" title="Image générée par IA (Gemini)" width="44" height="44"></div>
           <div>
             <div class="brand-title">Simulateur d'aides NON OFFICIEL <span>2026</span></div>
             <div class="brand-sub">Outil bénévole · estimation personnalisée NON OFFICIELLE</div>
