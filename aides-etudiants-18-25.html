@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Aides enfants de 18 à 25 ans : allocation scolarité étudiante — ASC La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Allocation scolarité étudiante, aide au sport et titres CESU pour le soutien scolaire de vos enfants de 18 à 25 ans : les aides ASC 2026.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://portail-malin.fr/aides-etudiants-18-25.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div class="public-page">
+    <div class="card">
+      <div class="eyebrow">Aides ASC 2026 — information non officielle</div>
+      <h1 class="page-title">Aides pour les enfants de 18 à 25 ans</h1>
+      <p class="page-lead">Études supérieures, sport, cours particuliers : les aides ASC 2026 pour vos enfants majeurs.</p>
+
+      <h2>Allocation scolarité étudiante (tranches T1 et T2)</h2>
+      <p>Une allocation par étudiant à charge, sur simple certificat de scolarité : <strong><span data-c="CONSTANTES.allocEtudiant.0"></span></strong> en tranche T1 et <strong><span data-c="CONSTANTES.allocEtudiant.1"></span></strong> en tranche T2.</p>
+      <h2>Aide aux activités sportives</h2>
+      <p><span data-c="CONSTANTES.sport"></span> par enfant pratiquant une activité sportive ou culturelle, jusqu'à 25 ans s'il est toujours rattaché à votre foyer fiscal.</p>
+      <h2>Titres CESU pour le soutien scolaire</h2>
+      <p>Votre dotation de <span data-c="CONSTANTES.cesuDotation" data-raw></span> titres CESU peut aussi financer des cours particuliers ou du soutien pour vos enfants majeurs.</p>
+      <div class="bareme-wrap" data-bareme="cesuTitre" data-unit="titre" data-cols="Aide du CSE par titre"></div>
+      <div class="public-note">
+        ⚠️ Montants indicatifs repris de la brochure ASC 2026, <strong>sans valeur contractuelle</strong>. Site non officiel et bénévole : vérifiez toujours auprès du CSE Central.
+      </div>
+      <div class="btn-row">
+        <a href="index.html#connexion" class="btn btn-primary">Calculer mes aides →</a>
+      </div>
+
+      <h2>Voir aussi</h2>
+      <div class="public-cards" id="publicCards"></div>
+    </div>
+  </div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+ASC.renderPublicHeader('etudiants');
+ASC.renderFooter();
+ASC.renderPublicCards('publicCards');
+</script>
+</body>
+</html>

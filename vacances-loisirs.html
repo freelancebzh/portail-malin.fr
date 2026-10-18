@@ -2,16 +2,6 @@
 <html lang="fr">
 <head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2449CKTRX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2449CKTRX4');
-</script>
-
 <meta charset="utf-8">
 <title>Vacances & loisirs | Simulateur ASC 2026 — CSE Central La Poste</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +30,7 @@
         <div>
           <label class="field-label">Épargne Chèques-Vacances / an</label>
           <div class="field-wrap"><input type="number" id="epargneCV" placeholder="ex. 500"><span class="suffix">€</span></div>
-          <p class="field-hint">Plafond pris en compte : 1 200 €/an.</p>
+          <p class="field-hint">Plafond pris en compte : <span data-c="CONSTANTES.cvPlafondEpargne"></span>/an.</p>
         </div>
         <div>
           <label class="field-label">Facture vacances timbrées</label>
@@ -58,7 +48,7 @@
     <div id="sidebar"></div>
   </div>
 
-  <div class="card" style="margin-top:22px;" id="resultsCard"></div>
+  <div class="card mt-22" id="resultsCard"></div>
 </main>
 
 <div id="asc-footer"></div>
@@ -66,7 +56,7 @@
 <script src="assets/js/common.js"></script>
 <script>
 (function () {
-  const B = ASC.BAREMES, L = ASC.LINKS;
+  const B = ASC.BAREMES, C = ASC.CONSTANTES;
   const state = { epargneCV: '', factureTimbree: '' };
 
   function explain(kind, t) {
@@ -85,43 +75,24 @@
 
   function compute() {
     const comp = ASC.computeQF();
-    const aids = [];
+    const { list: aids, add } = ASC.newAids();
     if (comp.hasQF) {
       const t = comp.t;
       const ep = ASC.num(state.epargneCV);
       if (ep > 0) {
-        const gain = Math.min(ep, 1200) * (B.cvPct[t] / 100);
-        aids.push({ kind: 'cheques', label: 'Chèques-Vacances', amount: Math.min(gain, B.cvMax[t]), note: B.cvPct[t] + '% sur ' + ASC.fmt(Math.min(ep, 1200)) });
+        const epPrise = Math.min(ep, C.cvPlafondEpargne);
+        const gain = epPrise * (B.cvPct[t] / 100);
+        add('cheques', 'Chèques-Vacances', Math.min(gain, B.cvMax[t]), B.cvPct[t] + '% sur ' + ASC.fmt(epPrise));
       }
       const vtSaisie = ASC.num(state.factureTimbree);
       const vt = vtSaisie > 0 ? vtSaisie : B.vtMax[t] / (B.vtPct[t] / 100);
-      aids.push({ kind: 'timbrees', label: 'Vacances timbrées' + (vtSaisie === 0 ? ' (plafond max)' : ''), amount: Math.min(vt * B.vtPct[t] / 100, B.vtMax[t]), note: B.vtPct[t] + '% · plafond ' + ASC.fmt(B.vtMax[t]) + (vtSaisie === 0 ? ' — montant max possible' : '') });
+      add('timbrees', 'Vacances timbrées' + (vtSaisie === 0 ? ' (plafond max)' : ''), Math.min(vt * B.vtPct[t] / 100, B.vtMax[t]), B.vtPct[t] + '% · plafond ' + ASC.fmt(B.vtMax[t]) + (vtSaisie === 0 ? ' — montant max possible' : ''));
     }
-    return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0) };
+    return { comp, aids };
   }
 
   function renderResults() {
-    const { comp, aids, total } = compute();
-    const el = document.getElementById('resultsCard');
-    if (!comp.hasQF) {
-      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="index.html">profil</a> pour voir vos aides estimées ici.</p>`;
-    } else {
-      el.innerHTML = `
-        <div class="eyebrow">Vos aides estimées — Tranche T${comp.t+1}</div>
-        <h2 class="page-title" style="font-size:22px;">${ASC.fmt(total)}</h2>
-        <div class="aid-cards">
-          ${aids.map(a => `
-            <div class="aid-card">
-              <span class="aid-label">${a.label}</span>
-              <span class="aid-amount">${ASC.fmt(a.amount)}</span>
-              <span class="aid-note">${a.note}</span>
-              <div class="aid-explain">${explain(a.kind, comp.t)}</div>
-              <button class="aid-link" data-link="${L[a.kind] || L.cse}">🔗 Faire la démarche →</button>
-            </div>`).join('')}
-        </div>`;
-      el.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
-    }
-    ASC.renderSidebar('sidebar', total, aids.length);
+    ASC.showResults({ section: 'vacances', ...compute(), explain });
   }
 
   function render() {

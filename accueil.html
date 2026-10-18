@@ -2,16 +2,6 @@
 <html lang="fr">
 <head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2449CKTRX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2449CKTRX4');
-</script>
-
 <meta charset="utf-8">
 <title>Simulateur NON-OFFICIEL des aides de La Poste — Mon profil</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,18 +42,18 @@
           </div>
           <p class="field-hint">Sur votre avis d'imposition N-1.</p>
 
-          <label class="field-label" for="parts" style="margin-top:16px;">Nombre de parts fiscales</label>
+          <label class="field-label mt-16" for="parts">Nombre de parts fiscales</label>
           <input type="number" id="parts" step="0.5" value="1">
           <p class="field-hint">Également sur votre avis d'imposition.</p>
         </div>
       </div>
 
-      <div style="margin-top:18px;">
+      <div class="mt-18">
         <div style="font-weight:700;font-size:14px;margin-bottom:10px;">Majorations de +0,5 part <span style="font-weight:500;font-size:13px;color:var(--faint);">(cumulables)</span></div>
         <div class="grid-3" id="majTiles"></div>
       </div>
 
-      <div class="grid-2" style="margin-top:18px;">
+      <div class="grid-2 mt-18">
         <div>
           <label class="field-label">Type de contrat</label>
           <div class="seg" id="contratSeg"></div>
@@ -80,7 +70,7 @@
 
     <div class="card">
       <div class="eyebrow">Étape 2 — Vos thèmes</div>
-      <h2 class="page-title" style="font-size:21px;">Vers quelle aide souhaitez-vous aller ?</h2>
+      <h2 class="page-title title-21">Vers quelle aide souhaitez-vous aller ?</h2>
       <p class="page-lead">Chaque page calcule vos aides en fonction de la tranche déterminée ci-dessus.</p>
       <div class="theme-grid" id="themeMenu"></div>
     </div>

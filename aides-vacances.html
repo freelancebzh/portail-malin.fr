@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Chèques-Vacances et vacances timbrées : taux et plafonds — ASC La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Taux et plafonds par tranche des Chèques-Vacances et des vacances timbrées : les aides vacances ASC 2026 du CSE Central La Poste.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://portail-malin.fr/aides-vacances.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div class="public-page">
+    <div class="card">
+      <div class="eyebrow">Aides ASC 2026 — information non officielle</div>
+      <h1 class="page-title">Chèques-Vacances et vacances timbrées</h1>
+      <p class="page-lead">Deux aides pour partir en vacances, dont le montant dépend de votre tranche.</p>
+
+      <h2>Chèques-Vacances</h2>
+      <p>Vous épargnez, et le CSE ajoute un pourcentage de votre épargne (prise en compte jusqu'à <span data-c="CONSTANTES.cvPlafondEpargne"></span>), dans la limite d'un plafond selon votre tranche.</p>
+      <div class="bareme-wrap" data-bareme="cvPct,cvMax" data-unit="pct,eur" data-cols="Abondement,Plafond"></div>
+      <h2>Vacances timbrées</h2>
+      <p>Le CSE rembourse un pourcentage de votre facture de vacances, dans la limite d'un plafond selon votre tranche.</p>
+      <div class="bareme-wrap" data-bareme="vtPct,vtMax" data-unit="pct,eur" data-cols="Prise en charge,Plafond"></div>
+      <div class="public-note">
+        ⚠️ Montants indicatifs repris de la brochure ASC 2026, <strong>sans valeur contractuelle</strong>. Site non officiel et bénévole : vérifiez toujours auprès du CSE Central.
+      </div>
+      <div class="btn-row">
+        <a href="index.html#connexion" class="btn btn-primary">Calculer mes aides →</a>
+      </div>
+
+      <h2>Voir aussi</h2>
+      <div class="public-cards" id="publicCards"></div>
+    </div>
+  </div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+ASC.renderPublicHeader('vacances');
+ASC.renderFooter();
+ASC.renderPublicCards('publicCards');
+</script>
+</body>
+</html>

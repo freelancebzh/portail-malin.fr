@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Aides aidants et handicap : CESU, aide à domicile, répit — ASC La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CESU aidants, aide à domicile (ADA/APF) et aide au répit : montants par tranche des aides ASC 2026 pour les aidants familiaux.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://portail-malin.fr/aides-aidants-handicap.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div class="public-page">
+    <div class="card">
+      <div class="eyebrow">Aides ASC 2026 — information non officielle</div>
+      <h1 class="page-title">Aides pour les aidants familiaux et le handicap</h1>
+      <p class="page-lead">Titres CESU, heures d'aide à domicile et journées de répit : les aides ASC 2026 pour les aidants.</p>
+
+      <h2>CESU aidants</h2>
+      <p>Des titres CESU supplémentaires pour un proche aidé, avec une aide du CSE par titre, dans la limite de <span data-c="CONSTANTES.cesuAidantPlafond"></span> par an.</p>
+      <div class="bareme-wrap" data-bareme="cesuTitre" data-unit="titre" data-cols="Aide du CSE par titre"></div>
+      <h2>Aide à domicile (ADA / APF)</h2>
+      <p>Une aide par heure, prise en compte jusqu'à <span data-c="CONSTANTES.domicileHeuresMax" data-raw></span> heures par mois.</p>
+      <div class="bareme-wrap" data-bareme="ada,apf" data-unit="heure,heure" data-cols="ADA,APF"></div>
+      <h2>Aide au répit</h2>
+      <p>Une aide par jour de répit, selon le type de solution choisie.</p>
+      <div class="bareme-wrap" data-bareme="repit.avecHeberg,repit.accueilJour,repit.horsStructure" data-unit="jour,jour,jour" data-cols="Avec hébergement,Accueil de jour,Hors structure"></div>
+      <div class="public-note">
+        ⚠️ Montants indicatifs repris de la brochure ASC 2026, <strong>sans valeur contractuelle</strong>. Site non officiel et bénévole : vérifiez toujours auprès du CSE Central.
+      </div>
+      <div class="btn-row">
+        <a href="index.html#connexion" class="btn btn-primary">Calculer mes aides →</a>
+      </div>
+
+      <h2>Voir aussi</h2>
+      <div class="public-cards" id="publicCards"></div>
+    </div>
+  </div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+ASC.renderPublicHeader('aidants');
+ASC.renderFooter();
+ASC.renderPublicCards('publicCards');
+</script>
+</body>
+</html>

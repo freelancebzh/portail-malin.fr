@@ -244,11 +244,30 @@ label.field-label { font-weight: 700; font-size: 14px; display: block; margin-bo
 .aid-card .aid-explain { margin-top: 10px; background: #FFFBEA; color: #5C4200; font-size: 13px; line-height: 1.65; padding: 13px 15px; border-radius: 12px; border-left: 3px solid var(--gold); }
 .aid-card .aid-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 12.5px; font-weight: 800; color: var(--blue); background: #EAF1FC; padding: 5px 12px; border-radius: 999px; border: 1px solid #C8D5E8; cursor: pointer; font-family: 'Manrope', sans-serif; width: fit-content; }
 
+.aid-card .aid-link-more { margin-top: 6px; font-weight: 700; background: none; }
+
 .info-card { background: var(--bg-soft); border-radius: 13px; padding: 15px; }
 .info-card .ic { font-size: 18px; margin-bottom: 6px; }
 .info-card .it { font-weight: 800; font-size: 13px; color: var(--ink); margin-bottom: 5px; }
 .info-card p { font-size: 12px; color: #3A4D66; line-height: 1.6; margin: 0 0 6px; }
 .info-card .link-out { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 800; color: var(--blue); cursor: pointer; font-family: 'Manrope', sans-serif; background: none; border: none; padding: 0; }
+
+/* Titres et textes réutilisables (remplacent des styles en ligne répétés) */
+.page-title-sm { font-size: 22px; }
+.page-lead-flush { margin: 0; }
+.subsection { margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px; }
+.subsection .page-title { font-size: 20px; margin-top: 0; }
+
+/* Calculateur La Poste Mobile */
+.mobile-select-box { background: var(--bg-soft, #f4f7f6); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+.mobile-select-box label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+.mobile-select-box select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border, #ccc); font-size: 15px; background: #fff; }
+.mobile-result-box { background: #e8f0fe; border-left: 4px solid #1a73e8; padding: 15px; border-radius: 6px; }
+.mobile-result-title { font-size: 13px; color: #1a73e8; font-weight: 700; }
+.mobile-result { font-size: 24px; font-weight: 800; color: #1a73e8; margin-top: 5px; }
+.mobile-remise { font-size: 12px; color: #5f6368; margin-top: 2px; }
+.mobile-link { font-size: 11.5px; margin: 10px 0 0; }
+.mobile-link .link-out { display: inline-block; font-size: 11px; font-weight: 800; color: var(--blue); cursor: pointer; font-family: 'Manrope', sans-serif; background: none; border: none; padding: 0; }
 
 .qf-table-wrap { overflow-x: auto; }
 .qf-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
@@ -300,6 +319,16 @@ footer.site-footer { max-width: 1180px; margin: 0 auto; padding: 8px 24px 40px; 
   border-radius: 16px;
   margin: 20px 0;
   background: var(--bg-soft);
+  position: relative;
+}
+/* Mention sur chaque image (toutes générées par l'IA Gemini) */
+.page-photo::after {
+  content: "Image générée par IA (Gemini)";
+  position: absolute; right: 8px; bottom: 8px;
+  background: rgba(14, 42, 79, .72); color: #fff;
+  font-size: 11px; font-weight: 600; line-height: 1;
+  padding: 5px 9px; border-radius: 999px;
+  pointer-events: none;
 }
 .page-photo img {
   width: 100%;
@@ -331,3 +360,55 @@ footer.site-footer { max-width: 1180px; margin: 0 auto; padding: 8px 24px 40px; 
   main.page { padding: 0 !important; max-width: 100% !important; }
   .card, .aid-card { box-shadow: none !important; border: 1px solid #d8dfeb !important; }
 }
+
+/* Utilitaires (remplacent des style="" répétés dans les pages) */
+.mt-14 { margin-top: 14px; }
+.mt-16 { margin-top: 16px; }
+.mt-18 { margin-top: 18px; }
+.mt-22 { margin-top: 22px; }
+.hint-13 { font-size: 13px; margin-bottom: 10px; }
+.text-muted-13 { font-size: 13px; color: var(--muted); }
+.section-sep { margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px; }
+.title-20 { font-size: 20px; margin-top: 0; }
+.title-21 { font-size: 21px; }
+.field-grow { flex: 1; min-width: 160px; }
+.row-center { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.input-narrow { width: 80px; padding: 8px; }
+
+/* ── Bandeau et pop-up « non officiel » (injectés par ASC.renderDisclaimer) ── */
+.asc-disclaimer-banner { position: sticky; top: 0; z-index: 9998; background: #fff3cd; color: #664d03; border-bottom: 1px solid #ffe69c; font-size: 12.5px; line-height: 1.5; padding: 8px 14px; text-align: center; }
+.asc-disclaimer-banner a { color: #664d03; text-decoration: underline; }
+.asc-disclaimer-modal { position: fixed; inset: 0; z-index: 9999; background: rgba(20,20,20,.55); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.asc-disclaimer-modal .box { background: #fff; max-width: 460px; width: 100%; border-radius: 14px; padding: 26px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.25); max-height: 100%; overflow-y: auto; }
+.asc-disclaimer-modal .box h2 { margin: 0 0 10px; font-size: 18px; color: #664d03; }
+.asc-disclaimer-modal .box p { margin: 0 0 12px; font-size: 13.5px; line-height: 1.7; color: #333; }
+.asc-disclaimer-modal .box .tag { display: inline-block; background: #fff3cd; color: #664d03; font-weight: 700; font-size: 11px; padding: 4px 9px; border-radius: 20px; margin-bottom: 12px; }
+.asc-disclaimer-modal .box button { width: 100%; padding: 12px; border: none; border-radius: 8px; background: #004b6e; color: #fff; font-weight: 700; font-size: 14.5px; cursor: pointer; margin-top: 6px; }
+.asc-disclaimer-modal .box button:hover { background: #003853; }
+@media print { .asc-disclaimer-banner, .asc-disclaimer-modal { display: none !important; } }
+
+/* ── Pages publiques (SEO) ── */
+.public-page { max-width: 860px; margin: 0 auto; }
+.public-page h2 { font-size: 19px; margin: 28px 0 8px; }
+.public-page h3 { font-size: 15.5px; margin: 18px 0 6px; }
+.public-page p, .public-page li { font-size: 14.5px; line-height: 1.7; color: var(--muted); }
+.public-page ul { padding-left: 20px; margin: 6px 0 12px; }
+.public-note { background: var(--bg-soft); border-radius: 12px; padding: 12px 15px; font-size: 13px; color: var(--muted); line-height: 1.6; margin: 18px 0; }
+.public-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 14px; }
+.public-card { display: block; background: #fff; border: 1.5px solid var(--border); border-radius: 15px; padding: 16px; text-decoration: none; color: inherit; }
+.public-card:hover { border-color: var(--blue); }
+.public-card h3 { margin: 0 0 6px; font-size: 15px; color: var(--blue); }
+.public-card p { margin: 0 0 8px; font-size: 13px; line-height: 1.5; }
+.public-card span { font-size: 12.5px; font-weight: 800; color: var(--blue); }
+.login-box { background: #EAF1FC; border-radius: 16px; padding: 20px; margin-top: 22px; text-align: center; }
+.login-box h2 { margin: 0 0 6px; font-size: 18px; }
+.login-box p { margin: 0 0 12px; font-size: 13.5px; }
+.login-box input { width: 100%; max-width: 320px; padding: 12px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 16px; margin-bottom: 10px; }
+.login-error { display: none; color: #b3261e; font-size: 13.5px; margin-top: 10px; }
+.bareme-wrap { overflow-x: auto; margin: 10px 0 16px; }
+.bareme-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.bareme-table th, .bareme-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.bareme-table th { background: #EAF1FC; color: var(--blue); font-size: 12.5px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 12px 0; }
+.faq-item h3 { margin: 0 0 4px; }
+.faq-item p { margin: 0; }

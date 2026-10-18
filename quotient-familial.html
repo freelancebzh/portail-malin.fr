@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Quotient familial et tranches T1 à T10 — aides ASC La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Comprendre le calcul du quotient familial et des tranches T1 à T10 utilisées pour les aides ASC 2026 du CSE Central La Poste.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://portail-malin.fr/quotient-familial.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div class="public-page">
+    <div class="card">
+      <div class="eyebrow">Aides ASC 2026 — information non officielle</div>
+      <h1 class="page-title">Quotient familial et tranches T1 à T10</h1>
+      <p class="page-lead">La plupart des aides ASC dépendent de votre tranche, déterminée par votre quotient familial (QF).</p>
+
+      <h2>Comment est calculé le quotient familial ?</h2>
+      <p>Le quotient familial se calcule ainsi : <strong>revenu fiscal de référence ÷ nombre de parts</strong>. Ces deux informations figurent sur votre avis d'imposition.</p>
+      <p>Le simulateur ajoute <strong>0,5 part</strong> pour chacune de ces situations, cumulables : bénéficiaire de l'obligation d'emploi (BOE), parent isolé, aidant familial.</p>
+      <h2>Les 10 tranches</h2>
+      <p>Votre quotient familial vous place dans l'une des 10 tranches, de T1 (revenus les plus modestes) à T10. Plus la tranche est basse, plus l'aide est élevée. Voici deux exemples de barèmes :</p>
+      <div class="bareme-wrap" data-bareme="cesuTitre,periscoPct" data-unit="titre,pct" data-cols="Aide par titre CESU,Aide périscolaire (% de la facture)"></div>
+      <h2>Et ensuite ?</h2>
+      <p>Retrouvez le détail par thème : <a href="aides-parentalite.html">enfants de moins de 18 ans</a>, <a href="aides-etudiants-18-25.html">enfants de 18 à 25 ans</a>, <a href="aides-vacances.html">vacances</a>, <a href="aides-aidants-handicap.html">aidants et handicap</a>.</p>
+      <div class="public-note">
+        ⚠️ Montants indicatifs repris de la brochure ASC 2026, <strong>sans valeur contractuelle</strong>. Site non officiel et bénévole : vérifiez toujours auprès du CSE Central.
+      </div>
+      <div class="btn-row">
+        <a href="index.html#connexion" class="btn btn-primary">Calculer mes aides →</a>
+      </div>
+
+      <h2>Voir aussi</h2>
+      <div class="public-cards" id="publicCards"></div>
+    </div>
+  </div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+ASC.renderPublicHeader('qf');
+ASC.renderFooter();
+ASC.renderPublicCards('publicCards');
+</script>
+</body>
+</html>

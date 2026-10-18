@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Aides enfants de moins de 18 ans : périscolaire, rentrée, colonies — ASC La Poste</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aide périscolaire ou titres CESU, allocation de rentrée, sport, colonies, classe découverte, séjour linguistique : les aides ASC 2026 pour vos enfants de moins de 18 ans, par tranche.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://portail-malin.fr/aides-parentalite.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="asc-header"></div>
+
+<main class="page">
+  <div class="public-page">
+    <div class="card">
+      <div class="eyebrow">Aides ASC 2026 — information non officielle</div>
+      <h1 class="page-title">Aides pour les enfants de moins de 18 ans</h1>
+      <p class="page-lead">Garde, scolarité, loisirs et vacances : voici les aides ASC 2026 pour vos enfants, avec les taux par tranche.</p>
+
+      <h2>Dotation CESU pour tous</h2>
+      <p>Tous les postiers bénéficient de <span data-c="CONSTANTES.cesuDotation" data-raw></span> titres CESU, utilisables pour le soutien scolaire, l'aide à domicile et tout service finançable en CESU. L'aide du CSE dépend de votre tranche.</p>
+      <div class="bareme-wrap" data-bareme="cesuTitre" data-unit="titre" data-cols="Aide du CSE par titre"></div>
+      <h2>Enfants de 0 à 11 ans : deux options</h2>
+      <p>Le choix a lieu une fois par an et il est irrévocable.</p>
+      <ul>
+        <li><strong>Option 1 :</strong> une aide en pourcentage sur vos frais de périscolaire, versée sur 11 mois.</li>
+        <li><strong>Option 2 :</strong> une dotation de titres CESU supplémentaires : <span data-c="CONSTANTES.cesuOpt2.n04" data-raw></span> titres par enfant de 0 à 4 ans et <span data-c="CONSTANTES.cesuOpt2.n411" data-raw></span> titres par enfant de 4 à 11 ans.</li>
+      </ul>
+      <div class="bareme-wrap" data-bareme="periscoPct" data-unit="pct" data-cols="Option 1 : aide périscolaire"></div>
+      <h2>Allocation de rentrée (tranches T1 et T2)</h2>
+      <p>Versée sur certificat de scolarité : <span data-c="CONSTANTES.allocRentree.primaire"></span> en primaire, <span data-c="CONSTANTES.allocRentree.college"></span> au collège et <span data-c="CONSTANTES.allocRentree.lycee"></span> au lycée, par enfant.</p>
+      <h2>Activités sportives et culturelles</h2>
+      <p>Une aide forfaitaire de <span data-c="CONSTANTES.sport"></span> par enfant, jusqu'à 25 ans s'il est rattaché à votre foyer fiscal, sur justificatif de licence ou d'inscription.</p>
+      <h2>Séjours enfants accompagnés</h2>
+      <p>Une aide par jour et par enfant pour chaque nuit facturée hors du domicile des parents.</p>
+      <div class="bareme-wrap" data-bareme="sejourDay" data-unit="jour" data-cols="Aide par jour"></div>
+      <h2>Colonies de vacances agréées</h2>
+      <p>Le CSE prend en charge un pourcentage du coût, dans la limite de <span data-c="CONSTANTES.coloPlafondEnfant"></span> par enfant.</p>
+      <div class="bareme-wrap" data-bareme="coloPct" data-unit="pct" data-cols="Prise en charge"></div>
+      <h2>Classe découverte et séjour linguistique</h2>
+      <p>Classe découverte : aide par jour, à partir de <span data-c="CONSTANTES.classeDecMinJours" data-raw></span> jours. Séjour linguistique : aide par jour, à partir de <span data-c="CONSTANTES.sejourLingMinJours" data-raw></span> jours.</p>
+      <div class="bareme-wrap" data-bareme="classeDecJour,sejourLingJour" data-unit="jour,jour" data-cols="Classe découverte,Séjour linguistique"></div>
+      <div class="public-note">
+        ⚠️ Montants indicatifs repris de la brochure ASC 2026, <strong>sans valeur contractuelle</strong>. Site non officiel et bénévole : vérifiez toujours auprès du CSE Central.
+      </div>
+      <div class="btn-row">
+        <a href="index.html#connexion" class="btn btn-primary">Calculer mes aides →</a>
+      </div>
+
+      <h2>Voir aussi</h2>
+      <div class="public-cards" id="publicCards"></div>
+    </div>
+  </div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
+<script>
+ASC.renderPublicHeader('parentalite');
+ASC.renderFooter();
+ASC.renderPublicCards('publicCards');
+</script>
+</body>
+</html>

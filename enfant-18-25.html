@@ -2,16 +2,6 @@
 <html lang="fr">
 <head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2449CKTRX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2449CKTRX4');
-</script>
-
 <meta charset="utf-8">
 <title>Enfant 18-25 ans | Simulateur ASC 2026 — CSE Central La Poste</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,14 +53,14 @@
 	  <div class="page-photo"><img src="assets/images/etudiants.jpg" alt="amphi"></div>
       
       <div class="alert-highlight">
-        ⚠️ Attention : Cette aide est disponible uniquement pour la tranche T1 (955 €) et la tranche T2 (870 €) par enfant étudiant.
+        ⚠️ Attention : Cette aide est disponible uniquement pour la tranche T1 (<span data-c="CONSTANTES.allocEtudiant.0"></span>) et la tranche T2 (<span data-c="CONSTANTES.allocEtudiant.1"></span>) par enfant étudiant.
       </div>
 
       <div id="scolarite-wrapper">
         <div class="counter-row" id="counter-scolarite-row">
           <div class="counter-info">
             <div class="ct-label">Étudiant(e)s</div>
-            <div class="ct-sub">Allocation scolarité si QF ≤ 10 100 €</div>
+            <div class="ct-sub">Allocation scolarité si QF ≤ <span data-c="TMAX.1"></span></div>
           </div>
           <div class="counter-controls">
             <button type="button" class="ct-btn" id="dec">−</button>
@@ -82,10 +72,10 @@
       </div>
 
       <!-- Section : Aide aux activités sportives -->
-      <div style="margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px;">
-        <h2 class="page-title" style="font-size: 20px; margin-top: 0;">⚽ Aide aux activités sportives et culturelles</h2>
+      <div class="section-sep">
+        <h2 class="page-title title-20">⚽ Aide aux activités sportives et culturelles</h2>
 		<div class="page-photo"><img src="assets/images/sports.jpg" alt="roller"></div>
-        <p class="page-lead">Aide de 60 € par enfant, jusqu'à 25 ans (s'il est toujours rattaché au foyer fiscal familial).</p>
+        <p class="page-lead">Aide de <span data-c="CONSTANTES.sport"></span> par enfant, jusqu'à 25 ans (s'il est toujours rattaché au foyer fiscal familial).</p>
 
         <div class="counter-row">
           <div class="counter-info">
@@ -105,43 +95,26 @@
 	
 
 
-      <div style="margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px;">
-        <h2 class="page-title" style="font-size: 20px; margin-top: 0;">📱 Avantages des CESUs pour les cours particuliers de vos enfants majeurs</h2>
+      <div class="section-sep">
+        <h2 class="page-title title-20">📱 Avantages des CESUs pour les cours particuliers de vos enfants majeurs</h2>
 	
 
-        <p class="page-lead">Vous bénéficiez de <b>-50 chèques CESUs de 15€</b> chaque année que vous pouvez utiliser COMME VOUS LE SOUHAITEZ. Et si cela pouvait être utilisé pour vos enfants majeurs qui ont besoin de soutien?</p>
+        <p class="page-lead">Vous bénéficiez de <b><span data-c="CONSTANTES.cesuDotation" data-raw></span> chèques CESUs de <span data-c="CONSTANTES.cesuValeurTitre"></span></b> chaque année que vous pouvez utiliser COMME VOUS LE SOUHAITEZ. Et si cela pouvait être utilisé pour vos enfants majeurs qui ont besoin de soutien?</p>
         
         <div class="page-photo"><img src="assets/images/soutien-etudiant.jpg" alt="étudiant étant aidé d'un jeune homme"></div>
 
-        <p style="font-size:13px; margin-bottom:10px;">Indiquez le Nombre de titres CESU souhaité (de 0 à 50) :</p>
-        <input type="number" id="socleCesu" min="0" max="50" value="50" style="width: 80px; padding: 8px;">
+        <p class="hint-13">Indiquez le Nombre de titres CESU souhaité (de 0 à <span data-c="CONSTANTES.cesuDotation" data-raw></span>) :</p>
+        <input class="input-narrow" type="number" id="socleCesu" min="0" max="50" value="50">
       </div>
 
 
 
       <!-- Section : La Poste Mobile -->
-      <div style="margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px;">
-        <h2 class="page-title" style="font-size: 20px; margin-top: 0;">📱 Avantage La Poste Mobile</h2>
-	
-		<div class="page-photo"><img src="assets/images/logo-personnes-lapostemobile.jpg" alt="la poste mobile"></div>
-        <p class="page-lead">Bénéficiez de <b>-15% de réduction</b> sur les forfaits (tarifs publics à partir de 4,99 €/mois) pour équiper vos enfants.</p>
-        
-        <div style="background: var(--bg-faint, #f9f9f9); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-          <label for="forfaitBase" style="display:block; font-weight:600; font-size:14px; margin-bottom:8px;">
-            Sélectionnez un tarif de forfait mensuel :
-          </label>
-          <select id="forfaitBase" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; font-size:15px; background: #fff;">
-            <option value="4.99">Forfait Standard — 4,99 € / mois</option>
-            <option value="10.99">Forfait Intermédiaire — 10,99 € / mois</option>
-            <option value="19.99">Forfait Data Max — 19,99 € / mois</option>
-          </select>
-        </div>
-
-        <div class="summary-card" style="background: #e8f0fe; border-left: 4px solid #1a73e8; padding: 15px; border-radius: 6px;">
-          <div style="font-size:13px; color: #1a73e8; font-weight: 700;">📉 Votre tarif réduit estimé :</div>
-          <div id="mobileResult" style="font-size:24px; font-weight:800; color: #1a73e8; margin-top:5px;">4,24 € / mois</div>
-          <div id="mobileRemise" style="font-size:12px; color: #5f6368; margin-top:2px;">Économie : 0,75 € / mois</div>
-        </div>
+      <div class="subsection">
+        <h2 class="page-title">📱 Avantage La Poste Mobile</h2>
+        <div class="page-photo"><img src="assets/images/logo-personnes-lapostemobile.jpg" alt="la poste mobile"></div>
+        <p class="page-lead">Bénéficiez de <b>-<span data-c="CONSTANTES.mobile.remisePct" data-raw></span>% de réduction</b> sur les forfaits (tarifs publics à partir de <span data-c="CONSTANTES.mobile.forfaits.0.prix"></span>/mois) pour équiper vos enfants.</p>
+        <div id="mobileCalc"></div>
       </div>
 
       <div class="btn-row" data-noprint style="margin-top: 30px;">
@@ -153,7 +126,7 @@
     <div id="sidebar"></div>
   </div>
 
-  <div class="card" style="margin-top:22px;" id="resultsCard"></div>
+  <div class="card mt-22" id="resultsCard"></div>
 </main>
 
 <div id="asc-footer"></div>
@@ -161,134 +134,70 @@
 <script src="assets/js/common.js"></script>
 <script>
 (function () {
-  const L = ASC.LINKS;
+  const C = ASC.CONSTANTES;
   const state = { etudiant: 0, sportifs: 0, socleCesu: 50 };
 
+  function explain(kind, t) {
+    const f = ASC.fmt, f2 = ASC.fmt2;
+    switch (kind) {
+      case 'scolarite': return `💡 Exemple concret : ${state.etudiant} étudiant(e) à charge, en tranche T${t+1}. Le CSE verse ${f(C.allocEtudiant[t])} par étudiant, sans démarche complexe — juste un certificat de scolarité à fournir.`;
+      case 'sport': return `💡 Exemple concret : ${state.sportifs} enfant(s) rattaché(s) au foyer bénéficiant de l'aide sport de ${f(C.sport)} pour leur licence ou inscription.`;
+      case 'cesuMajeur': { const rate = ASC.BAREMES.cesuTitre[t]; return `💡 Exemple concret : ${state.socleCesu} titres CESU à ${f2(rate)} d'aide chacun (tranche T${t+1}) = ${f(state.socleCesu * rate)} pour financer du soutien scolaire ou des cours particuliers à vos enfants majeurs.`; }
+      default: return '';
+    }
+  }
+
+  // Calcul pur : ne modifie pas `state` (le compteur d'étudiants est remis à 0 dans render()).
   function compute() {
     const comp = ASC.computeQF();
-    const aids = [];
-    
+    const { list: aids, add } = ASC.newAids();
     const isEligibleScolarite = comp.hasQF && comp.t <= 1;
 
-    if (!isEligibleScolarite) {
-      state.etudiant = 0;
+    if (isEligibleScolarite) {
+      const et = C.allocEtudiant[comp.t];
+      add('scolarite', 'Allocation scolarité étudiant(e)', state.etudiant * et, state.etudiant + ' × ' + ASC.fmt(et));
     }
-    
-    // 1. Calcul Allocation Scolarité
-    if (isEligibleScolarite && state.etudiant > 0) {
-      const et = comp.t === 0 ? 955 : 870;
-      aids.push({ 
-        kind: 'scolarite', 
-        label: 'Allocation scolarité étudiant(e)', 
-        amount: state.etudiant * et, 
-        note: state.etudiant + ' × ' + ASC.fmt(et),
-        explain: `💡 Exemple concret : ${state.etudiant} étudiant(e) à charge, en tranche T${comp.t+1}. Le CSE verse ${ASC.fmt(et)} par étudiant, sans démarche complexe — juste un certificat de scolarité à fournir.`,
-        link: L.scolarite
-      });
-    }
-
-    // 2. Calcul Aide aux Activités Sportives
-    if (comp.hasQF && state.sportifs > 0) {
-      aids.push({
-        kind: 'sport',
-        label: 'Aide aux activités sportives (enfant rattaché)',
-        amount: state.sportifs * 60,
-        note: state.sportifs + ' × ' + ASC.fmt(60),
-        explain: `💡 Exemple concret : ${state.sportifs} enfant(s) rattaché(s) au foyer bénéficiant de l'aide sport de 60 € pour leur licence ou inscription.`,
-        link: '#'
-      });
-    }
-
-    // 3. Calcul CESU pour cours particuliers / soutien des enfants majeurs
-    if (comp.hasQF && state.socleCesu > 0) {
+    if (comp.hasQF) {
+      add('sport', 'Aide aux activités sportives (enfant rattaché)', state.sportifs * C.sport, state.sportifs + ' × ' + ASC.fmt(C.sport));
       const rate = ASC.BAREMES.cesuTitre[comp.t];
-      aids.push({
-        kind: 'cesuMajeur',
-        label: 'Titres CESU (soutien enfants majeurs)',
-        amount: state.socleCesu * rate,
-        note: state.socleCesu + ' titres × ' + ASC.fmt2(rate) + '/titre',
-        explain: `💡 Exemple concret : ${state.socleCesu} titres CESU à ${ASC.fmt2(rate)} d'aide chacun (tranche T${comp.t+1}) = ${ASC.fmt(state.socleCesu * rate)} pour financer du soutien scolaire ou des cours particuliers à vos enfants majeurs.`,
-        link: L.cesuvq
-      });
+      add('cesuMajeur', 'Titres CESU (soutien enfants majeurs)', state.socleCesu * rate, state.socleCesu + ' titres × ' + ASC.fmt2(rate) + '/titre');
     }
-
-    return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0), isEligibleScolarite };
+    return { comp, aids, isEligibleScolarite };
   }
 
   function renderResults() {
-    const { comp, aids, total, isEligibleScolarite } = compute();
-    const el = document.getElementById('resultsCard');
+    const { comp, aids, isEligibleScolarite } = compute();
     const rowEl = document.getElementById('counter-scolarite-row');
     const lockEl = document.getElementById('lock-notification');
-    
+    let emptyMsg;
+
     if (!comp.hasQF) {
       rowEl.classList.add('counter-disabled');
       lockEl.innerHTML = "🔒 Renseignez votre <a href='index.html'>profil</a> pour débloquer ce compteur.";
       lockEl.style.display = 'flex';
-      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="index.html">profil</a> pour voir vos aides estimées ici.</p>`;
     } else if (!isEligibleScolarite) {
       rowEl.classList.add('counter-disabled');
       lockEl.innerHTML = `🚫 Accès bloqué : Votre tranche actuelle (T${comp.t+1}) ne vous donne pas accès à l'allocation scolarité.`;
       lockEl.style.display = 'flex';
-      
-      if (aids.length > 0) {
-        renderAidsList(el, comp, aids, total);
-      } else {
-        el.innerHTML = `<div class="eyebrow">Estimation — Tranche T${comp.t+1}</div><p class="page-lead" style="margin:0;">L'allocation scolarité étudiante est réservée aux tranches T1 et T2 (QF ≤ 10 100 €).</p>`;
-      }
+      emptyMsg = `L'allocation scolarité étudiante est réservée aux tranches T1 et T2 (QF ≤ ${ASC.fmt(ASC.TMAX[1])}).`;
     } else {
       rowEl.classList.remove('counter-disabled');
       lockEl.style.display = 'none';
-      
-      if (!aids.length) {
-        el.innerHTML = `<div class="eyebrow">Estimation — Tranche T${comp.t+1}</div><p class="page-lead" style="margin:0;">Indiquez le nombre d'étudiant(e)s ou d'enfants rattachés pratiquant un sport pour voir vos allocations.</p>`;
-      } else {
-        renderAidsList(el, comp, aids, total);
-      }
+      emptyMsg = "Indiquez le nombre d'étudiant(e)s ou d'enfants rattachés pratiquant un sport pour voir vos allocations.";
     }
-    ASC.renderSidebar('sidebar', total, aids.length);
-  }
-
-  function renderAidsList(el, comp, aids, total) {
-    el.innerHTML = `
-      <div class="eyebrow">Vos aides estimées — Tranche T${comp.t+1}</div>
-      <h2 class="page-title" style="font-size:22px;">${ASC.fmt(total)}</h2>
-      <div class="aid-cards">
-        ${aids.map(a => `
-          <div class="aid-card">
-            <span class="aid-label">${a.label}</span>
-            <span class="aid-amount">${ASC.fmt(a.amount)}</span>
-            <span class="aid-note">${a.note}</span>
-            <div class="aid-explain">${a.explain}</div>
-            <button class="aid-link" data-link="${a.link}">🔗 Faire la démarche →</button>
-          </div>`).join('')}
-      </div>`;
-    el.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
-  }
-
-  function calculerTarifMobile() {
-    const forfaitSelect = document.getElementById('forfaitBase');
-    if (!forfaitSelect) return;
-    
-    const tarifBase = parseFloat(forfaitSelect.value);
-    const tauxReduction = 0.15;
-    
-    const montantRemise = tarifBase * tauxReduction;
-    const tarifReduit = tarifBase - montantRemise;
-    
-    document.getElementById('mobileResult').textContent = tarifReduit.toFixed(2).replace('.', ',') + " € / mois";
-    document.getElementById('mobileRemise').textContent = "Économie : " + montantRemise.toFixed(2).replace('.', ',') + " € / mois";
+    ASC.showResults({ section: 'enfant1825', comp, aids, explain, emptyMsg });
   }
 
   function render() {
     ASC.renderHeader('enfant1825');
     ASC.renderFooter();
     ASC.profileBanner('banner');
+    const { isEligibleScolarite } = compute();
+    if (!isEligibleScolarite) state.etudiant = 0;
     document.getElementById('val').textContent = state.etudiant;
     document.getElementById('sport-val').textContent = state.sportifs;
     document.getElementById('socleCesu').value = state.socleCesu;
     renderResults();
-    calculerTarifMobile();
   }
 
   document.getElementById('dec').onclick = () => { 
@@ -304,8 +213,7 @@
   document.getElementById('sport-inc').onclick = () => { state.sportifs += 1; render(); };
   document.getElementById('socleCesu').addEventListener('input', e => { state.socleCesu = ASC.num(e.target.value); render(); });
 
-  document.getElementById('forfaitBase').addEventListener('change', calculerTarifMobile);
-
+  ASC.renderMobileCalc('mobileCalc');
   render();
 })();
 </script>

@@ -1,106 +1,99 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2449CKTRX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2449CKTRX4');
-</script>
-
 <meta charset="utf-8">
-<title>Connexion — Simulateur NON OFFICIEL des aides</title>
+<title>Simulateur non officiel des aides ASC 2026 du CSE Central La Poste</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Simulateur non officiel et bénévole des aides ASC 2026 du CSE Central La Poste, réservé aux postiers. Accès via votre code RH.">
+<meta name="description" content="Simulateur gratuit, non officiel et bénévole des aides ASC 2026 du CSE Central La Poste : CESU, Chèques-Vacances, allocation de rentrée, périscolaire, aidants. Estimez vos aides selon votre quotient familial.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://portail-malin.fr/index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-  body {
-    margin: 0; padding: 0;
-    background: #f4f7f6;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 100vh;
-    font-family: 'Manrope', sans-serif;
-  }
-  .login-card {
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    max-width: 400px; width: 90%;
-    text-align: center;
-  }
-  .login-field {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-  .login-btn {
-    width: 100%;
-    padding: 12px;
-    background: #004b6e;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  .login-btn:hover { background: #003853; }
-  #login-error { color: red; font-size: 14px; margin-top: 10px; display: none; }
-</style>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<div style="max-width:480px;margin:0 auto 24px;padding:0 20px;text-align:center;font-family:'Manrope',sans-serif;">
-  <h1 style="font-size:1.4rem;color:#12151A;margin-bottom:.4em;">Simulateur non officiel des aides ASC 2026 du CSE Central La Poste</h1>
-  <p style="font-size:.92rem;color:#5B6470;line-height:1.6;">
-    Outil gratuit et bénévole, sans lien avec La Poste ni le CSE Central, destiné aux postiers pour estimer leurs aides
-    (CESU, Chèques-Vacances, allocation scolarité, abondement PEG/PERCO, avantages groupe...) selon leur quotient familial.
-    L'accès se fait via votre identifiant RH.
-  </p>
-</div>
+<div id="asc-header"></div>
 
-<div class="login-card">
-  <h2 style="margin-top:0;color:#333;">🔒 Accès Réservé</h2>
-  <p style="color:#666;font-size:14px;margin-bottom:20px;">Merci de saisir votre code RH pour accéder au simulateur <br>(sans le p)</p>
-  
-  <input type="text" id="username" class="login-field" placeholder="Votre identifiant RH">
-  <button type="button" class="login-btn" onclick="checkLogin()">Se Connecter</button>
-  <div id="login-error">Ce code RH n'est pas reconnu,<br>⚠️ Ce site n'est accessible qu'à ceux qui le méritent ! ⚠️</div>
-</div>
+<main class="page">
+  <div class="public-page">
+    <div class="card">
+      <div class="eyebrow">Outil gratuit et bénévole</div>
+      <h1 class="page-title">Simulateur non officiel des aides ASC 2026 du CSE Central La Poste</h1>
+      <p class="page-lead">Estimez en quelques clics les aides auxquelles vous pouvez prétendre en tant que postier : CESU, Chèques-Vacances, allocation de rentrée, aide périscolaire, séjours et colonies, aide aux aidants, abondement PEG/PERCO et avantages du groupe. Le calcul repose sur votre quotient familial.</p>
 
+      <div class="public-note">
+        ⚠️ Ce site est <strong>non officiel</strong> : il est créé et géré bénévolement par un postier, sans lien avec La Poste ni le CSE Central. Les montants sont des <strong>estimations indicatives</strong> sans valeur contractuelle.
+      </div>
+
+      <h2>Comment ça marche ?</h2>
+      <ul>
+        <li><strong>1.</strong> Vous indiquez votre revenu fiscal de référence et votre nombre de parts (avis d'imposition).</li>
+        <li><strong>2.</strong> Le simulateur calcule votre quotient familial et votre tranche, de T1 à T10.</li>
+        <li><strong>3.</strong> Chaque page d'aides affiche vos montants estimés, avec le lien pour faire la démarche sur le portail du CSE.</li>
+      </ul>
+      <p>Vos données restent sur votre appareil : rien n'est envoyé à un serveur.</p>
+
+      <h2>Découvrir les aides</h2>
+      <div class="public-cards" id="publicCards"></div>
+
+      <div class="login-box" id="connexion">
+        <h2>🔒 Accéder au simulateur</h2>
+        <p>Saisissez votre code RH (sans le « p ») pour calculer vos aides.</p>
+        <input type="text" id="username" placeholder="Votre identifiant RH" aria-label="Identifiant RH" autocomplete="off">
+        <br>
+        <button type="button" class="btn btn-primary" id="loginBtn">Se connecter</button>
+        <div class="login-error" id="login-error">Ce code RH n'est pas reconnu,<br>⚠️ Ce site n'est accessible qu'à ceux qui le méritent ! ⚠️</div>
+      </div>
+
+      <h2>Questions fréquentes</h2>
+      <div class="faq-item">
+        <h3>Ce simulateur est-il officiel ?</h3>
+        <p>Non. C'est un outil bénévole, indépendant de La Poste et du CSE Central. Seuls les services du CSE font foi pour vos droits.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Sur quoi reposent les montants ?</h3>
+        <p>Sur les barèmes de la brochure ASC 2026, par tranche de quotient familial. Ils sont repris à titre indicatif : vérifiez toujours auprès du CSE.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Mes informations sont-elles enregistrées ?</h3>
+        <p>Non. Votre revenu fiscal et votre situation restent uniquement dans votre navigateur et ne sont jamais envoyés à l'éditeur.</p>
+      </div>
+      <div class="faq-item">
+        <h3>D'où viennent les images ?</h3>
+        <p>Toutes les images du site sont générées par l'IA Gemini (Google). Elles ne représentent pas de vraies personnes.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="asc-footer"></div>
+
+<script src="assets/js/common.js"></script>
 <script>
+// Contrôle de format du code RH : purement cosmétique, ce n'est pas une sécurité.
 function checkLogin() {
   const user = document.getElementById('username').value.trim();
-  const errorDiv = document.getElementById('login-error');
-  const regexRH = /^[a-zA-Z]{3}[0-9]{3}$/;
-
-  if (regexRH.test(user)) {
+  if (/^[a-zA-Z]{3}[0-9]{3}$/.test(user)) {
     sessionStorage.setItem('is_logged_in', 'true');
     window.location.href = 'accueil.html';
   } else {
-    errorDiv.style.display = 'block';
+    document.getElementById('login-error').style.display = 'block';
   }
 }
 
-// Si déjà connecté, rediriger directement vers l'accueil
+// Si déjà connecté, rediriger directement vers l'accueil (c'est aussi la page « Mon profil »)
 if (sessionStorage.getItem('is_logged_in') === 'true') {
   window.location.href = 'accueil.html';
 }
-</script>
 
+ASC.renderPublicHeader('accueil');
+ASC.renderFooter();
+ASC.renderPublicCards('publicCards');
+document.getElementById('loginBtn').onclick = checkLogin;
+document.getElementById('username').addEventListener('keydown', e => { if (e.key === 'Enter') checkLogin(); });
+</script>
 </body>
 </html>

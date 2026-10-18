@@ -2,17 +2,6 @@
 <html lang="fr">
 <head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2449CKTRX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2449CKTRX4');
-</script>
-
-
 <meta charset="utf-8">
 <title>Parentalité -18 ans | Simulateur ASC 2026 — CSE Central La Poste</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,12 +36,12 @@
 <div class="section-block" style="background:#e8f0fe;">
   <div class="section-head">
     <span class="ic">🎫</span>
-    <h3>Vous disposez d'une dotation en CESU de 50 chèques qui peuvent être utilisé pour du soutien scolaire</h3>
+    <h3>Vous disposez d'une dotation en CESU de <span data-c="CONSTANTES.cesuDotation" data-raw></span> chèques qui peuvent être utilisé pour du soutien scolaire</h3>
 	
 	<div class="page-photo"><img src="assets/images/soutien-scolaire.jpg" alt="enfant étant aidé d'un adulte pour ses devoirs"></div>
   </div>
-  <p style="font-size:13px; margin-bottom:10px;">Indiquez le Nombre de titres CESU souhaité (de 0 à 50) :</p>
-  <input type="number" id="socleCesu" min="0" max="50" value="50" style="width: 80px; padding: 8px;">
+  <p class="hint-13">Indiquez le Nombre de titres CESU souhaité (de 0 à <span data-c="CONSTANTES.cesuDotation" data-raw></span>) :</p>
+  <input class="input-narrow" type="number" id="socleCesu" min="0" max="50" value="50">
 </div>
 
 
@@ -69,7 +58,7 @@
         <p style="font-size:13.5px;color:var(--muted);margin:0 0 10px;">Le choix a lieu une fois par an et est irrévocable :</p>
         <ul style="margin:0 0 16px;padding-left:20px;font-size:13.5px;color:var(--muted);line-height:1.7;">
           <li><strong>Option 1 :</strong> aide en pourcentage sur vos frais de périscolaire.</li>
-          <li><strong>Option 2 :</strong> dotation de titres CESU supplémentaires — 84 titres/enfant 0-4 ans, 55 titres/enfant 4-11 ans.</li>
+          <li><strong>Option 2 :</strong> dotation de titres CESU supplémentaires — <span data-c="CONSTANTES.cesuOpt2.n04" data-raw></span> titres/enfant 0-4 ans, <span data-c="CONSTANTES.cesuOpt2.n411" data-raw></span> titres/enfant 4-11 ans.</li>
         </ul>
         <div class="choice-box">
           <label><input type="radio" name="modeAide" value="perisco" checked> Option 1 — Périscolaire</label>
@@ -96,10 +85,10 @@
 
       </div>
 
-      <div style="margin-top: 30px; border-top: 1px solid var(--border, #eee); padding-top: 20px;">
-        <h2 class="page-title" style="font-size: 20px; margin-top: 0;">⚽ Aide aux activités sportives et culturelles</h2>
+      <div class="section-sep">
+        <h2 class="page-title title-20">⚽ Aide aux activités sportives et culturelles</h2>
 		
-        <p class="page-lead">Aide de 60 € par enfant, jusqu'à 25 ans (s'il est toujours rattaché au foyer fiscal familial).</p>
+        <p class="page-lead">Aide de <span data-c="CONSTANTES.sport"></span> par enfant, jusqu'à 25 ans (s'il est toujours rattaché au foyer fiscal familial).</p>
 
         <div class="counter-row">
           <div class="counter-info">
@@ -119,7 +108,7 @@
       <div class="section-block">
         <div class="section-head"><span class="ic">🎒</span><h3>Séjours enfants accompagnés</h3></div>
 		
-		<p style="font-size:13px; margin-bottom:10px;">Pour chaque nuit facturée en dehors du domicile des parents avec le parent éligible percevez une aide/j/enfant</p>
+		<p class="hint-13">Pour chaque nuit facturée en dehors du domicile des parents avec le parent éligible percevez une aide/j/enfant</p>
         <div class="grid-2">
           <div>
             <label class="field-label">Jours de séjours enfants</label>
@@ -132,15 +121,15 @@
       <div class="section-block">
         <div class="section-head"><span class="ic">⛺</span><h3>Colonies de vacances agréées</h3></div>
 		
-		<p style="font-size:13px; margin-bottom:10px;">Séjours subventionnés dans le monde entier (mais surtout en Europe et en France)</p>
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+		<p class="hint-13">Séjours subventionnés dans le monde entier (mais surtout en Europe et en France)</p>
+        <div class="row-center">
           <div class="counter-controls">
             <button type="button" class="ct-btn" id="coloDec">−</button>
             <span class="ct-value" id="coloVal">0</span>
             <button type="button" class="ct-btn" id="coloInc">+</button>
-            <span style="font-size:13px;color:var(--muted);">enfant(s)</span>
+            <span class="text-muted-13">enfant(s)</span>
           </div>
-          <div class="field-wrap" style="flex:1;min-width:160px;">
+          <div class="field-wrap field-grow">
             <input type="number" id="coloCout" placeholder="Coût total €"><span class="suffix">€</span>
           </div>
         </div>
@@ -150,17 +139,17 @@
       <div class="section-block">
         <div class="section-head"><span class="ic">🏕️</span><h3>Classe découverte</h3></div>
 		
-		<p style="font-size:13px; margin-bottom:10px;">Votre enfant part en classe de neige ou en classe verte?</p>
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+		<p class="hint-13">Votre enfant part en classe de neige ou en classe verte?</p>
+        <div class="row-center">
           <div class="counter-controls">
             <button type="button" class="ct-btn" id="classeDec">−</button>
             <span class="ct-value" id="classeVal">0</span>
             <button type="button" class="ct-btn" id="classeInc">+</button>
-            <span style="font-size:13px;color:var(--muted);">enfant(s)</span>
+            <span class="text-muted-13">enfant(s)</span>
           </div>
-          <div style="flex:1;min-width:160px;">
+          <div class="field-grow">
             <input type="number" id="joursClasse" placeholder="Nombre de jours">
-            <p class="field-hint" style="margin:4px 0 0;">Minimum 3 jours.</p>
+            <p class="field-hint" style="margin:4px 0 0;">Minimum <span data-c="CONSTANTES.classeDecMinJours" data-raw></span> jours.</p>
           </div>
         </div>
 		
@@ -171,22 +160,28 @@
         <div class="section-head"><span class="ic">🌍</span><h3>Séjour linguistique</h3></div>
 		
 		
-		<p style="font-size:13px; margin-bottom:10px;">Votre enfant part en Italie ou au Royaume Uni?</p>
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+		<p class="hint-13">Votre enfant part en Italie ou au Royaume Uni?</p>
+        <div class="row-center">
           <div class="counter-controls">
             <button type="button" class="ct-btn" id="sejLingDec">−</button>
             <span class="ct-value" id="sejLingVal">0</span>
             <button type="button" class="ct-btn" id="sejLingInc">+</button>
-            <span style="font-size:13px;color:var(--muted);">enfant(s)</span>
+            <span class="text-muted-13">enfant(s)</span>
           </div>
-          <div style="flex:1;min-width:160px;">
+          <div class="field-grow">
             <input type="number" id="joursSejLing" placeholder="Nombre de jours">
-            <p class="field-hint" style="margin:4px 0 0;">Minimum 7 jours.</p>
+            <p class="field-hint" style="margin:4px 0 0;">Minimum <span data-c="CONSTANTES.sejourLingMinJours" data-raw></span> jours.</p>
           </div>
         </div>
 		<div class="page-photo"><img src="assets/images/langues.jpg" alt="londres"></div>
 	
 		
+      </div>
+
+      <div class="section-block">
+        <div class="section-head"><span class="ic">🕒</span><h3>Autres aides — calcul bientôt disponible</h3></div>
+        <p class="hint-13">Le calcul de ces aides arrive bientôt. En attendant, vous pouvez déjà faire la demande :</p>
+        <div id="bientot"></div>
       </div>
 
       <div class="btn-row" data-noprint>
@@ -198,7 +193,7 @@
     <div id="sidebar"></div>
   </div>
 
-  <div class="card" style="margin-top:22px;" id="resultsCard"></div>
+  <div class="card mt-22" id="resultsCard"></div>
 </main>
 
 <div id="asc-footer"></div>
@@ -206,7 +201,7 @@
 <script src="assets/js/common.js"></script>
 <script>
 (function () {
-  const B = ASC.BAREMES, L = ASC.LINKS;
+  const B = ASC.BAREMES, L = ASC.LINKS, C = ASC.CONSTANTES;
 
 const state = {
     mode: 'perisco',
@@ -228,24 +223,23 @@ const state = {
   function explain(kind, t) {
     const f = ASC.fmt, f2 = ASC.fmt2;
     switch (kind) {
-      case 'socle': { const ex = 50 * B.cesuTitre[t]; return `💡 Cette dotation est automatique : 50 titres CESU × ${f2(B.cesuTitre[t])} d'aide CSE par titre = ${f(ex)} offerts, quelle que soit votre tranche.`; }
+      case 'socle': { const ex = C.cesuDotation * B.cesuTitre[t]; return `💡 Cette dotation est automatique : ${C.cesuDotation} titres CESU × ${f2(B.cesuTitre[t])} d'aide CSE par titre = ${f(ex)} offerts, quelle que soit votre tranche.`; }
       case 'perisco': { const pct = B.periscoPct[t], exFact = 80, exAide = Math.round(exFact * pct / 100); return `💡 Exemple concret : facture périscolaire de ${f(exFact)}/mois. En tranche T${t+1}, le CSE prend en charge ${pct} %, soit ${f(exAide)}/mois — reste à charge ${f(exFact-exAide)}/mois, sur 11 mois.`; }
-      case 'cesuOpt2': return `💡 Dotation calculée sur le nombre d'enfants 0-4 ans et 4-11 ans saisi ci-dessus : 84 titres/enfant (0-4 ans) et 55 titres/enfant (4-11 ans), valorisés à ${f2(B.cesuTitre[t])}/titre pour votre tranche.`;
-      case 'scolarite': return `💡 Exemple concret : un enfant au collège (145 €) et un au lycée (175 €) = 320 € d'allocation de rentrée versés sur simple certificat de scolarité.`;
+      case 'cesuOpt2': return `💡 Dotation calculée sur le nombre d'enfants 0-4 ans et 4-11 ans saisi ci-dessus : ${C.cesuOpt2.n04} titres/enfant (0-4 ans) et ${C.cesuOpt2.n411} titres/enfant (4-11 ans), valorisés à ${f2(B.cesuTitre[t])}/titre pour votre tranche.`;
+      case 'scolarite': return `💡 Exemple concret : un enfant au collège (${f(C.allocRentree.college)}) et un au lycée (${f(C.allocRentree.lycee)}) = ${f(C.allocRentree.college + C.allocRentree.lycee)} d'allocation de rentrée versés sur simple certificat de scolarité.`;
       case 'sejours': { const taux = B.sejourDay[t], exJours = 14, exAide = Math.round(taux * exJours); return `💡 Exemple concret : 14 jours de séjour en famille. Le CSE verse ${f2(taux)}/jour, soit ${f(exAide)} d'aide.`; }
-      case 'colo': { const taux = B.coloPct[t], exFact = 800, exAide = Math.min(Math.round(exFact * taux / 100), 1300); return `💡 Exemple concret : colonie à ${f(exFact)}. Le CSE prend en charge ${taux} %, soit ${f(exAide)} remboursés (plafond 1 300 €/enfant).`; }
+      case 'colo': { const taux = B.coloPct[t], exFact = 800, exAide = Math.min(Math.round(exFact * taux / 100), C.coloPlafondEnfant); return `💡 Exemple concret : colonie à ${f(exFact)}. Le CSE prend en charge ${taux} %, soit ${f(exAide)} remboursés (plafond ${f(C.coloPlafondEnfant)}/enfant).`; }
       case 'classedec': { const taux = B.classeDecJour[t], exJours = 5, exAide = Math.round(taux * exJours); return `💡 Exemple concret : classe découverte de 5 jours → ${f2(taux)}/jour × 5 = ${f(exAide)} par enfant.`; }
       case 'sejourling': { const taux = B.sejourLingJour[t], exJours = 14, exAide = Math.round(taux * exJours); return `💡 Exemple concret : séjour linguistique de 2 semaines → ${f2(taux)}/jour × 14 = ${f(exAide)} par enfant.`; }
-      case 'sport': return `💡 Aide forfaitaire de 60 € par enfant pratiquant une activité sportive ou culturelle, jusqu'à 25 ans s'il est encore rattaché à votre foyer fiscal — sur simple justificatif (licence, inscription).`;
+      case 'sport': return `💡 Aide forfaitaire de ${f(C.sport)} par enfant pratiquant une activité sportive ou culturelle, jusqu'à 25 ans s'il est encore rattaché à votre foyer fiscal — sur simple justificatif (licence, inscription).`;
       default: return '';
     }
   }
 
   function compute() {
     const comp = ASC.computeQF();
-    const aids = [];
-    const add = (kind, label, amount, note) => { if (amount > 0) aids.push({ kind, label, amount, note }); };
-    if (!comp.hasQF) return { comp, aids, total: 0 };
+    const { list: aids, add } = ASC.newAids();
+    if (!comp.hasQF) return { comp, aids };
 
     const t = comp.t, k = state.kids;
 
@@ -261,7 +255,7 @@ const socleCount = parseInt(state.socleCesu) || 0;
 
     // Option 1 vs Option 2 (0-11 ans)
     if (state.mode === 'cesu') {
-      const titres = k.n04 * 84 + k.n411 * 55;
+      const titres = k.n04 * C.cesuOpt2.n04 + k.n411 * C.cesuOpt2.n411;
       if (titres > 0) add('cesuOpt2', 'Dotation CESU (option 2)', titres * B.cesuTitre[t], titres + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + '/titre');
     } else {
       const peri = ASC.num(state.perisco);
@@ -273,12 +267,12 @@ const socleCount = parseInt(state.socleCesu) || 0;
 
     // Allocation de rentrée T1-T2
     if (t <= 1) {
-      const sc = k.primaire * 70 + k.college * 145 + k.lycee * 175;
-      add('scolarite', 'Allocation de rentrée', sc, 'Primaire 70 € · Collège 145 € · Lycée 175 €');
+      const sc = k.primaire * C.allocRentree.primaire + k.college * C.allocRentree.college + k.lycee * C.allocRentree.lycee;
+      add('scolarite', 'Allocation de rentrée', sc, 'Primaire ' + ASC.fmt(C.allocRentree.primaire) + ' · Collège ' + ASC.fmt(C.allocRentree.college) + ' · Lycée ' + ASC.fmt(C.allocRentree.lycee));
     }
 
     // Activités sportives & culturelles (60 €/enfant, indépendant de la tranche)
-    if (state.sportEnfants > 0) add('sport', 'Activités sportives & culturelles', state.sportEnfants * 60, state.sportEnfants + ' enfant(s) × 60 €');
+    if (state.sportEnfants > 0) add('sport', 'Activités sportives & culturelles', state.sportEnfants * C.sport, state.sportEnfants + ' enfant(s) × ' + ASC.fmt(C.sport));
 
     // Séjours enfants accompagnés
     const js = ASC.num(state.joursSejours);
@@ -287,27 +281,27 @@ const socleCount = parseInt(state.socleCesu) || 0;
     // Colonies
     const cc = ASC.num(state.coloCout);
     if (state.coloEnfants > 0 && cc > 0) {
-      const per = Math.min(cc * B.coloPct[t] / 100, 1300);
-      add('colo', 'Colonies de vacances', per * state.coloEnfants, B.coloPct[t] + '% · ' + state.coloEnfants + ' enfant(s) · plafond 1 300 €/enfant');
+      const per = Math.min(cc * B.coloPct[t] / 100, C.coloPlafondEnfant);
+      add('colo', 'Colonies de vacances', per * state.coloEnfants, B.coloPct[t] + '% · ' + state.coloEnfants + ' enfant(s) · plafond ' + ASC.fmt(C.coloPlafondEnfant) + '/enfant');
     }
 
     // Classe découverte (min 3 jours)
     const jcdSaisie = ASC.num(state.joursClasse);
-    const jcd = jcdSaisie > 0 ? Math.max(jcdSaisie, 3) : 0;
-    if (state.classeDecouverte > 0 && jcd >= 3) {
+    const jcd = jcdSaisie > 0 ? Math.max(jcdSaisie, C.classeDecMinJours) : 0;
+    if (state.classeDecouverte > 0 && jcd >= C.classeDecMinJours) {
       const taux = B.classeDecJour[t];
-      add('classedec', 'Classe découverte', taux * jcd * state.classeDecouverte, ASC.fmt2(taux) + '/j × ' + jcd + ' j × ' + state.classeDecouverte + ' enfant(s) (min. 3 j)');
+      add('classedec', 'Classe découverte', taux * jcd * state.classeDecouverte, ASC.fmt2(taux) + '/j × ' + jcd + ' j × ' + state.classeDecouverte + ' enfant(s) (min. ' + C.classeDecMinJours + ' j)');
     }
 
     // Séjour linguistique (min 7 jours)
     const jslSaisie = ASC.num(state.joursSejLing);
-    const jsl = jslSaisie > 0 ? Math.max(jslSaisie, 7) : 0;
-    if (state.sejourLinguistique > 0 && jsl >= 7) {
+    const jsl = jslSaisie > 0 ? Math.max(jslSaisie, C.sejourLingMinJours) : 0;
+    if (state.sejourLinguistique > 0 && jsl >= C.sejourLingMinJours) {
       const tauxL = B.sejourLingJour[t];
-      add('sejourling', 'Séjour linguistique', tauxL * jsl * state.sejourLinguistique, ASC.fmt2(tauxL) + '/j × ' + jsl + ' j × ' + state.sejourLinguistique + ' enfant(s) (min. 7 j)');
+      add('sejourling', 'Séjour linguistique', tauxL * jsl * state.sejourLinguistique, ASC.fmt2(tauxL) + '/j × ' + jsl + ' j × ' + state.sejourLinguistique + ' enfant(s) (min. ' + C.sejourLingMinJours + ' j)');
     }
 
-    return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0) };
+    return { comp, aids };
   }
 
 function renderKidRows() {
@@ -331,29 +325,7 @@ function renderKidRows() {
   }
 
   function renderResults() {
-    const { comp, aids, total } = compute();
-    const el = document.getElementById('resultsCard');
-    if (!comp.hasQF) {
-      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="index.html">profil</a> pour voir vos aides estimées ici.</p>`;
-    } else if (!aids.length) {
-      el.innerHTML = `<div class="eyebrow">Estimation — Tranche T${comp.t+1}</div><p class="page-lead" style="margin:0;">Renseignez votre situation ci-dessus pour voir apparaître vos aides.</p>`;
-    } else {
-      el.innerHTML = `
-        <div class="eyebrow">Vos aides estimées — Tranche T${comp.t+1}</div>
-        <h2 class="page-title" style="font-size:22px;">${ASC.fmt(total)}</h2>
-        <div class="aid-cards">
-          ${aids.map(a => `
-            <div class="aid-card">
-              <span class="aid-label">${a.label}</span>
-              <span class="aid-amount">${ASC.fmt(a.amount)}</span>
-              <span class="aid-note">${a.note}</span>
-              <div class="aid-explain">${explain(a.kind, comp.t)}</div>
-              <button class="aid-link" data-link="${L[a.kind] || L.cse}">🔗 Faire la démarche →</button>
-            </div>`).join('')}
-        </div>`;
-      el.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
-    }
-    ASC.renderSidebar('sidebar', total, aids.length);
+    ASC.showResults({ section: 'parentalite', ...compute(), explain, emptyMsg: 'Renseignez votre situation ci-dessus pour voir apparaître vos aides.' });
   }
   
 
@@ -397,6 +369,13 @@ function renderKidRows() {
   document.getElementById('sport-dec').onclick = () => { state.sportEnfants = Math.max(0, state.sportEnfants-1); render(); };
   document.getElementById('sport-inc').onclick = () => { state.sportEnfants += 1; render(); };
   document.getElementById('socleCesu').addEventListener('input', e => { state.socleCesu = e.target.value; render(); });
+  // Aides sans calcul pour l'instant : lien seul (barèmes à fournir)
+  document.getElementById('bientot').innerHTML = [
+    ['Soutien aux apprentissages', L.soutienApprentissages],
+    ['Centre de loisirs (vacances scolaires)', L.centreLoisirs],
+  ].map(([libelle, url]) => `<button type="button" class="aid-link aid-link-more" data-link="${url}">${libelle} →</button>`).join('');
+  ASC.bindLinks(document.getElementById('bientot'));
+
   render();
 })();
 </script>

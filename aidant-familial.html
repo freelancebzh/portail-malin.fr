@@ -2,16 +2,6 @@
 <html lang="fr">
 <head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2449CKTRX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2449CKTRX4');
-</script>
-
 <meta charset="utf-8">
 <title>Aidant familial/aide famille | Simulateur NON OFFICIEL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +28,7 @@
 	  
 	        <div class="row-tile" id="cesuVQTile">
         <span class="row-check" id="cesuVQCheck">✓</span>
-        <div><div class="row-tile-title">CESU Vie quotidienne</div><div class="row-tile-sub">jusqu'à 50 titres de 15 € cofinancés par le Groupe</div></div>
+        <div><div class="row-tile-title">CESU Vie quotidienne</div><div class="row-tile-sub">jusqu'à <span data-c="CONSTANTES.cesuDotation" data-raw></span> titres de <span data-c="CONSTANTES.cesuValeurTitre"></span> cofinancés par le Groupe</div></div>
       </div>
 	  
       <h1 class="page-title">🤲 CESU, aide à domicile & répit pour les aidants</h1>
@@ -65,12 +55,12 @@
           </div>
         </div>
 
-        <div style="margin-top:14px;">
+        <div class="mt-14">
           <label class="field-label">Type d'aide à domicile</label>
           <div class="seg" id="domicileSeg"></div>
         </div>
 
-        <div class="grid-2" style="margin-top:14px;">
+        <div class="grid-2 mt-14">
           <div>
             <label class="field-label">Jours de répit</label>
             <input type="number" id="joursRepit" placeholder="ex. 10">
@@ -91,7 +81,7 @@
     <div id="sidebar"></div>
   </div>
 
-  <div class="card" style="margin-top:22px;" id="resultsCard"></div>
+  <div class="card mt-22" id="resultsCard"></div>
 </main>
 
 <div id="asc-footer"></div>
@@ -99,7 +89,7 @@
 <script src="assets/js/common.js"></script>
 <script>
 (function () {
-  const B = ASC.BAREMES, L = ASC.LINKS;
+  const B = ASC.BAREMES, L = ASC.LINKS, C = ASC.CONSTANTES;
   const state = {
     cesuVieQuoOn: false, aidant: false,
     cesuAidantTitres: '', heuresDomicile: '', typeDomicile: 'ada',
@@ -109,16 +99,16 @@
   function explain(kind, t) {
     const f = ASC.fmt, f2 = ASC.fmt2;
     if (kind === 'cesuvq') {
-      const tauxTitre = B.cesuTitre[t], hPrix = 25, hApresCESU = Math.round(hPrix - tauxTitre), hApresCI = Math.round(hApresCESU * 0.5), aideCSE = Math.round(50 * tauxTitre);
-      return `💡 Exemple concret : vous payez votre aide ménagère ${f(hPrix)}/h. Le CSE finance ${f2(tauxTitre)} par titre CESU. Reste à charge : ${f(hApresCESU)}/h — et avec le crédit d'impôt de 50 %, seulement ${f(hApresCI)}/h ! Sur 50 titres, le CSE vous offre ${f(aideCSE)} de pouvoir d'achat.`;
+      const tauxTitre = B.cesuTitre[t], hPrix = C.prixHeureRef, hApresCESU = Math.round(hPrix - tauxTitre), hApresCI = Math.round(hApresCESU * C.creditImpot), aideCSE = Math.round(C.cesuDotation * tauxTitre);
+      return `💡 Exemple concret : vous payez votre aide ménagère ${f(hPrix)}/h. Le CSE finance ${f2(tauxTitre)} par titre CESU. Reste à charge : ${f(hApresCESU)}/h — et avec le crédit d'impôt de ${Math.round(C.creditImpot * 100)} %, seulement ${f(hApresCI)}/h ! Sur ${C.cesuDotation} titres, le CSE vous offre ${f(aideCSE)} de pouvoir d'achat.`;
     }
     if (kind === 'cesuaid') {
-      const tauxTitre = B.cesuTitre[t], hPrix = 25, hApresCESU = Math.round(hPrix - tauxTitre), hApresCI = Math.round(hApresCESU * 0.5);
-      return `💡 Exemple concret : aide à domicile pour votre proche à ${f(hPrix)}/h. Le CSE prend en charge ${f2(tauxTitre)}/h via les titres CESU aidants. Reste à charge : ${f(hApresCESU)}/h, soit ${f(hApresCI)}/h après crédit d'impôt de 50 %.`;
+      const tauxTitre = B.cesuTitre[t], hPrix = C.prixHeureRef, hApresCESU = Math.round(hPrix - tauxTitre), hApresCI = Math.round(hApresCESU * C.creditImpot);
+      return `💡 Exemple concret : aide à domicile pour votre proche à ${f(hPrix)}/h. Le CSE prend en charge ${f2(tauxTitre)}/h via les titres CESU aidants. Reste à charge : ${f(hApresCESU)}/h, soit ${f(hApresCI)}/h après crédit d'impôt de ${Math.round(C.creditImpot * 100)} %.`;
     }
     if (kind === 'domicile') {
-      const rate = (state.typeDomicile === 'apf' ? B.apf : B.ada)[t], exH = 10, exPrixH = 25, exTotal = exPrixH * exH, exAide = Math.round(rate * exH), exCharge = exTotal - exAide, exCI = Math.round(exCharge * 0.5);
-      return `💡 Exemple concret : aide à domicile 10 h/mois à ${f(exPrixH)}/h = ${f(exTotal)}/mois. Le CSE prend en charge ${f2(rate)}/h, soit ${f(exAide)}/mois. Reste à charge : ${f(exCharge)}/mois — et ${f(exCI)}/mois après crédit d'impôt de 50 % !`;
+      const rate = (state.typeDomicile === 'apf' ? B.apf : B.ada)[t], exH = 10, exPrixH = C.prixHeureRef, exTotal = exPrixH * exH, exAide = Math.round(rate * exH), exCharge = exTotal - exAide, exCI = Math.round(exCharge * C.creditImpot);
+      return `💡 Exemple concret : aide à domicile 10 h/mois à ${f(exPrixH)}/h = ${f(exTotal)}/mois. Le CSE prend en charge ${f2(rate)}/h, soit ${f(exAide)}/mois. Reste à charge : ${f(exCharge)}/mois — et ${f(exCI)}/mois après crédit d'impôt de ${Math.round(C.creditImpot * 100)} % !`;
     }
     if (kind === 'repit') {
       const rate = B.repit[state.typeRepit][t], exJours = 5, exAide = Math.round(rate * exJours);
@@ -129,18 +119,17 @@
 
   function compute() {
     const comp = ASC.computeQF();
-    const aids = [];
-    const add = (kind, label, amount, note) => { if (amount > 0) aids.push({ kind, label, amount, note }); };
+    const { list: aids, add } = ASC.newAids();
     if (comp.hasQF) {
       const t = comp.t;
-      if (state.cesuVieQuoOn) add('cesuvq', 'CESU vie quotidienne', B.cesuVQ[t], "50 titres × " + ASC.fmt2(B.cesuTitre[t]) + " d'aide");
+      if (state.cesuVieQuoOn) add('cesuvq', 'CESU vie quotidienne', B.cesuVQ[t], C.cesuDotation + " titres × " + ASC.fmt2(B.cesuTitre[t]) + " d'aide");
       if (state.aidant) {
         const ct = ASC.num(state.cesuAidantTitres);
-        if (ct > 0) add('cesuaid', 'CESU aidants', Math.min(ct * B.cesuTitre[t], 1830), ct + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + ' · plafond 1 830 €');
+        if (ct > 0) add('cesuaid', 'CESU aidants', Math.min(ct * B.cesuTitre[t], C.cesuAidantPlafond), ct + ' titres × ' + ASC.fmt2(B.cesuTitre[t]) + ' · plafond ' + ASC.fmt(C.cesuAidantPlafond));
         const hd = ASC.num(state.heuresDomicile);
         if (hd > 0) {
           const rate = (state.typeDomicile === 'apf' ? B.apf : B.ada)[t];
-          const h = Math.min(hd, 15);
+          const h = Math.min(hd, C.domicileHeuresMax);
           add('domicile', 'Aide à domicile (' + (state.typeDomicile === 'apf' ? 'APF' : 'ADA') + ')', h * rate * 12, h + ' h/mois × ' + ASC.fmt2(rate) + '/h × 12');
         }
         const jr = ASC.num(state.joursRepit);
@@ -150,7 +139,7 @@
         }
       }
     }
-    return { comp, aids, total: aids.reduce((a, b) => a + b.amount, 0) };
+    return { comp, aids };
   }
 
   function renderToggles() {
@@ -169,29 +158,7 @@
   }
 
   function renderResults() {
-    const { comp, aids, total } = compute();
-    const el = document.getElementById('resultsCard');
-    if (!comp.hasQF) {
-      el.innerHTML = `<div class="eyebrow">Estimation</div><p class="page-lead" style="margin:0;">Complétez votre <a href="index.html">profil</a> pour voir vos aides estimées ici.</p>`;
-    } else if (!aids.length) {
-      el.innerHTML = `<div class="eyebrow">Estimation — Tranche T${comp.t+1}</div><p class="page-lead" style="margin:0;">Cochez les options ci-dessus pour voir apparaître vos aides.</p>`;
-    } else {
-      el.innerHTML = `
-        <div class="eyebrow">Vos aides estimées — Tranche T${comp.t+1}</div>
-        <h2 class="page-title" style="font-size:22px;">${ASC.fmt(total)}</h2>
-        <div class="aid-cards">
-          ${aids.map(a => `
-            <div class="aid-card">
-              <span class="aid-label">${a.label}</span>
-              <span class="aid-amount">${ASC.fmt(a.amount)}</span>
-              <span class="aid-note">${a.note}</span>
-              <div class="aid-explain">${explain(a.kind, comp.t)}</div>
-              <button class="aid-link" data-link="${L[a.kind] || L.cse}">🔗 Faire la démarche →</button>
-            </div>`).join('')}
-        </div>`;
-      el.querySelectorAll('[data-link]').forEach(b => b.onclick = () => window.open(b.getAttribute('data-link'), '_blank'));
-    }
-    ASC.renderSidebar('sidebar', total, aids.length);
+    ASC.showResults({ section: 'aidant', ...compute(), explain, emptyMsg: 'Cochez les options ci-dessus pour voir apparaître vos aides.' });
   }
 
   function render() {
