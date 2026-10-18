@@ -580,3 +580,4 @@ input#parts { width: 100%; padding: 0 16px; font: 700 17px Manrope, sans-serif; 
 /* Le panneau latéral suit le défilement : sa colonne prend toute la hauteur de la page */
 #sidebar { align-self: stretch; }
 .aside-sticky { top: 124px; align-content: start; }
+.col-main { min-width: 0; }
