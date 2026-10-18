@@ -576,3 +576,7 @@ footer.site-footer a { text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 .mb-22 { margin-bottom: 22px; }
 input#parts { width: 100%; padding: 0 16px; font: 700 17px Manrope, sans-serif; color: var(--ink); border: 1.5px solid var(--border); }
+
+/* Le panneau latéral suit le défilement : sa colonne prend toute la hauteur de la page */
+#sidebar { align-self: stretch; }
+.aside-sticky { top: 124px; align-content: start; }
